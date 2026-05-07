@@ -1719,3 +1719,126 @@ body.near-1 .hero {
     transition-duration: 0.001ms !important;
   }
 }
+
+.vote-meta {
+  margin: 18px auto 0;
+  max-width: 720px;
+  display: grid;
+  gap: 8px;
+  text-align: center;
+}
+
+.vote-status {
+  margin: 0;
+  color: rgba(220, 232, 255, 0.74);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+
+.vote-leader {
+  margin: 0;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 900;
+  text-shadow:
+    0 0 14px rgba(139, 227, 255, 0.55),
+    0 0 26px rgba(238, 107, 243, 0.28);
+}
+
+.vote-change-link {
+  width: fit-content;
+  margin: 2px auto 0;
+  color: #8be3ff;
+  font-size: 12px;
+  font-weight: 900;
+  text-decoration: none;
+  opacity: 0.86;
+  transition: 0.22s ease;
+}
+
+.vote-change-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+  text-shadow: 0 0 14px rgba(139, 227, 255, 0.65);
+}
+
+.team-activated-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 34px;
+  z-index: 200;
+  max-width: calc(100% - 32px);
+  padding: 14px 22px;
+  border-radius: 999px;
+  background: rgba(5, 8, 22, 0.88);
+  border: 1px solid rgba(255,255,255,0.18);
+  backdrop-filter: blur(18px);
+  color: white;
+  font-size: 15px;
+  font-weight: 1000;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  box-shadow:
+    0 0 34px rgba(139,227,255,0.25),
+    inset 0 0 18px rgba(255,255,255,0.05);
+  opacity: 0;
+  transform: translate(-50%, 22px) scale(0.94);
+  pointer-events: none;
+  transition: 0.28s ease;
+}
+
+.team-activated-toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+  animation: teamToastPulse 1.8s ease forwards;
+}
+
+.team-activated-toast.volts {
+  box-shadow:
+    0 0 38px rgba(0, 150, 255, 0.55),
+    0 0 80px rgba(139, 227, 255, 0.24);
+}
+
+.team-activated-toast.flame {
+  box-shadow:
+    0 0 38px rgba(255, 60, 95, 0.58),
+    0 0 80px rgba(255, 120, 80, 0.24);
+}
+
+.team-activated-toast.leaf {
+  box-shadow:
+    0 0 38px rgba(70, 255, 120, 0.52),
+    0 0 80px rgba(90, 255, 180, 0.22);
+}
+
+@keyframes teamToastPulse {
+  0% {
+    filter: brightness(1);
+  }
+
+  35% {
+    filter: brightness(1.28);
+  }
+
+  100% {
+    filter: brightness(1);
+  }
+}
+
+@media (max-width: 760px) {
+  .vote-status,
+  .vote-change-link {
+    font-size: 11px;
+  }
+
+  .vote-leader {
+    font-size: 13px;
+  }
+
+  .team-activated-toast {
+    bottom: 22px;
+    font-size: 12px;
+    padding: 12px 16px;
+  }
+}
