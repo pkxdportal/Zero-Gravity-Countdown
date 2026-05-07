@@ -11,14 +11,8 @@ let selectedTeam = localStorage.getItem("selectedTeam") || null;
 const GOOGLE_SHEET_CSV_URL =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vQSWxR6NP3qLfM_-Fi_qoRjpgEA0qiUCUTze8P3XHmNea9ROrpIGMp2kKxd_5FaqZvNi3j28G1-nmlQ/pub?gid=747099020&single=true&output=csv";
 
-/*
-  ВСТАВЬ СЮДА ССЫЛКИ НА GOOGLE FORM
-
-  GOOGLE_FORM_URL — обычная ссылка на форму.
-  GOOGLE_FORM_PREFILLED_URLS — лучше: отдельные pre-filled ссылки для volts / flame / leaf.
-*/
-
-const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd59BlXBH9tvS96vOtui6jvHhJyGLsFP0gJFZdW7-F1EtN-Nw/viewform?usp=dialog";
+const GOOGLE_FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSd59BlXBH9tvS96vOtui6jvHhJyGLsFP0gJFZdW7-F1EtN-Nw/viewform?usp=dialog";
 
 const GOOGLE_FORM_PREFILLED_URLS = {
   volts: "",
@@ -69,6 +63,10 @@ const translations = {
     selectedTeamPrefix: "Your team:",
     selectedTeamSaved: "Team selected:",
     teamAlreadySelected: "Selected",
+    voteStatus: "Votes update automatically from the community form.",
+    changeVoteText: "Need to change your vote? Contact PK XD PORTAL.",
+    currentLeader: "Current leader:",
+    teamActivated: "activated",
 
     teams: {
       volts: {
@@ -125,21 +123,25 @@ const translations = {
     selectedTeamPrefix: "Твоя команда:",
     selectedTeamSaved: "Команда выбрана:",
     teamAlreadySelected: "Выбрано",
+    voteStatus: "Голоса автоматически обновляются из формы сообщества.",
+    changeVoteText: "Нужно изменить голос? Свяжись с PK XD PORTAL.",
+    currentLeader: "Лидер сейчас:",
+    teamActivated: "активирована",
 
     teams: {
       volts: {
         icon: "⚡",
-        title: "TEAM VOLTS",
+        title: "КОМАНДА VOLTS",
         text: "ЧИСТАЯ ЭНЕРГИЯ МОЛНИИ! Я полон радости и энергии!"
       },
       flame: {
         icon: "🔥",
-        title: "TEAM FLAME",
+        title: "КОМАНДА FLAME",
         text: "ИНТЕНСИВНОСТЬ ПЛАМЕНИ! Я тёплый и яростный!"
       },
       leaf: {
         icon: "🍃",
-        title: "TEAM LEAF",
+        title: "КОМАНДА LEAF",
         text: "СИЛА ВНУТРИ КАЖДОГО ЛИСТА! Я праведный и сильный, как природа!"
       }
     }
@@ -148,7 +150,7 @@ const translations = {
   de: {
     eventDate: "11. JUNI 2026 • 15:00 BERLIN",
     titleTop: "Bis",
-    titleMain: "Zero Gravity",
+    titleMain: "Schwerelosigkeit",
     days: "Tage",
     hours: "Stunden",
     minutes: "Minuten",
@@ -159,7 +161,7 @@ const translations = {
     feedbackChannel: "PK XD PORTAL YouTube",
     musicOn: "🔊 Musik",
     musicOff: "🔇 Musik ausschalten",
-    started: "🚀 Zero Gravity hat begonnen",
+    started: "🚀 Schwerelosigkeit hat begonnen",
     fanCountdown: "Fan-Countdown für PK XD",
     disclaimer: "Dies ist ein von Fans erstellter Countdown. PK XD ist ein Spiel von Afterverse. Diese Website ist nicht offiziell und steht nicht in Verbindung mit Afterverse.",
     feedbackText: "Für Website-Verbesserungen oder weitere Sprachen schreibe hier:",
@@ -175,12 +177,16 @@ const translations = {
     progressLeft: "Übrig",
     progressText: "Fortschritt bis zum Event",
     shareCopied: "Link kopiert!",
-    teamEnergyTitle: "ZERO GRAVITY TEAM-ABSTIMMUNG 2026",
+    teamEnergyTitle: "SCHWERELOSIGKEIT TEAM-ABSTIMMUNG 2026",
     noTeamSelected: "Wähle dein Team, um seine Energie zu aktivieren.",
     chooseTeamBtn: "Team wählen",
     selectedTeamPrefix: "Dein Team:",
     selectedTeamSaved: "Team gewählt:",
     teamAlreadySelected: "Gewählt",
+    voteStatus: "Die Stimmen werden automatisch aus dem Community-Formular aktualisiert.",
+    changeVoteText: "Du musst deine Stimme ändern? Kontaktiere PK XD PORTAL.",
+    currentLeader: "Aktueller Favorit:",
+    teamActivated: "aktiviert",
 
     teams: {
       volts: {
@@ -237,21 +243,25 @@ const translations = {
     selectedTeamPrefix: "Ton équipe :",
     selectedTeamSaved: "Équipe choisie :",
     teamAlreadySelected: "Choisie",
+    voteStatus: "Les votes sont automatiquement mis à jour depuis le formulaire de la communauté.",
+    changeVoteText: "Besoin de changer ton vote ? Contacte PK XD PORTAL.",
+    currentLeader: "Équipe en tête :",
+    teamActivated: "activée",
 
     teams: {
       volts: {
         icon: "⚡",
-        title: "TEAM VOLTS",
+        title: "ÉQUIPE VOLTS",
         text: "ÉNERGIE PURE DE LA FOUDRE ! Je suis plein de joie et d’énergie !"
       },
       flame: {
         icon: "🔥",
-        title: "TEAM FLAME",
+        title: "ÉQUIPE FLAME",
         text: "L’INTENSITÉ DE LA FLAMME ! Je suis chaleureux et féroce !"
       },
       leaf: {
         icon: "🍃",
-        title: "TEAM LEAF",
+        title: "ÉQUIPE LEAF",
         text: "LA FORCE DANS CHAQUE FEUILLE ! Je suis juste et fort comme la nature !"
       }
     }
@@ -287,27 +297,31 @@ const translations = {
     progressLeft: "Zostało",
     progressText: "Postęp do wydarzenia",
     shareCopied: "Link skopiowany!",
-    teamEnergyTitle: "GŁOSOWANIE DRUŻYN ZERO GRAVITY 2026",
+    teamEnergyTitle: "GŁOSOWANIE DRUŻYN NIEWAŻKOŚCI 2026",
     noTeamSelected: "Wybierz drużynę, aby aktywować jej energię.",
     chooseTeamBtn: "Wybierz drużynę",
     selectedTeamPrefix: "Twoja drużyna:",
     selectedTeamSaved: "Wybrana drużyna:",
     teamAlreadySelected: "Wybrano",
+    voteStatus: "Głosy aktualizują się automatycznie z formularza społeczności.",
+    changeVoteText: "Chcesz zmienić głos? Skontaktuj się z PK XD PORTAL.",
+    currentLeader: "Aktualny lider:",
+    teamActivated: "aktywowana",
 
     teams: {
       volts: {
         icon: "⚡",
-        title: "TEAM VOLTS",
+        title: "DRUŻYNA VOLTS",
         text: "CZYSTA ENERGIA BŁYSKAWICY! Jestem pełen radości i energii!"
       },
       flame: {
         icon: "🔥",
-        title: "TEAM FLAME",
+        title: "DRUŻYNA FLAME",
         text: "INTENSYWNOŚĆ PŁOMIENIA! Jestem ciepły i zaciekły!"
       },
       leaf: {
         icon: "🍃",
-        title: "TEAM LEAF",
+        title: "DRUŻYNA LEAF",
         text: "SIŁA W KAŻDYM LIŚCIU! Jestem prawy i silny jak natura!"
       }
     }
@@ -316,7 +330,7 @@ const translations = {
   pt: {
     eventDate: "11 JUNHO 2026 • 10:00 BRASÍLIA",
     titleTop: "Até",
-    titleMain: "Zero Gravity",
+    titleMain: "Gravidade Zero",
     days: "dias",
     hours: "horas",
     minutes: "minutos",
@@ -327,7 +341,7 @@ const translations = {
     feedbackChannel: "YouTube PK XD PORTAL",
     musicOn: "🔊 Música",
     musicOff: "🔇 Desligar música",
-    started: "🚀 Zero Gravity começou",
+    started: "🚀 Gravidade Zero começou",
     fanCountdown: "Contagem regressiva feita por fãs para PK XD",
     disclaimer: "Esta é uma contagem regressiva feita por fãs. PK XD é um jogo da Afterverse. Este site não é oficial e não possui afiliação com a Afterverse.",
     feedbackText: "Para melhorias no site ou adição de novos idiomas, escreva aqui:",
@@ -343,27 +357,31 @@ const translations = {
     progressLeft: "Falta",
     progressText: "Progresso até o evento",
     shareCopied: "Link copiado!",
-    teamEnergyTitle: "VOTAÇÃO DAS EQUIPES ZERO GRAVITY 2026",
-    noTeamSelected: "Escolha sua equipe para ativar sua energia.",
-    chooseTeamBtn: "Escolher equipe",
-    selectedTeamPrefix: "Sua equipe:",
-    selectedTeamSaved: "Equipe escolhida:",
-    teamAlreadySelected: "Escolhida",
+    teamEnergyTitle: "VOTAÇÃO DOS TIMES GRAVIDADE ZERO 2026",
+    noTeamSelected: "Escolha seu time para ativar sua energia.",
+    chooseTeamBtn: "Escolher time",
+    selectedTeamPrefix: "Seu time:",
+    selectedTeamSaved: "Time escolhido:",
+    teamAlreadySelected: "Escolhido",
+    voteStatus: "Os votos são atualizados automaticamente pelo formulário da comunidade.",
+    changeVoteText: "Precisa mudar seu voto? Entre em contato com PK XD PORTAL.",
+    currentLeader: "Líder atual:",
+    teamActivated: "ativado",
 
     teams: {
       volts: {
         icon: "⚡",
-        title: "TEAM VOLTS",
+        title: "TIME VOLTS",
         text: "ENERGIA PURA DE RAIO!"
       },
       flame: {
         icon: "🔥",
-        title: "TEAM FLAME",
+        title: "TIME FLAME",
         text: "INTENSIDADE DO FOGO!"
       },
       leaf: {
         icon: "🍃",
-        title: "TEAM LEAF",
+        title: "TIME LEAF",
         text: "FORÇA DA NATUREZA!"
       }
     }
@@ -372,7 +390,7 @@ const translations = {
   tr: {
     eventDate: "11 HAZİRAN 2026 • 16:00 ISTANBUL",
     titleTop: "Kalan Süre",
-    titleMain: "Zero Gravity",
+    titleMain: "Sıfır Yerçekimi",
     days: "gün",
     hours: "saat",
     minutes: "dakika",
@@ -383,7 +401,7 @@ const translations = {
     feedbackChannel: "PK XD PORTAL YouTube",
     musicOn: "🔊 Müzik",
     musicOff: "🔇 Müziği Kapat",
-    started: "🚀 Zero Gravity başladı",
+    started: "🚀 Sıfır Yerçekimi başladı",
     fanCountdown: "PK XD için hayran geri sayımı",
     disclaimer: "Bu hayran yapımı bir geri sayımdır. PK XD, Afterverse tarafından geliştirilen bir oyundur. Bu site resmi değildir ve Afterverse ile bağlantılı değildir.",
     feedbackText: "Site geliştirmeleri veya yeni diller eklemek için buraya yazın:",
@@ -399,27 +417,31 @@ const translations = {
     progressLeft: "Kaldı",
     progressText: "Etkinliğe kalan ilerleme",
     shareCopied: "Bağlantı kopyalandı!",
-    teamEnergyTitle: "ZERO GRAVITY TAKIM OYLAMASI 2026",
+    teamEnergyTitle: "SIFIR YERÇEKİMİ TAKIM OYLAMASI 2026",
     noTeamSelected: "Enerjisini etkinleştirmek için takımını seç.",
     chooseTeamBtn: "Takımı seç",
     selectedTeamPrefix: "Takımın:",
     selectedTeamSaved: "Takım seçildi:",
     teamAlreadySelected: "Seçildi",
+    voteStatus: "Oylar topluluk formundan otomatik olarak güncellenir.",
+    changeVoteText: "Oyunu değiştirmek mi istiyorsun? PK XD PORTAL ile iletişime geç.",
+    currentLeader: "Şu an lider:",
+    teamActivated: "etkinleştirildi",
 
     teams: {
       volts: {
         icon: "⚡",
-        title: "TEAM VOLTS",
+        title: "VOLTS TAKIMI",
         text: "SAF YILDIRIM ENERJİSİ!"
       },
       flame: {
         icon: "🔥",
-        title: "TEAM FLAME",
+        title: "FLAME TAKIMI",
         text: "ATEŞİN YOĞUNLUĞU!"
       },
       leaf: {
         icon: "🍃",
-        title: "TEAM LEAF",
+        title: "LEAF TAKIMI",
         text: "DOĞANIN GÜCÜ!"
       }
     }
@@ -428,7 +450,7 @@ const translations = {
   id: {
     eventDate: "11 JUNI 2026 • 20:00 JAKARTA",
     titleTop: "Menuju",
-    titleMain: "Zero Gravity",
+    titleMain: "Gravitasi Nol",
     days: "hari",
     hours: "jam",
     minutes: "menit",
@@ -439,7 +461,7 @@ const translations = {
     feedbackChannel: "YouTube PK XD PORTAL",
     musicOn: "🔊 Musik",
     musicOff: "🔇 Matikan musik",
-    started: "🚀 Zero Gravity dimulai",
+    started: "🚀 Gravitasi Nol dimulai",
     fanCountdown: "Hitung mundur penggemar untuk PK XD",
     disclaimer: "Ini adalah hitung mundur buatan penggemar. PK XD adalah game dari Afterverse. Situs ini bukan situs resmi dan tidak berafiliasi dengan Afterverse.",
     feedbackText: "Untuk peningkatan situs atau penambahan bahasa baru, tulis di sini:",
@@ -455,27 +477,31 @@ const translations = {
     progressLeft: "Tersisa",
     progressText: "Progres menuju event",
     shareCopied: "Link disalin!",
-    teamEnergyTitle: "VOTE TIM ZERO GRAVITY 2026",
+    teamEnergyTitle: "VOTE TIM GRAVITASI NOL 2026",
     noTeamSelected: "Pilih tim untuk mengaktifkan energinya.",
     chooseTeamBtn: "Pilih Tim",
     selectedTeamPrefix: "Tim kamu:",
     selectedTeamSaved: "Tim dipilih:",
     teamAlreadySelected: "Dipilih",
+    voteStatus: "Vote diperbarui otomatis dari formulir komunitas.",
+    changeVoteText: "Perlu mengubah vote? Hubungi PK XD PORTAL.",
+    currentLeader: "Pemimpin saat ini:",
+    teamActivated: "diaktifkan",
 
     teams: {
       volts: {
         icon: "⚡",
-        title: "TEAM VOLTS",
+        title: "TIM VOLTS",
         text: "ENERGI PETIR MURNI!"
       },
       flame: {
         icon: "🔥",
-        title: "TEAM FLAME",
+        title: "TIM FLAME",
         text: "INTENSITAS API!"
       },
       leaf: {
         icon: "🍃",
-        title: "TEAM LEAF",
+        title: "TIM LEAF",
         text: "KEKUATAN ALAM!"
       }
     }
@@ -484,7 +510,7 @@ const translations = {
   es: {
     eventDate: "11 JUNIO 2026 • 07:00 MEXICO CITY",
     titleTop: "Hasta",
-    titleMain: "Zero Gravity",
+    titleMain: "Gravedad Cero",
     days: "días",
     hours: "horas",
     minutes: "minutos",
@@ -495,7 +521,7 @@ const translations = {
     feedbackChannel: "YouTube PK XD PORTAL",
     musicOn: "🔊 Música",
     musicOff: "🔇 Apagar música",
-    started: "🚀 Zero Gravity comenzó",
+    started: "🚀 Gravedad Cero comenzó",
     fanCountdown: "Cuenta regresiva hecha por fans para PK XD",
     disclaimer: "Esta es una cuenta regresiva hecha por fans. PK XD es un juego de Afterverse. Este sitio no es oficial y no está afiliado con Afterverse.",
     feedbackText: "Para mejorar el sitio o agregar más idiomas, escribe aquí:",
@@ -511,27 +537,31 @@ const translations = {
     progressLeft: "Falta",
     progressText: "Progreso hasta el evento",
     shareCopied: "¡Enlace copiado!",
-    teamEnergyTitle: "VOTACIÓN DE EQUIPOS ZERO GRAVITY 2026",
+    teamEnergyTitle: "VOTACIÓN DE EQUIPOS GRAVEDAD CERO 2026",
     noTeamSelected: "Elige tu equipo para activar su energía.",
     chooseTeamBtn: "Elegir equipo",
     selectedTeamPrefix: "Tu equipo:",
     selectedTeamSaved: "Equipo elegido:",
     teamAlreadySelected: "Elegido",
+    voteStatus: "Los votos se actualizan automáticamente desde el formulario de la comunidad.",
+    changeVoteText: "¿Necesitas cambiar tu voto? Contacta con PK XD PORTAL.",
+    currentLeader: "Líder actual:",
+    teamActivated: "activado",
 
     teams: {
       volts: {
         icon: "⚡",
-        title: "TEAM VOLTS",
+        title: "EQUIPO VOLTS",
         text: "¡ENERGÍA PURA DEL RAYO!"
       },
       flame: {
         icon: "🔥",
-        title: "TEAM FLAME",
+        title: "EQUIPO FLAME",
         text: "¡INTENSIDAD DEL FUEGO!"
       },
       leaf: {
         icon: "🍃",
-        title: "TEAM LEAF",
+        title: "EQUIPO LEAF",
         text: "¡FUERZA DE LA NATURALEZA!"
       }
     }
@@ -540,7 +570,7 @@ const translations = {
   hi: {
     eventDate: "11 जून 2026 • 18:30 NEW DELHI",
     titleTop: "शुरू होने तक",
-    titleMain: "Zero Gravity",
+    titleMain: "शून्य गुरुत्वाकर्षण",
     days: "दिन",
     hours: "घंटे",
     minutes: "मिनट",
@@ -551,7 +581,7 @@ const translations = {
     feedbackChannel: "PK XD PORTAL YouTube",
     musicOn: "🔊 संगीत",
     musicOff: "🔇 संगीत बंद करें",
-    started: "🚀 Zero Gravity शुरू हो गया",
+    started: "🚀 शून्य गुरुत्वाकर्षण शुरू हो गया",
     fanCountdown: "PK XD के लिए फैन काउंटडाउन",
     disclaimer: "यह एक फैन द्वारा बनाया गया काउंटडाउन है। PK XD Afterverse का एक गेम है। यह वेबसाइट आधिकारिक नहीं है और Afterverse से संबद्ध नहीं है।",
     feedbackText: "वेबसाइट सुधार या नई भाषाएँ जोड़ने के लिए यहाँ लिखें:",
@@ -567,27 +597,31 @@ const translations = {
     progressLeft: "बाकी",
     progressText: "इवेंट तक प्रगति",
     shareCopied: "लिंक कॉपी हो गया!",
-    teamEnergyTitle: "ZERO GRAVITY टीम वोट 2026",
+    teamEnergyTitle: "शून्य गुरुत्वाकर्षण टीम वोट 2026",
     noTeamSelected: "अपनी टीम चुनें ताकि उसकी ऊर्जा सक्रिय हो सके।",
     chooseTeamBtn: "टीम चुनें",
     selectedTeamPrefix: "आपकी टीम:",
     selectedTeamSaved: "टीम चुनी गई:",
     teamAlreadySelected: "चुनी गई",
+    voteStatus: "वोट कम्युनिटी फॉर्म से अपने आप अपडेट होते हैं।",
+    changeVoteText: "अपना वोट बदलना है? PK XD PORTAL से संपर्क करें।",
+    currentLeader: "मौजूदा लीडर:",
+    teamActivated: "सक्रिय",
 
     teams: {
       volts: {
         icon: "⚡",
-        title: "TEAM VOLTS",
+        title: "टीम VOLTS",
         text: "शुद्ध बिजली ऊर्जा!"
       },
       flame: {
         icon: "🔥",
-        title: "TEAM FLAME",
+        title: "टीम FLAME",
         text: "आग की तीव्रता!"
       },
       leaf: {
         icon: "🍃",
-        title: "TEAM LEAF",
+        title: "टीम LEAF",
         text: "प्रकृति की शक्ति!"
       }
     }
@@ -629,6 +663,8 @@ const selectedTeamText = document.getElementById("selectedTeamText");
 const voltsPercent = document.getElementById("voltsPercent");
 const flamePercent = document.getElementById("flamePercent");
 const leafPercent = document.getElementById("leafPercent");
+const voteLeader = document.getElementById("voteLeader");
+const teamActivatedToast = document.getElementById("teamActivatedToast");
 
 function updateCountdown() {
   const now = new Date();
@@ -783,6 +819,7 @@ function chooseTeam(team) {
   updateTeamEnergy();
   updateChooseButton();
   closeTeamPopup();
+  showTeamActivated(team);
 
   const voteUrl = GOOGLE_FORM_PREFILLED_URLS[team] || GOOGLE_FORM_URL;
 
@@ -849,6 +886,8 @@ function updateTeamEnergy() {
     if (selectedTeamText) {
       selectedTeamText.textContent = dict.noTeamSelected;
     }
+
+    updateVoteLeader();
     return;
   }
 
@@ -862,6 +901,51 @@ function updateTeamEnergy() {
   if (selectedEnergyRow) {
     selectedEnergyRow.classList.add("selected");
   }
+
+  updateVoteLeader();
+}
+
+function updateVoteLeader() {
+  if (!voteLeader) return;
+
+  const dict = translations[currentLang];
+
+  const teams = [
+    { key: "volts", value: teamEnergyData.volts },
+    { key: "flame", value: teamEnergyData.flame },
+    { key: "leaf", value: teamEnergyData.leaf }
+  ];
+
+  const leader = teams.reduce((max, team) => {
+    return team.value > max.value ? team : max;
+  }, teams[0]);
+
+  const leaderData = translations[currentLang].teams[leader.key];
+
+  if (!leaderData || leader.value <= 0) {
+    voteLeader.textContent = `${dict.currentLeader} —`;
+    return;
+  }
+
+  voteLeader.textContent = `${dict.currentLeader} ${leaderData.icon} ${leaderData.title} — ${leader.value}%`;
+}
+
+function showTeamActivated(team) {
+  if (!teamActivatedToast) return;
+
+  const dict = translations[currentLang];
+  const teamData = translations[currentLang].teams[team];
+
+  if (!teamData) return;
+
+  teamActivatedToast.textContent = `${teamData.icon} ${teamData.title} ${dict.teamActivated}`;
+  teamActivatedToast.className = "team-activated-toast show " + team;
+  teamActivatedToast.setAttribute("aria-hidden", "false");
+
+  window.setTimeout(() => {
+    teamActivatedToast.className = "team-activated-toast";
+    teamActivatedToast.setAttribute("aria-hidden", "true");
+  }, 1800);
 }
 
 async function loadTeamEnergyFromSheet() {
