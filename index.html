@@ -6,7 +6,7 @@
 
   <title>Until Weightlessness</title>
 
-  <link rel="stylesheet" href="style.css?v=14" />
+  <link rel="stylesheet" href="style.css?v=15" />
 </head>
 
 <body>
@@ -85,7 +85,7 @@
   <main class="scene">
     <section class="hero">
       <div class="pkxd-badge">
-        <img src="PKXD.png?v=14" alt="PK XD" />
+        <img src="PKXD.png?v=15" alt="PK XD" />
         <span data-i18n="fanCountdown">Fan countdown for PK XD</span>
       </div>
 
@@ -170,7 +170,7 @@
 
       <div id="teamEnergy" class="team-energy">
         <div class="team-energy-head">
-          <h2 data-i18n="teamEnergyTitle">Portal Team Energy 2026</h2>
+          <h2 data-i18n="teamEnergyTitle">ZERO GRAVITY TEAM VOTE 2026</h2>
           <p id="selectedTeamText" data-i18n="noTeamSelected">Choose your team to activate its energy.</p>
         </div>
 
@@ -178,32 +178,52 @@
           <div class="energy-row volts">
             <div class="energy-row-top">
               <span>⚡ <b>Team Volts</b></span>
-              <strong id="voltsPercent">34%</strong>
+              <strong id="voltsPercent">0%</strong>
             </div>
             <div class="energy-track">
-              <div class="energy-fill" style="width: 34%"></div>
+              <div class="energy-fill" style="width: 0%"></div>
             </div>
           </div>
 
           <div class="energy-row flame">
             <div class="energy-row-top">
               <span>🔥 <b>Team Flame</b></span>
-              <strong id="flamePercent">41%</strong>
+              <strong id="flamePercent">0%</strong>
             </div>
             <div class="energy-track">
-              <div class="energy-fill" style="width: 41%"></div>
+              <div class="energy-fill" style="width: 0%"></div>
             </div>
           </div>
 
           <div class="energy-row leaf">
             <div class="energy-row-top">
               <span>🍃 <b>Team Leaf</b></span>
-              <strong id="leafPercent">25%</strong>
+              <strong id="leafPercent">0%</strong>
             </div>
             <div class="energy-track">
-              <div class="energy-fill" style="width: 25%"></div>
+              <div class="energy-fill" style="width: 0%"></div>
             </div>
           </div>
+        </div>
+
+        <div class="vote-meta">
+          <p class="vote-status" data-i18n="voteStatus">
+            Votes update automatically from the community form.
+          </p>
+
+          <p class="vote-leader" id="voteLeader">
+            Current leader: —
+          </p>
+
+          <a
+            class="vote-change-link"
+            href="https://www.youtube.com/@pkxdportal"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-i18n="changeVoteText"
+          >
+            Need to change your vote? Contact PK XD PORTAL.
+          </a>
         </div>
       </div>
 
@@ -280,6 +300,10 @@
     </button>
   </div>
 
-  <script src="script.js?v=14"></script>
+  <div id="teamActivatedToast" class="team-activated-toast" aria-hidden="true">
+    TEAM ACTIVATED
+  </div>
+
+  <script src="script.js?v=15"></script>
 </body>
 </html>
