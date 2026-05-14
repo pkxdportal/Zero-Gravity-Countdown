@@ -6,7 +6,7 @@
 
   <title>Zero Gravity Countdown</title>
 
-  <link rel="stylesheet" href="style.css?v=23" />
+  <link rel="stylesheet" href="style.css?v=24" />
 </head>
 
 <body>
@@ -387,35 +387,39 @@
 
         <div id="commentsList" class="comments-list"></div>
 
-        <form id="commentForm" class="comment-form">
-          <input
-            type="text"
-            id="commentName"
-            maxlength="18"
-            placeholder="Your name"
-            autocomplete="off"
-            required
-          />
+<form id="commentForm" class="comment-form">
+  <input
+    type="text"
+    id="commentName"
+    maxlength="18"
+    placeholder="Your name"
+    autocomplete="off"
+    required
+  />
 
-          <textarea
-            id="commentText"
-            maxlength="300"
-            placeholder="Transmit your message to the community..."
-            required
-          ></textarea>
+  <textarea
+    id="commentText"
+    maxlength="300"
+    placeholder="Transmit your message to the community..."
+    required
+  ></textarea>
 
-          <div class="rating-box" aria-label="Rating">
-            <button type="button" class="rating-star active" data-rating="1">★</button>
-            <button type="button" class="rating-star active" data-rating="2">★</button>
-            <button type="button" class="rating-star active" data-rating="3">★</button>
-            <button type="button" class="rating-star active" data-rating="4">★</button>
-            <button type="button" class="rating-star active" data-rating="5">★</button>
-         </div>
+  <div class="rating-box" aria-label="Rating">
+    <button type="button" class="rating-star active" data-rating="1">★</button>
+    <button type="button" class="rating-star active" data-rating="2">★</button>
+    <button type="button" class="rating-star active" data-rating="3">★</button>
+    <button type="button" class="rating-star active" data-rating="4">★</button>
+    <button type="button" class="rating-star active" data-rating="5">★</button>
+  </div>
 
-            <button type="submit" id="commentSubmitBtn" aria-label="Send comment">
-             ➤
-            </button>
-        </form>
+  <button type="submit" id="commentSubmitBtn" aria-label="Send comment">
+    ➤
+  </button>
+
+  <div class="comment-counter">
+    <span id="commentCounter">0 / 300</span>
+  </div>
+</form>
 
         <p class="comments-note" data-i18n="commentsLocalNote">
           Messages are saved only on this device for now.
