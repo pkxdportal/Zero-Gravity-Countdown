@@ -24,9 +24,12 @@ const GOOGLE_FORM_PREFILLED_URLS = {
 /*
   ВИДЕО МЕНЯТЬ ЗДЕСЬ.
 
-  videoId берёшь из ссылки:
-  https://www.youtube.com/watch?v=ABC123
-  videoId = "ABC123"
+  Правило:
+  https://youtu.be/sZszBFUDbt0?si=EeKDuwUQBumjEq5B
+  videoId = "sZszBFUDbt0"
+
+  https://youtube.com/shorts/cSBDn6gM2Fc?si=QGCXKXqoG852Sw6p
+  videoId = "cSBDn6gM2Fc"
 
   Всё бесплатно. YouTube API не нужен.
 */
@@ -34,17 +37,17 @@ const GOOGLE_FORM_PREFILLED_URLS = {
 const PORTAL_VIDEOS = [
   {
     title: "WELCOME TO PK XD PORTAL",
-    videoId: "EeKDuwUQBumjEq5B",
+    videoId: "sZszBFUDbt0",
     url: "https://youtu.be/sZszBFUDbt0?si=EeKDuwUQBumjEq5B"
   },
   {
     title: "⚡ PK XD Zero Gravity Countdown Has Started 🔥",
-    videoId: "QGCXKXqoG852Sw6p",
+    videoId: "cSBDn6gM2Fc",
     url: "https://youtube.com/shorts/cSBDn6gM2Fc?si=QGCXKXqoG852Sw6p"
   },
   {
     title: "Who Will Win Zero Gravity 2026? 👀🔥⚡🍃",
-    videoId: "lFu3fKhWuJ8_ozTt",
+    videoId: "8-JdJ_r6qZQ",
     url: "https://youtube.com/shorts/8-JdJ_r6qZQ?si=lFu3fKhWuJ8_ozTt"
   }
 ];
@@ -52,17 +55,17 @@ const PORTAL_VIDEOS = [
 const COMMUNITY_VIDEOS = [
   {
     title: "ALL THE ZERO GRAVITY UPDATE IN PKXD 🤯✨",
-    videoId: "_Wlo4SiU6v4rJy-X",
+    videoId: "PW3GhuICSv4",
     url: "https://youtu.be/PW3GhuICSv4?si=_Wlo4SiU6v4rJy-X"
   },
   {
     title: "NOVA ATUALIZAÇÃO GRAVIDADE ZERO 2026 NO PK XD",
-    videoId: "T4Bbawm1pr5v6wSK",
+    videoId: "iGo3KxKexBc",
     url: "https://youtu.be/iGo3KxKexBc?si=T4Bbawm1pr5v6wSK"
   },
   {
-    title: "😦🌠NEW UPDATE ALL SECRETS : zero gravity 2026 PK XD || new surprise spoiler & details",
-    videoId: "Jq641GJAISLzoAaS",
+    title: "😦🌠 NEW UPDATE ALL SECRETS: Zero Gravity 2026 PK XD",
+    videoId: "Jt2Ob6PaDxc",
     url: "https://youtu.be/Jt2Ob6PaDxc?si=Jq641GJAISLzoAaS"
   }
 ];
@@ -92,8 +95,9 @@ const translations = {
     telegramBtn: "Telegram",
     youtubeBtn: "YouTube",
     discordBtn: "Discord",
-    musicOn: "🔊 Music",
-    musicOff: "🔇 Turn music off",
+    musicLabel: "Music",
+    musicOn: "🔊",
+    musicOff: "🔇",
     started: "🚀 Zero Gravity has begun",
     fanCountdown: "Fan countdown for PK XD",
     disclaimer: "This is a fan-made countdown created by PK XD PORTAL for the community. PK XD, the PK XD logo, the background image and the music belong to Afterverse. This site is not official and is not affiliated with Afterverse.",
@@ -140,13 +144,18 @@ const translations = {
     theoryMapText: "The island may receive temporary Zero Gravity decorations.",
     theoryRewardsTitle: "Special rewards",
     theoryRewardsText: "There may be limited rewards connected to the event.",
-    watchMoreTitle: "Zero Gravity Video Hub",
+    videoHubTitle: "ZERO GRAVITY VIDEO HUB",
+    videoHubText: "Watch PK XD PORTAL updates and selected community videos about Zero Gravity.",
+    watchMoreTitle: "ZERO GRAVITY VIDEO HUB",
     watchMoreText: "Watch PK XD PORTAL updates and selected community videos about Zero Gravity.",
-    portalVideosBtn: "PK XD PORTAL Videos",
-    zeroGravityVideosBtn: "Zero Gravity Videos",
+    portalVideosBtn: "View all",
+    zeroGravityVideosBtn: "View all",
+    portalVideosTitle: "PK XD PORTAL Videos",
+    communityVideosTitle: "Community Zero Gravity Videos",
     portalVideoSectionTitle: "PK XD PORTAL Videos",
-    communityVideoSectionTitle: "Community Videos",
-
+    communityVideoSectionTitle: "Community Zero Gravity Videos",
+    communityCommsTitle: "Community Comms",
+    commPlaceholder: "Transmit your message to the community...",
     teams: {
       volts: {
         icon: "⚡",
@@ -178,8 +187,9 @@ const translations = {
     telegramBtn: "Telegram",
     youtubeBtn: "YouTube",
     discordBtn: "Discord",
-    musicOn: "🔊 Музыка",
-    musicOff: "🔇 Выключить музыку",
+    musicLabel: "Музыка",
+    musicOn: "🔊",
+    musicOff: "🔇",
     started: "🚀 Невесомость началась",
     fanCountdown: "Фанатский отсчёт для PK XD",
     disclaimer: "Это фанатский отсчёт, созданный PK XD PORTAL для сообщества. PK XD, логотип PK XD, фоновое изображение и музыка принадлежат Afterverse. Этот сайт не является официальным и не связан с Afterverse.",
@@ -226,13 +236,18 @@ const translations = {
     theoryMapText: "Остров может получить временное оформление в стиле Невесомости.",
     theoryRewardsTitle: "Особые награды",
     theoryRewardsText: "Могут появиться ограниченные награды, связанные с событием.",
-    watchMoreTitle: "Видеоцентр Невесомости",
+    videoHubTitle: "ВИДЕОЦЕНТР НЕВЕСОМОСТИ",
+    videoHubText: "Смотри обновления PK XD PORTAL и выбранные видео сообщества о Невесомости.",
+    watchMoreTitle: "ВИДЕОЦЕНТР НЕВЕСОМОСТИ",
     watchMoreText: "Смотри обновления PK XD PORTAL и выбранные видео сообщества о Невесомости.",
-    portalVideosBtn: "Видео PK XD PORTAL",
-    zeroGravityVideosBtn: "Видео о Невесомости",
+    portalVideosBtn: "Смотреть все",
+    zeroGravityVideosBtn: "Смотреть все",
+    portalVideosTitle: "Видео PK XD PORTAL",
+    communityVideosTitle: "Видео сообщества о Невесомости",
     portalVideoSectionTitle: "Видео PK XD PORTAL",
-    communityVideoSectionTitle: "Видео сообщества",
-
+    communityVideoSectionTitle: "Видео сообщества о Невесомости",
+    communityCommsTitle: "Сообщения сообщества",
+    commPlaceholder: "Передай сообщение сообществу...",
     teams: {
       volts: {
         icon: "⚡",
@@ -250,8 +265,10 @@ const translations = {
         text: "СИЛА ВНУТРИ КАЖДОГО ЛИСТА! Я праведный и сильный, как природа!"
       }
     }
-  },
+  }
+};
 
+const languageOverrides = {
   de: {
     eventDate: "11. JUNI 2026 • 15:00 BERLIN",
     titleTop: "Bis",
@@ -260,21 +277,9 @@ const translations = {
     hours: "Stunden",
     minutes: "Minuten",
     seconds: "Sekunden",
-    credit: "Website erstellt von <b>PK XD PORTAL</b>",
-    telegramBtn: "Telegram",
-    youtubeBtn: "YouTube",
-    discordBtn: "Discord",
-    musicOn: "🔊 Musik",
-    musicOff: "🔇 Musik ausschalten",
+    musicLabel: "Musik",
     started: "🚀 Zero Gravity hat begonnen",
     fanCountdown: "Fan-Countdown für PK XD",
-    disclaimer: "Dies ist ein von Fans erstellter Countdown von PK XD PORTAL für die Community. PK XD, das PK XD-Logo, das Hintergrundbild und die Musik gehören Afterverse. Diese Website ist nicht offiziell und steht nicht in Verbindung mit Afterverse.",
-    dateNote: "Das Countdown-Datum basiert auf Community-Spekulationen und logischer Beobachtung, da Zero-Gravity-Events normalerweise im Juni erscheinen. Das Datum kann sich ändern, wenn offizielle Informationen veröffentlicht werden.",
-    feedbackText: "Für Website-Verbesserungen, neue Sprachen, Fragen oder Kontaktanfragen schreibe uns über einen unserer Social-Links oben.",
-    afterverseContact: "Wenn jemand von Afterverse diese Website sieht und möchte, dass wir etwas ändern, nennen, entfernen oder anpassen, kontaktiert uns bitte über unsere Social-Links. Wir arbeiten gerne zusammen, damit das Projekt respektvoll und regelkonform bleibt.",
-    downloadTitle: "PK XD herunterladen / aktualisieren",
-    googlePlayBtn: "Google Play",
-    appStoreBtn: "App Store",
     languageLabel: "Sprache",
     downloadLabel: "Download",
     shareLabel: "Teilen",
@@ -285,56 +290,29 @@ const translations = {
     progressLeft: "Übrig",
     progressText: "Fortschritt bis zum Event",
     shareCopied: "Link kopiert!",
-    teamEnergyTitle: "ZERO GRAVITY TEAM-ABSTIMMUNG 2026",
     noTeamSelected: "Wähle dein Team, um seine Energie zu aktivieren.",
     chooseTeamBtn: "Team wählen",
     selectedTeamPrefix: "Dein Team:",
     teamAlreadySelected: "Gewählt",
-    voteStatus: "Die Stimmen werden automatisch aus dem Community-Formular aktualisiert.",
-    changeVoteText: "Du musst deine Stimme ändern? Kontaktiere PK XD PORTAL.",
     currentLeader: "Aktueller Favorit:",
     totalVotes: "Stimmen insgesamt:",
     teamActivated: "aktiviert",
-    voteVolts: "⚡ Stimme für Volts",
-    voteFlame: "🔥 Stimme für Flame",
-    voteLeaf: "🍃 Stimme für Leaf",
-    theoriesTitle: "ZERO GRAVITY THEORIEN",
-    theoriesSubtitle: "Fan-Theorien von PK XD PORTAL. Nichts davon ist offiziell.",
-    theoryGravityTitle: "Neue Schwerkraft-Mechaniken",
-    theoryGravityText: "Spieler könnten während des Events schweben, höher springen oder sich anders bewegen.",
-    theoryItemsTitle: "Items im Weltraum-Stil",
-    theoryItemsText: "Das Update könnte Weltraum-Outfits, Effekte, Pets oder Fahrzeuge bringen.",
-    theoryTeamsTitle: "Team-Energie",
-    theoryTeamsText: "Volts, Flame und Leaf könnten mit dem Thema des Events verbunden sein.",
-    theoryGamesTitle: "Neue Minispiele",
-    theoryGamesText: "Das Event könnte Flug-, Schwebe- oder Low-Gravity-Challenges enthalten.",
-    theoryMapTitle: "Veränderungen auf der Map",
-    theoryMapText: "Die Insel könnte vorübergehend im Zero-Gravity-Stil dekoriert werden.",
-    theoryRewardsTitle: "Besondere Belohnungen",
-    theoryRewardsText: "Es könnte limitierte Belohnungen geben, die mit dem Event verbunden sind.",
-    watchMoreTitle: "Zero Gravity Video Hub",
+    videoHubTitle: "ZERO GRAVITY VIDEO HUB",
+    videoHubText: "Verfolge PK XD PORTAL Updates und ausgewählte Community-Videos zu Zero Gravity.",
+    watchMoreTitle: "ZERO GRAVITY VIDEO HUB",
     watchMoreText: "Verfolge PK XD PORTAL Updates und ausgewählte Community-Videos zu Zero Gravity.",
-    portalVideosBtn: "PK XD PORTAL Videos",
-    zeroGravityVideosBtn: "Zero Gravity Videos",
+    portalVideosBtn: "Alle ansehen",
+    zeroGravityVideosBtn: "Alle ansehen",
+    portalVideosTitle: "PK XD PORTAL Videos",
+    communityVideosTitle: "Community-Videos",
     portalVideoSectionTitle: "PK XD PORTAL Videos",
     communityVideoSectionTitle: "Community-Videos",
-
+    communityCommsTitle: "Community Comms",
+    commPlaceholder: "Sende deine Nachricht an die Community...",
     teams: {
-      volts: {
-        icon: "⚡",
-        title: "TEAM VOLTS",
-        text: "REINE BLITZENERGIE! Ich bin voller Freude und Energie!"
-      },
-      flame: {
-        icon: "🔥",
-        title: "TEAM FLAME",
-        text: "DIE INTENSITÄT DER FLAMME! Ich bin warm und wild!"
-      },
-      leaf: {
-        icon: "🍃",
-        title: "TEAM LEAF",
-        text: "DIE KRAFT IN JEDEM BLATT! Ich bin gerecht und stark wie die Natur!"
-      }
+      volts: { icon: "⚡", title: "TEAM VOLTS", text: "REINE BLITZENERGIE! Ich bin voller Freude und Energie!" },
+      flame: { icon: "🔥", title: "TEAM FLAME", text: "DIE INTENSITÄT DER FLAMME! Ich bin warm und wild!" },
+      leaf: { icon: "🍃", title: "TEAM LEAF", text: "DIE KRAFT IN JEDEM BLATT! Ich bin gerecht und stark wie die Natur!" }
     }
   },
 
@@ -346,21 +324,9 @@ const translations = {
     hours: "heures",
     minutes: "minutes",
     seconds: "secondes",
-    credit: "Site créé par <b>PK XD PORTAL</b>",
-    telegramBtn: "Telegram",
-    youtubeBtn: "YouTube",
-    discordBtn: "Discord",
-    musicOn: "🔊 Musique",
-    musicOff: "🔇 Couper la musique",
+    musicLabel: "Musique",
     started: "🚀 Zéro Gravité a commencé",
     fanCountdown: "Compte à rebours de fan pour PK XD",
-    disclaimer: "Ceci est un compte à rebours créé par des fans par PK XD PORTAL pour la communauté. PK XD, le logo PK XD, l’image d’arrière-plan et la musique appartiennent à Afterverse. Ce site n’est pas officiel et n’est pas affilié à Afterverse.",
-    dateNote: "La date du compte à rebours est basée sur les suppositions de la communauté et une observation logique, car les événements Zéro Gravité apparaissent généralement en juin. La date peut changer si des informations officielles sont annoncées.",
-    feedbackText: "Pour améliorer le site, ajouter de nouvelles langues, poser des questions ou nous contacter, écris-nous via l’un de nos liens sociaux ci-dessus.",
-    afterverseContact: "Si une personne d’Afterverse voit ce site et souhaite que nous modifiions, créditons, supprimions ou ajustions quelque chose, merci de nous contacter via nos liens sociaux. Nous coopérerons volontiers afin que le projet reste respectueux et conforme aux règles.",
-    downloadTitle: "Télécharger / Mettre à jour PK XD",
-    googlePlayBtn: "Google Play",
-    appStoreBtn: "App Store",
     languageLabel: "Langue",
     downloadLabel: "Télécharger",
     shareLabel: "Partager",
@@ -371,56 +337,29 @@ const translations = {
     progressLeft: "Restant",
     progressText: "Progression jusqu’à l’événement",
     shareCopied: "Lien copié !",
-    teamEnergyTitle: "VOTE DES ÉQUIPES ZÉRO GRAVITÉ 2026",
     noTeamSelected: "Choisis ton équipe pour activer son énergie.",
     chooseTeamBtn: "Choisir l’équipe",
     selectedTeamPrefix: "Ton équipe :",
     teamAlreadySelected: "Choisie",
-    voteStatus: "Les votes sont automatiquement mis à jour depuis le formulaire de la communauté.",
-    changeVoteText: "Besoin de changer ton vote ? Contacte PK XD PORTAL.",
     currentLeader: "Équipe en tête :",
     totalVotes: "Total des votes :",
     teamActivated: "activée",
-    voteVolts: "⚡ Voter pour Volts",
-    voteFlame: "🔥 Voter pour Flame",
-    voteLeaf: "🍃 Voter pour Leaf",
-    theoriesTitle: "THÉORIES ZÉRO GRAVITÉ",
-    theoriesSubtitle: "Théories de fans par PK XD PORTAL. Rien ici n’est officiel.",
-    theoryGravityTitle: "Nouvelles mécaniques de gravité",
-    theoryGravityText: "Les joueurs pourraient flotter, sauter plus haut ou se déplacer autrement pendant l’événement.",
-    theoryItemsTitle: "Objets style espace",
-    theoryItemsText: "La mise à jour pourrait apporter des tenues, effets, pets ou véhicules sur le thème de l’espace.",
-    theoryTeamsTitle: "Énergie des équipes",
-    theoryTeamsText: "Volts, Flame et Leaf pourraient être liés au thème de l’événement.",
-    theoryGamesTitle: "Nouveaux mini-jeux",
-    theoryGamesText: "L’événement pourrait inclure des défis de vol, de flottement ou de faible gravité.",
-    theoryMapTitle: "Changements de carte",
-    theoryMapText: "L’île pourrait recevoir des décorations temporaires sur le thème Zéro Gravité.",
-    theoryRewardsTitle: "Récompenses spéciales",
-    theoryRewardsText: "Des récompenses limitées liées à l’événement pourraient apparaître.",
-    watchMoreTitle: "Hub Vidéo Zéro Gravité",
-    watchMoreText: "Suis les mises à jour de PK XD PORTAL et des vidéos sélectionnées de la communauté sur Zéro Gravité.",
-    portalVideosBtn: "Vidéos PK XD PORTAL",
-    zeroGravityVideosBtn: "Vidéos Zéro Gravité",
+    videoHubTitle: "HUB VIDÉO ZÉRO GRAVITÉ",
+    videoHubText: "Suis les mises à jour de PK XD PORTAL et des vidéos sélectionnées de la communauté.",
+    watchMoreTitle: "HUB VIDÉO ZÉRO GRAVITÉ",
+    watchMoreText: "Suis les mises à jour de PK XD PORTAL et des vidéos sélectionnées de la communauté.",
+    portalVideosBtn: "Voir tout",
+    zeroGravityVideosBtn: "Voir tout",
+    portalVideosTitle: "Vidéos PK XD PORTAL",
+    communityVideosTitle: "Vidéos de la communauté",
     portalVideoSectionTitle: "Vidéos PK XD PORTAL",
     communityVideoSectionTitle: "Vidéos de la communauté",
-
+    communityCommsTitle: "Messages de la communauté",
+    commPlaceholder: "Transmets ton message à la communauté...",
     teams: {
-      volts: {
-        icon: "⚡",
-        title: "ÉQUIPE VOLTS",
-        text: "ÉNERGIE PURE DE LA FOUDRE ! Je suis plein de joie et d’énergie !"
-      },
-      flame: {
-        icon: "🔥",
-        title: "ÉQUIPE FLAME",
-        text: "L’INTENSITÉ DE LA FLAMME ! Je suis chaleureux et féroce !"
-      },
-      leaf: {
-        icon: "🍃",
-        title: "ÉQUIPE LEAF",
-        text: "LA FORCE DANS CHAQUE FEUILLE ! Je suis juste et fort comme la nature !"
-      }
+      volts: { icon: "⚡", title: "ÉQUIPE VOLTS", text: "ÉNERGIE PURE DE LA FOUDRE ! Je suis plein de joie et d’énergie !" },
+      flame: { icon: "🔥", title: "ÉQUIPE FLAME", text: "L’INTENSITÉ DE LA FLAMME ! Je suis chaleureux et féroce !" },
+      leaf: { icon: "🍃", title: "ÉQUIPE LEAF", text: "LA FORCE DANS CHAQUE FEUILLE ! Je suis juste et fort comme la nature !" }
     }
   },
 
@@ -432,21 +371,9 @@ const translations = {
     hours: "godziny",
     minutes: "minuty",
     seconds: "sekundy",
-    credit: "Strona stworzona przez <b>PK XD PORTAL</b>",
-    telegramBtn: "Telegram",
-    youtubeBtn: "YouTube",
-    discordBtn: "Discord",
-    musicOn: "🔊 Muzyka",
-    musicOff: "🔇 Wyłącz muzykę",
+    musicLabel: "Muzyka",
     started: "🚀 Nieważkość się rozpoczęła",
     fanCountdown: "Fanowski licznik dla PK XD",
-    disclaimer: "To fanowski licznik stworzony przez PK XD PORTAL dla społeczności. PK XD, logo PK XD, obraz tła i muzyka należą do Afterverse. Ta strona nie jest oficjalna i nie jest powiązana z Afterverse.",
-    dateNote: "Data odliczania jest oparta na przypuszczeniach społeczności i logicznej obserwacji, ponieważ wydarzenia Nieważkości zwykle pojawiają się w czerwcu. Data może się zmienić, jeśli pojawią się oficjalne informacje.",
-    feedbackText: "W sprawie ulepszeń strony, nowych języków, pytań lub kontaktu napisz do nas przez jeden z linków społecznościowych powyżej.",
-    afterverseContact: "Jeśli ktoś z Afterverse zobaczy tę stronę i będzie chciał, abyśmy coś zmienili, dodali kredyt, usunęli lub poprawili, prosimy o kontakt przez nasze linki społecznościowe. Chętnie będziemy współpracować, aby projekt pozostał zgodny z zasadami i pełen szacunku.",
-    downloadTitle: "Pobierz / Zaktualizuj PK XD",
-    googlePlayBtn: "Google Play",
-    appStoreBtn: "App Store",
     languageLabel: "Język",
     downloadLabel: "Pobierz",
     shareLabel: "Udostępnij",
@@ -457,56 +384,29 @@ const translations = {
     progressLeft: "Zostało",
     progressText: "Postęp do wydarzenia",
     shareCopied: "Link skopiowany!",
-    teamEnergyTitle: "GŁOSOWANIE DRUŻYN NIEWAŻKOŚCI 2026",
     noTeamSelected: "Wybierz drużynę, aby aktywować jej energię.",
     chooseTeamBtn: "Wybierz drużynę",
     selectedTeamPrefix: "Twoja drużyna:",
     teamAlreadySelected: "Wybrano",
-    voteStatus: "Głosy aktualizują się automatycznie z formularza społeczności.",
-    changeVoteText: "Chcesz zmienić głos? Skontaktuj się z PK XD PORTAL.",
     currentLeader: "Aktualny lider:",
     totalVotes: "Łącznie głosów:",
     teamActivated: "aktywowana",
-    voteVolts: "⚡ Głosuj na Volts",
-    voteFlame: "🔥 Głosuj na Flame",
-    voteLeaf: "🍃 Głosuj na Leaf",
-    theoriesTitle: "TEORIE O NIEWAŻKOŚCI",
-    theoriesSubtitle: "Fanowskie teorie PK XD PORTAL. Nic tutaj nie jest oficjalne.",
-    theoryGravityTitle: "Nowe mechaniki grawitacji",
-    theoryGravityText: "Gracze mogą unosić się, skakać wyżej albo poruszać się inaczej podczas wydarzenia.",
-    theoryItemsTitle: "Kosmiczne przedmioty",
-    theoryItemsText: "Aktualizacja może dodać stroje, efekty, pety lub pojazdy w stylu kosmicznym.",
-    theoryTeamsTitle: "Energia drużyn",
-    theoryTeamsText: "Volts, Flame i Leaf mogą być powiązane z motywem wydarzenia.",
-    theoryGamesTitle: "Nowe minigry",
-    theoryGamesText: "Wydarzenie może zawierać latanie, unoszenie się lub wyzwania z niską grawitacją.",
-    theoryMapTitle: "Zmiany na mapie",
-    theoryMapText: "Wyspa może otrzymać tymczasowe dekoracje w stylu Nieważkości.",
-    theoryRewardsTitle: "Specjalne nagrody",
-    theoryRewardsText: "Mogą pojawić się limitowane nagrody związane z wydarzeniem.",
-    watchMoreTitle: "Centrum Wideo Nieważkości",
-    watchMoreText: "Śledź aktualizacje PK XD PORTAL i oglądaj wybrane filmy społeczności o Nieważkości.",
-    portalVideosBtn: "Filmy PK XD PORTAL",
-    zeroGravityVideosBtn: "Filmy o Nieważkości",
+    videoHubTitle: "CENTRUM WIDEO NIEWAŻKOŚCI",
+    videoHubText: "Śledź aktualizacje PK XD PORTAL i oglądaj wybrane filmy społeczności.",
+    watchMoreTitle: "CENTRUM WIDEO NIEWAŻKOŚCI",
+    watchMoreText: "Śledź aktualizacje PK XD PORTAL i oglądaj wybrane filmy społeczności.",
+    portalVideosBtn: "Zobacz wszystko",
+    zeroGravityVideosBtn: "Zobacz wszystko",
+    portalVideosTitle: "Filmy PK XD PORTAL",
+    communityVideosTitle: "Filmy społeczności",
     portalVideoSectionTitle: "Filmy PK XD PORTAL",
     communityVideoSectionTitle: "Filmy społeczności",
-
+    communityCommsTitle: "Wiadomości społeczności",
+    commPlaceholder: "Wyślij wiadomość do społeczności...",
     teams: {
-      volts: {
-        icon: "⚡",
-        title: "DRUŻYNA VOLTS",
-        text: "CZYSTA ENERGIA BŁYSKAWICY! Jestem pełen radości i energii!"
-      },
-      flame: {
-        icon: "🔥",
-        title: "DRUŻYNA FLAME",
-        text: "INTENSYWNOŚĆ PŁOMIENIA! Jestem ciepły i zaciekły!"
-      },
-      leaf: {
-        icon: "🍃",
-        title: "DRUŻYNA LEAF",
-        text: "SIŁA W KAŻDYM LIŚCIU! Jestem prawy i silny jak natura!"
-      }
+      volts: { icon: "⚡", title: "DRUŻYNA VOLTS", text: "CZYSTA ENERGIA BŁYSKAWICY! Jestem pełen radości i energii!" },
+      flame: { icon: "🔥", title: "DRUŻYNA FLAME", text: "INTENSYWNOŚĆ PŁOMIENIA! Jestem ciepły i zaciekły!" },
+      leaf: { icon: "🍃", title: "DRUŻYNA LEAF", text: "SIŁA W KAŻDYM LIŚCIU! Jestem prawy i silny jak natura!" }
     }
   },
 
@@ -518,21 +418,9 @@ const translations = {
     hours: "horas",
     minutes: "minutos",
     seconds: "segundos",
-    credit: "Site criado pela <b>PK XD PORTAL</b>",
-    telegramBtn: "Telegram",
-    youtubeBtn: "YouTube",
-    discordBtn: "Discord",
-    musicOn: "🔊 Música",
-    musicOff: "🔇 Desligar música",
+    musicLabel: "Música",
     started: "🚀 Gravidade Zero começou",
     fanCountdown: "Contagem regressiva feita por fãs para PK XD",
-    disclaimer: "Esta é uma contagem regressiva feita por fãs, criada pela PK XD PORTAL para a comunidade. PK XD, o logotipo PK XD, a imagem de fundo e a música pertencem à Afterverse. Este site não é oficial e não possui afiliação com a Afterverse.",
-    dateNote: "A data da contagem regressiva é baseada em especulação da comunidade e observação lógica, já que eventos de Gravidade Zero geralmente aparecem em junho. A data pode mudar se informações oficiais forem anunciadas.",
-    feedbackText: "Para melhorias no site, novos idiomas, perguntas ou solicitações de contato, fale conosco por um dos links sociais acima.",
-    afterverseContact: "Se alguém da Afterverse vir este site e quiser que alteremos, creditemos, removamos ou ajustemos algo, entre em contato conosco pelos nossos links sociais. Teremos prazer em cooperar para manter o projeto respeitoso e dentro das regras.",
-    downloadTitle: "Baixar / Atualizar PK XD",
-    googlePlayBtn: "Google Play",
-    appStoreBtn: "App Store",
     languageLabel: "Idioma",
     downloadLabel: "Baixar",
     shareLabel: "Compartilhar",
@@ -543,56 +431,29 @@ const translations = {
     progressLeft: "Falta",
     progressText: "Progresso até o evento",
     shareCopied: "Link copiado!",
-    teamEnergyTitle: "VOTAÇÃO DOS TIMES GRAVIDADE ZERO 2026",
     noTeamSelected: "Escolha seu time para ativar sua energia.",
     chooseTeamBtn: "Escolher time",
     selectedTeamPrefix: "Seu time:",
     teamAlreadySelected: "Escolhido",
-    voteStatus: "Os votos são atualizados automaticamente pelo formulário da comunidade.",
-    changeVoteText: "Precisa mudar seu voto? Entre em contato com PK XD PORTAL.",
     currentLeader: "Líder atual:",
     totalVotes: "Total de votos:",
     teamActivated: "ativado",
-    voteVolts: "⚡ Votar no Volts",
-    voteFlame: "🔥 Votar no Flame",
-    voteLeaf: "🍃 Votar no Leaf",
-    theoriesTitle: "TEORIAS SOBRE GRAVIDADE ZERO",
-    theoriesSubtitle: "Teorias de fãs da PK XD PORTAL. Nada aqui é oficial.",
-    theoryGravityTitle: "Novas mecânicas de gravidade",
-    theoryGravityText: "Os jogadores podem flutuar, pular mais alto ou se mover de forma diferente durante o evento.",
-    theoryItemsTitle: "Itens estilo espacial",
-    theoryItemsText: "A atualização pode trazer roupas, efeitos, pets ou veículos com tema espacial.",
-    theoryTeamsTitle: "Energia dos times",
-    theoryTeamsText: "Volts, Flame e Leaf podem estar conectados ao tema do evento.",
-    theoryGamesTitle: "Novos minijogos",
-    theoryGamesText: "O evento pode incluir desafios de voo, flutuação ou baixa gravidade.",
-    theoryMapTitle: "Mudanças no mapa",
-    theoryMapText: "A ilha pode receber decorações temporárias no estilo Gravidade Zero.",
-    theoryRewardsTitle: "Recompensas especiais",
-    theoryRewardsText: "Podem aparecer recompensas limitadas ligadas ao evento.",
-    watchMoreTitle: "Central de Vídeos Gravidade Zero",
-    watchMoreText: "Acompanhe as atualizações da PK XD PORTAL e veja vídeos selecionados da comunidade sobre Gravidade Zero.",
-    portalVideosBtn: "Vídeos da PK XD PORTAL",
-    zeroGravityVideosBtn: "Vídeos sobre Gravidade Zero",
+    videoHubTitle: "CENTRAL DE VÍDEOS GRAVIDADE ZERO",
+    videoHubText: "Acompanhe as atualizações da PK XD PORTAL e vídeos selecionados da comunidade.",
+    watchMoreTitle: "CENTRAL DE VÍDEOS GRAVIDADE ZERO",
+    watchMoreText: "Acompanhe as atualizações da PK XD PORTAL e vídeos selecionados da comunidade.",
+    portalVideosBtn: "Ver todos",
+    zeroGravityVideosBtn: "Ver todos",
+    portalVideosTitle: "Vídeos da PK XD PORTAL",
+    communityVideosTitle: "Vídeos da comunidade",
     portalVideoSectionTitle: "Vídeos da PK XD PORTAL",
     communityVideoSectionTitle: "Vídeos da comunidade",
-
+    communityCommsTitle: "Mensagens da comunidade",
+    commPlaceholder: "Transmita sua mensagem para a comunidade...",
     teams: {
-      volts: {
-        icon: "⚡",
-        title: "TIME VOLTS",
-        text: "ENERGIA PURA DE RAIO!"
-      },
-      flame: {
-        icon: "🔥",
-        title: "TIME FLAME",
-        text: "INTENSIDADE DO FOGO!"
-      },
-      leaf: {
-        icon: "🍃",
-        title: "TIME LEAF",
-        text: "FORÇA DA NATUREZA!"
-      }
+      volts: { icon: "⚡", title: "TIME VOLTS", text: "ENERGIA PURA DE RAIO!" },
+      flame: { icon: "🔥", title: "TIME FLAME", text: "INTENSIDADE DO FOGO!" },
+      leaf: { icon: "🍃", title: "TIME LEAF", text: "FORÇA DA NATUREZA!" }
     }
   },
 
@@ -604,21 +465,9 @@ const translations = {
     hours: "saat",
     minutes: "dakika",
     seconds: "saniye",
-    credit: "<b>PK XD PORTAL</b> tarafından oluşturuldu",
-    telegramBtn: "Telegram",
-    youtubeBtn: "YouTube",
-    discordBtn: "Discord",
-    musicOn: "🔊 Müzik",
-    musicOff: "🔇 Müziği Kapat",
+    musicLabel: "Müzik",
     started: "🚀 Sıfır Yerçekimi başladı",
     fanCountdown: "PK XD için hayran geri sayımı",
-    disclaimer: "Bu, topluluk için PK XD PORTAL tarafından oluşturulmuş bir hayran geri sayımıdır. PK XD, PK XD logosu, arka plan görseli ve müzik Afterverse’e aittir. Bu site resmi değildir ve Afterverse ile bağlantılı değildir.",
-    dateNote: "Geri sayım tarihi topluluk tahmini ve mantıklı gözleme dayanmaktadır, çünkü Sıfır Yerçekimi etkinlikleri genellikle haziran ayında görünür. Resmi bilgi açıklanırsa tarih değişebilir.",
-    feedbackText: "Site geliştirmeleri, yeni diller, sorular veya iletişim talepleri için yukarıdaki sosyal bağlantılarımızdan bize yazın.",
-    afterverseContact: "Afterverse’ten biri bu siteyi görür ve bir şeyi değiştirmemizi, kaynak göstermemizi, kaldırmamızı veya düzenlememizi isterse lütfen sosyal bağlantılarımız üzerinden bize ulaşsın. Projeyi saygılı ve kurallara uygun tutmak için memnuniyetle iş birliği yaparız.",
-    downloadTitle: "PK XD İndir / Güncelle",
-    googlePlayBtn: "Google Play",
-    appStoreBtn: "App Store",
     languageLabel: "Dil",
     downloadLabel: "İndir",
     shareLabel: "Paylaş",
@@ -629,56 +478,29 @@ const translations = {
     progressLeft: "Kaldı",
     progressText: "Etkinliğe kalan ilerleme",
     shareCopied: "Bağlantı kopyalandı!",
-    teamEnergyTitle: "SIFIR YERÇEKİMİ TAKIM OYLAMASI 2026",
     noTeamSelected: "Enerjisini etkinleştirmek için takımını seç.",
     chooseTeamBtn: "Takımı seç",
     selectedTeamPrefix: "Takımın:",
     teamAlreadySelected: "Seçildi",
-    voteStatus: "Oylar topluluk formundan otomatik olarak güncellenir.",
-    changeVoteText: "Oyunu değiştirmek mi istiyorsun? PK XD PORTAL ile iletişime geç.",
     currentLeader: "Şu an lider:",
     totalVotes: "Toplam oy:",
     teamActivated: "etkinleştirildi",
-    voteVolts: "⚡ Volts için oy ver",
-    voteFlame: "🔥 Flame için oy ver",
-    voteLeaf: "🍃 Leaf için oy ver",
-    theoriesTitle: "SIFIR YERÇEKİMİ TEORİLERİ",
-    theoriesSubtitle: "PK XD PORTAL tarafından hazırlanan hayran teorileri. Buradaki hiçbir şey resmi değildir.",
-    theoryGravityTitle: "Yeni yerçekimi mekanikleri",
-    theoryGravityText: "Oyuncular etkinlik sırasında süzülebilir, daha yükseğe zıplayabilir veya farklı hareket edebilir.",
-    theoryItemsTitle: "Uzay tarzı eşyalar",
-    theoryItemsText: "Güncelleme uzay temalı kıyafetler, efektler, petler veya araçlar getirebilir.",
-    theoryTeamsTitle: "Takım enerjisi",
-    theoryTeamsText: "Volts, Flame ve Leaf etkinliğin temasıyla bağlantılı olabilir.",
-    theoryGamesTitle: "Yeni mini oyunlar",
-    theoryGamesText: "Etkinlik uçma, süzülme veya düşük yerçekimi mücadeleleri içerebilir.",
-    theoryMapTitle: "Harita değişiklikleri",
-    theoryMapText: "Ada geçici olarak Sıfır Yerçekimi temalı süslemeler alabilir.",
-    theoryRewardsTitle: "Özel ödüller",
-    theoryRewardsText: "Etkinlikle bağlantılı sınırlı ödüller gelebilir.",
-    watchMoreTitle: "Sıfır Yerçekimi Video Merkezi",
+    videoHubTitle: "SIFIR YERÇEKİMİ VİDEO MERKEZİ",
+    videoHubText: "PK XD PORTAL güncellemelerini ve seçilmiş topluluk videolarını izle.",
+    watchMoreTitle: "SIFIR YERÇEKİMİ VİDEO MERKEZİ",
     watchMoreText: "PK XD PORTAL güncellemelerini ve seçilmiş topluluk videolarını izle.",
-    portalVideosBtn: "PK XD PORTAL Videoları",
-    zeroGravityVideosBtn: "Sıfır Yerçekimi Videoları",
+    portalVideosBtn: "Tümünü gör",
+    zeroGravityVideosBtn: "Tümünü gör",
+    portalVideosTitle: "PK XD PORTAL Videoları",
+    communityVideosTitle: "Topluluk Videoları",
     portalVideoSectionTitle: "PK XD PORTAL Videoları",
     communityVideoSectionTitle: "Topluluk Videoları",
-
+    communityCommsTitle: "Topluluk Mesajları",
+    commPlaceholder: "Mesajını topluluğa gönder...",
     teams: {
-      volts: {
-        icon: "⚡",
-        title: "VOLTS TAKIMI",
-        text: "SAF YILDIRIM ENERJİSİ!"
-      },
-      flame: {
-        icon: "🔥",
-        title: "FLAME TAKIMI",
-        text: "ATEŞİN YOĞUNLUĞU!"
-      },
-      leaf: {
-        icon: "🍃",
-        title: "LEAF TAKIMI",
-        text: "DOĞANIN GÜCÜ!"
-      }
+      volts: { icon: "⚡", title: "VOLTS TAKIMI", text: "SAF YILDIRIM ENERJİSİ!" },
+      flame: { icon: "🔥", title: "FLAME TAKIMI", text: "ATEŞİN YOĞUNLUĞU!" },
+      leaf: { icon: "🍃", title: "LEAF TAKIMI", text: "DOĞANIN GÜCÜ!" }
     }
   },
 
@@ -690,21 +512,9 @@ const translations = {
     hours: "jam",
     minutes: "menit",
     seconds: "detik",
-    credit: "Website dibuat oleh <b>PK XD PORTAL</b>",
-    telegramBtn: "Telegram",
-    youtubeBtn: "YouTube",
-    discordBtn: "Discord",
-    musicOn: "🔊 Musik",
-    musicOff: "🔇 Matikan musik",
+    musicLabel: "Musik",
     started: "🚀 Gravitasi Nol dimulai",
     fanCountdown: "Hitung mundur penggemar untuk PK XD",
-    disclaimer: "Ini adalah hitung mundur buatan penggemar yang dibuat oleh PK XD PORTAL untuk komunitas. PK XD, logo PK XD, gambar latar, dan musik adalah milik Afterverse. Situs ini bukan situs resmi dan tidak berafiliasi dengan Afterverse.",
-    dateNote: "Tanggal hitung mundur berdasarkan spekulasi komunitas dan pengamatan logis, karena event Gravitasi Nol biasanya muncul pada bulan Juni. Tanggal dapat berubah jika informasi resmi diumumkan.",
-    feedbackText: "Untuk peningkatan situs, bahasa baru, pertanyaan, atau permintaan kontak, kirim pesan melalui salah satu tautan sosial kami di atas.",
-    afterverseContact: "Jika seseorang dari Afterverse melihat situs ini dan ingin kami mengubah, memberi kredit, menghapus, atau menyesuaikan sesuatu, silakan hubungi kami melalui tautan sosial kami. Kami akan dengan senang hati bekerja sama agar proyek ini tetap menghormati aturan.",
-    downloadTitle: "Unduh / Perbarui PK XD",
-    googlePlayBtn: "Google Play",
-    appStoreBtn: "App Store",
     languageLabel: "Bahasa",
     downloadLabel: "Unduh",
     shareLabel: "Bagikan",
@@ -715,56 +525,29 @@ const translations = {
     progressLeft: "Tersisa",
     progressText: "Progres menuju event",
     shareCopied: "Link disalin!",
-    teamEnergyTitle: "VOTE TIM GRAVITASI NOL 2026",
     noTeamSelected: "Pilih tim untuk mengaktifkan energinya.",
     chooseTeamBtn: "Pilih Tim",
     selectedTeamPrefix: "Tim kamu:",
     teamAlreadySelected: "Dipilih",
-    voteStatus: "Vote diperbarui otomatis dari formulir komunitas.",
-    changeVoteText: "Perlu mengubah vote? Hubungi PK XD PORTAL.",
     currentLeader: "Pemimpin saat ini:",
     totalVotes: "Total vote:",
     teamActivated: "diaktifkan",
-    voteVolts: "⚡ Pilih Volts",
-    voteFlame: "🔥 Pilih Flame",
-    voteLeaf: "🍃 Pilih Leaf",
-    theoriesTitle: "TEORI GRAVITASI NOL",
-    theoriesSubtitle: "Teori penggemar dari PK XD PORTAL. Tidak ada yang resmi di sini.",
-    theoryGravityTitle: "Mekanik gravitasi baru",
-    theoryGravityText: "Pemain mungkin bisa melayang, melompat lebih tinggi, atau bergerak berbeda selama event.",
-    theoryItemsTitle: "Item bergaya luar angkasa",
-    theoryItemsText: "Update ini mungkin membawa outfit, efek, pet, atau kendaraan bertema luar angkasa.",
-    theoryTeamsTitle: "Energi tim",
-    theoryTeamsText: "Volts, Flame, dan Leaf mungkin terhubung dengan tema event.",
-    theoryGamesTitle: "Minigame baru",
-    theoryGamesText: "Event ini mungkin berisi tantangan terbang, melayang, atau gravitasi rendah.",
-    theoryMapTitle: "Perubahan map",
-    theoryMapText: "Pulau mungkin mendapat dekorasi sementara bertema Gravitasi Nol.",
-    theoryRewardsTitle: "Hadiah spesial",
-    theoryRewardsText: "Mungkin ada hadiah terbatas yang terhubung dengan event.",
-    watchMoreTitle: "Pusat Video Gravitasi Nol",
-    watchMoreText: "Ikuti update PK XD PORTAL dan jelajahi video komunitas pilihan tentang Gravitasi Nol.",
-    portalVideosBtn: "Video PK XD PORTAL",
-    zeroGravityVideosBtn: "Video Gravitasi Nol",
+    videoHubTitle: "PUSAT VIDEO GRAVITASI NOL",
+    videoHubText: "Ikuti update PK XD PORTAL dan video komunitas pilihan.",
+    watchMoreTitle: "PUSAT VIDEO GRAVITASI NOL",
+    watchMoreText: "Ikuti update PK XD PORTAL dan video komunitas pilihan.",
+    portalVideosBtn: "Lihat semua",
+    zeroGravityVideosBtn: "Lihat semua",
+    portalVideosTitle: "Video PK XD PORTAL",
+    communityVideosTitle: "Video komunitas",
     portalVideoSectionTitle: "Video PK XD PORTAL",
     communityVideoSectionTitle: "Video komunitas",
-
+    communityCommsTitle: "Pesan komunitas",
+    commPlaceholder: "Kirim pesanmu ke komunitas...",
     teams: {
-      volts: {
-        icon: "⚡",
-        title: "TIM VOLTS",
-        text: "ENERGI PETIR MURNI!"
-      },
-      flame: {
-        icon: "🔥",
-        title: "TIM FLAME",
-        text: "INTENSITAS API!"
-      },
-      leaf: {
-        icon: "🍃",
-        title: "TIM LEAF",
-        text: "KEKUATAN ALAM!"
-      }
+      volts: { icon: "⚡", title: "TIM VOLTS", text: "ENERGI PETIR MURNI!" },
+      flame: { icon: "🔥", title: "TIM FLAME", text: "INTENSITAS API!" },
+      leaf: { icon: "🍃", title: "TIM LEAF", text: "KEKUATAN ALAM!" }
     }
   },
 
@@ -776,21 +559,9 @@ const translations = {
     hours: "horas",
     minutes: "minutos",
     seconds: "segundos",
-    credit: "Sitio creado por <b>PK XD PORTAL</b>",
-    telegramBtn: "Telegram",
-    youtubeBtn: "YouTube",
-    discordBtn: "Discord",
-    musicOn: "🔊 Música",
-    musicOff: "🔇 Apagar música",
+    musicLabel: "Música",
     started: "🚀 Gravedad Cero comenzó",
     fanCountdown: "Cuenta regresiva hecha por fans para PK XD",
-    disclaimer: "Esta es una cuenta regresiva hecha por fans, creada por PK XD PORTAL para la comunidad. PK XD, el logotipo de PK XD, la imagen de fondo y la música pertenecen a Afterverse. Este sitio no es oficial y no está afiliado con Afterverse.",
-    dateNote: "La fecha de la cuenta regresiva se basa en especulación de la comunidad y observación lógica, ya que los eventos de Gravedad Cero suelen aparecer en junio. La fecha puede cambiar si se anuncia información oficial.",
-    feedbackText: "Para mejoras del sitio, nuevos idiomas, preguntas o solicitudes de contacto, escríbenos mediante uno de nuestros enlaces sociales de arriba.",
-    afterverseContact: "Si alguien de Afterverse ve este sitio y quiere que cambiemos, demos crédito, eliminemos o ajustemos algo, por favor contáctenos a través de nuestros enlaces sociales. Cooperaremos con gusto para mantener el proyecto respetuoso y dentro de las reglas.",
-    downloadTitle: "Descargar / Actualizar PK XD",
-    googlePlayBtn: "Google Play",
-    appStoreBtn: "App Store",
     languageLabel: "Idioma",
     downloadLabel: "Descargar",
     shareLabel: "Compartir",
@@ -801,56 +572,29 @@ const translations = {
     progressLeft: "Falta",
     progressText: "Progreso hasta el evento",
     shareCopied: "¡Enlace copiado!",
-    teamEnergyTitle: "VOTACIÓN DE EQUIPOS GRAVEDAD CERO 2026",
     noTeamSelected: "Elige tu equipo para activar su energía.",
     chooseTeamBtn: "Elegir equipo",
     selectedTeamPrefix: "Tu equipo:",
     teamAlreadySelected: "Elegido",
-    voteStatus: "Los votos se actualizan automáticamente desde el formulario de la comunidad.",
-    changeVoteText: "¿Necesitas cambiar tu voto? Contacta con PK XD PORTAL.",
     currentLeader: "Líder actual:",
     totalVotes: "Votos totales:",
     teamActivated: "activado",
-    voteVolts: "⚡ Votar por Volts",
-    voteFlame: "🔥 Votar por Flame",
-    voteLeaf: "🍃 Votar por Leaf",
-    theoriesTitle: "TEORÍAS DE GRAVEDAD CERO",
-    theoriesSubtitle: "Teorías de fans de PK XD PORTAL. Nada de esto es oficial.",
-    theoryGravityTitle: "Nuevas mecánicas de gravedad",
-    theoryGravityText: "Los jugadores podrían flotar, saltar más alto o moverse de forma diferente durante el evento.",
-    theoryItemsTitle: "Objetos estilo espacial",
-    theoryItemsText: "La actualización podría traer trajes, efectos, pets o vehículos con temática espacial.",
-    theoryTeamsTitle: "Energía de equipos",
-    theoryTeamsText: "Volts, Flame y Leaf podrían estar conectados con el tema del evento.",
-    theoryGamesTitle: "Nuevos minijuegos",
-    theoryGamesText: "El evento podría incluir desafíos de vuelo, flotación o baja gravedad.",
-    theoryMapTitle: "Cambios en el mapa",
-    theoryMapText: "La isla podría recibir decoraciones temporales de Gravedad Cero.",
-    theoryRewardsTitle: "Recompensas especiales",
-    theoryRewardsText: "Podrían aparecer recompensas limitadas relacionadas con el evento.",
-    watchMoreTitle: "Centro de Videos Gravedad Cero",
-    watchMoreText: "Mira actualizaciones de PK XD PORTAL y videos seleccionados de la comunidad sobre Gravedad Cero.",
-    portalVideosBtn: "Videos de PK XD PORTAL",
-    zeroGravityVideosBtn: "Videos de Gravedad Cero",
+    videoHubTitle: "CENTRO DE VIDEOS GRAVEDAD CERO",
+    videoHubText: "Mira actualizaciones de PK XD PORTAL y videos seleccionados de la comunidad.",
+    watchMoreTitle: "CENTRO DE VIDEOS GRAVEDAD CERO",
+    watchMoreText: "Mira actualizaciones de PK XD PORTAL y videos seleccionados de la comunidad.",
+    portalVideosBtn: "Ver todos",
+    zeroGravityVideosBtn: "Ver todos",
+    portalVideosTitle: "Videos de PK XD PORTAL",
+    communityVideosTitle: "Videos de la comunidad",
     portalVideoSectionTitle: "Videos de PK XD PORTAL",
     communityVideoSectionTitle: "Videos de la comunidad",
-
+    communityCommsTitle: "Mensajes de la comunidad",
+    commPlaceholder: "Transmite tu mensaje a la comunidad...",
     teams: {
-      volts: {
-        icon: "⚡",
-        title: "EQUIPO VOLTS",
-        text: "¡ENERGÍA PURA DEL RAYO!"
-      },
-      flame: {
-        icon: "🔥",
-        title: "EQUIPO FLAME",
-        text: "¡INTENSIDAD DEL FUEGO!"
-      },
-      leaf: {
-        icon: "🍃",
-        title: "EQUIPO LEAF",
-        text: "¡FUERZA DE LA NATURALEZA!"
-      }
+      volts: { icon: "⚡", title: "EQUIPO VOLTS", text: "¡ENERGÍA PURA DEL RAYO!" },
+      flame: { icon: "🔥", title: "EQUIPO FLAME", text: "¡INTENSIDAD DEL FUEGO!" },
+      leaf: { icon: "🍃", title: "EQUIPO LEAF", text: "¡FUERZA DE LA NATURALEZA!" }
     }
   },
 
@@ -862,21 +606,9 @@ const translations = {
     hours: "घंटे",
     minutes: "मिनट",
     seconds: "सेकंड",
-    credit: "<b>PK XD PORTAL</b> द्वारा बनाया गया",
-    telegramBtn: "Telegram",
-    youtubeBtn: "YouTube",
-    discordBtn: "Discord",
-    musicOn: "🔊 संगीत",
-    musicOff: "🔇 संगीत बंद करें",
+    musicLabel: "संगीत",
     started: "🚀 शून्य गुरुत्वाकर्षण शुरू हो गया",
     fanCountdown: "PK XD के लिए फैन काउंटडाउन",
-    disclaimer: "यह समुदाय के लिए PK XD PORTAL द्वारा बनाया गया एक फैन काउंटडाउन है। PK XD, PK XD लोगो, बैकग्राउंड इमेज और संगीत Afterverse के हैं। यह वेबसाइट आधिकारिक नहीं है और Afterverse से संबद्ध नहीं है।",
-    dateNote: "काउंटडाउन की तारीख समुदाय के अनुमान और तार्किक अवलोकन पर आधारित है, क्योंकि शून्य गुरुत्वाकर्षण इवेंट आमतौर पर जून में आते हैं। आधिकारिक जानकारी आने पर तारीख बदल सकती है।",
-    feedbackText: "वेबसाइट सुधार, नई भाषाएँ, सवाल या संपर्क अनुरोधों के लिए ऊपर दिए गए हमारे किसी भी सोशल लिंक से हमें संदेश भेजें।",
-    afterverseContact: "अगर Afterverse से कोई इस साइट को देखता है और चाहता है कि हम कुछ बदलें, क्रेडिट दें, हटाएँ या समायोजित करें, तो कृपया हमारे सोशल लिंक के माध्यम से संपर्क करें। हम प्रोजेक्ट को सम्मानजनक और नियमों के भीतर रखने के लिए खुशी से सहयोग करेंगे।",
-    downloadTitle: "PK XD डाउनलोड / अपडेट करें",
-    googlePlayBtn: "Google Play",
-    appStoreBtn: "App Store",
     languageLabel: "भाषा",
     downloadLabel: "डाउनलोड",
     shareLabel: "शेयर",
@@ -887,59 +619,40 @@ const translations = {
     progressLeft: "बाकी",
     progressText: "इवेंट तक प्रगति",
     shareCopied: "लिंक कॉपी हो गया!",
-    teamEnergyTitle: "शून्य गुरुत्वाकर्षण टीम वोट 2026",
     noTeamSelected: "अपनी टीम चुनें ताकि उसकी ऊर्जा सक्रिय हो सके।",
     chooseTeamBtn: "टीम चुनें",
     selectedTeamPrefix: "आपकी टीम:",
     teamAlreadySelected: "चुनी गई",
-    voteStatus: "वोट कम्युनिटी फॉर्म से अपने आप अपडेट होते हैं।",
-    changeVoteText: "अपना वोट बदलना है? PK XD PORTAL से संपर्क करें।",
     currentLeader: "मौजूदा लीडर:",
     totalVotes: "कुल वोट:",
     teamActivated: "सक्रिय",
-    voteVolts: "⚡ Volts को वोट दें",
-    voteFlame: "🔥 Flame को वोट दें",
-    voteLeaf: "🍃 Leaf को वोट दें",
-    theoriesTitle: "शून्य गुरुत्वाकर्षण थ्योरी",
-    theoriesSubtitle: "PK XD PORTAL की फैन थ्योरी। यहाँ दी गई कोई भी बात आधिकारिक नहीं है।",
-    theoryGravityTitle: "नई गुरुत्वाकर्षण मैकेनिक्स",
-    theoryGravityText: "इवेंट के दौरान खिलाड़ी तैर सकते हैं, ऊँचा कूद सकते हैं या अलग तरह से चल सकते हैं।",
-    theoryItemsTitle: "स्पेस-स्टाइल आइटम",
-    theoryItemsText: "अपडेट में स्पेस आउटफिट, इफेक्ट, पेट्स या वाहन आ सकते हैं।",
-    theoryTeamsTitle: "टीम एनर्जी",
-    theoryTeamsText: "Volts, Flame और Leaf इवेंट की थीम से जुड़े हो सकते हैं।",
-    theoryGamesTitle: "नए मिनी-गेम",
-    theoryGamesText: "इवेंट में उड़ने, तैरने या कम गुरुत्वाकर्षण वाली चुनौतियाँ हो सकती हैं।",
-    theoryMapTitle: "मैप में बदलाव",
-    theoryMapText: "आइलैंड को अस्थायी शून्य गुरुत्वाकर्षण सजावट मिल सकती है।",
-    theoryRewardsTitle: "खास रिवार्ड्स",
-    theoryRewardsText: "इवेंट से जुड़े लिमिटेड रिवार्ड्स आ सकते हैं।",
+    videoHubTitle: "शून्य गुरुत्वाकर्षण वीडियो हब",
+    videoHubText: "PK XD PORTAL अपडेट्स और चुने हुए कम्युनिटी वीडियो देखें।",
     watchMoreTitle: "शून्य गुरुत्वाकर्षण वीडियो हब",
     watchMoreText: "PK XD PORTAL अपडेट्स और चुने हुए कम्युनिटी वीडियो देखें।",
-    portalVideosBtn: "PK XD PORTAL वीडियो",
-    zeroGravityVideosBtn: "शून्य गुरुत्वाकर्षण वीडियो",
+    portalVideosBtn: "सभी देखें",
+    zeroGravityVideosBtn: "सभी देखें",
+    portalVideosTitle: "PK XD PORTAL वीडियो",
+    communityVideosTitle: "कम्युनिटी वीडियो",
     portalVideoSectionTitle: "PK XD PORTAL वीडियो",
     communityVideoSectionTitle: "कम्युनिटी वीडियो",
-
+    communityCommsTitle: "कम्युनिटी संदेश",
+    commPlaceholder: "अपना संदेश कम्युनिटी को भेजें...",
     teams: {
-      volts: {
-        icon: "⚡",
-        title: "टीम VOLTS",
-        text: "शुद्ध बिजली ऊर्जा!"
-      },
-      flame: {
-        icon: "🔥",
-        title: "टीम FLAME",
-        text: "आग की तीव्रता!"
-      },
-      leaf: {
-        icon: "🍃",
-        title: "टीम LEAF",
-        text: "प्रकृति की शक्ति!"
-      }
+      volts: { icon: "⚡", title: "टीम VOLTS", text: "शुद्ध बिजली ऊर्जा!" },
+      flame: { icon: "🔥", title: "टीम FLAME", text: "आग की तीव्रता!" },
+      leaf: { icon: "🍃", title: "टीम LEAF", text: "प्रकृति की शक्ति!" }
     }
   }
 };
+
+Object.keys(languageOverrides).forEach((lang) => {
+  translations[lang] = {
+    ...translations.en,
+    ...languageOverrides[lang],
+    teams: languageOverrides[lang].teams || translations.en.teams
+  };
+});
 
 const timer = document.getElementById("timer");
 const daysEl = document.getElementById("days");
@@ -1073,26 +786,18 @@ function setLanguage(lang) {
   currentLang = translations[lang] ? lang : "en";
   localStorage.setItem("selectedLang", currentLang);
 
-  const dict = translations[currentLang];
-
   document.documentElement.lang = currentLang;
 
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     const key = element.dataset.i18n;
-
-    if (dict[key] || translations.en[key]) {
-      element.innerHTML = dict[key] || translations.en[key];
-    }
+    element.innerHTML = getText(key);
   });
 
   document.querySelectorAll("#languageMenu .lang-btn").forEach((button) => {
     button.classList.toggle("active", button.dataset.lang === currentLang);
   });
 
-  if (musicToggle) {
-    musicToggle.innerHTML = isPlaying ? getText("musicOff") : getText("musicOn");
-  }
-
+  updateMusicButton();
   updateProgress();
   updateTeamEnergy();
   updateChooseButton();
@@ -1378,10 +1083,7 @@ async function loadTeamEnergyFromSheet() {
 }
 
 function getYoutubeThumbnail(videoId) {
-  if (!videoId || videoId.startsWith("PASTE_")) {
-    return "";
-  }
-
+  if (!videoId) return "";
   return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 }
 
@@ -1389,24 +1091,44 @@ function createVideoCard(video) {
   const safeUrl = video.url || `https://www.youtube.com/watch?v=${video.videoId}`;
   const thumb = getYoutubeThumbnail(video.videoId);
 
-  if (!thumb) {
-    return `
-      <a class="video-card empty-video" href="${safeUrl}" target="_blank" rel="noopener noreferrer">
-        <span class="video-card-title">${video.title}</span>
-      </a>
-    `;
-  }
-
   return `
     <a class="video-card" href="${safeUrl}" target="_blank" rel="noopener noreferrer">
-      <img src="${thumb}" alt="${video.title}" loading="lazy" />
+      <img
+        src="${thumb}"
+        alt="${video.title}"
+        loading="lazy"
+        onerror="this.onerror=null; this.src='https://img.youtube.com/vi/${video.videoId}/mqdefault.jpg';"
+      />
       <span class="video-card-title">${video.title}</span>
     </a>
   `;
 }
 
 function renderVideoHub() {
+  const videoHub = document.querySelector(".video-hub");
   const watchMore = document.querySelector(".watch-more");
+
+  if (videoHub) {
+    const oldPortalGrid = videoHub.querySelector(".video-section:nth-of-type(1) .video-grid");
+    const oldCommunityGrid = videoHub.querySelector(".video-section:nth-of-type(2) .video-grid");
+
+    if (oldPortalGrid) {
+      oldPortalGrid.innerHTML = PORTAL_VIDEOS.map(createVideoCard).join("");
+    }
+
+    if (oldCommunityGrid) {
+      oldCommunityGrid.innerHTML = COMMUNITY_VIDEOS.map(createVideoCard).join("");
+    }
+
+    const portalTitle = videoHub.querySelector(".video-section:nth-of-type(1) h3");
+    const communityTitle = videoHub.querySelector(".video-section:nth-of-type(2) h3");
+
+    if (portalTitle) portalTitle.textContent = getText("portalVideoSectionTitle");
+    if (communityTitle) communityTitle.textContent = getText("communityVideoSectionTitle");
+
+    return;
+  }
+
   if (!watchMore) return;
 
   const oldVideoSections = watchMore.querySelector(".video-sections");
@@ -1432,6 +1154,14 @@ function renderVideoHub() {
   `;
 
   watchMore.appendChild(videoSections);
+}
+
+function updateMusicButton() {
+  if (!musicToggle) return;
+
+  musicToggle.innerHTML = isPlaying ? getText("musicOff") : getText("musicOn");
+  musicToggle.classList.toggle("active", isPlaying);
+  musicToggle.setAttribute("aria-label", isPlaying ? "Turn music off" : "Turn music on");
 }
 
 document.querySelectorAll(".theories-grid").forEach((element) => {
@@ -1512,15 +1242,16 @@ document.addEventListener("keydown", (event) => {
 if (musicToggle && music) {
   musicToggle.addEventListener("click", () => {
     if (!isPlaying) {
-      music.play();
-      musicToggle.classList.add("active");
-      musicToggle.innerHTML = getText("musicOff");
-      isPlaying = true;
+      music.play().then(() => {
+        isPlaying = true;
+        updateMusicButton();
+      }).catch((error) => {
+        console.warn("Music could not be started:", error);
+      });
     } else {
       music.pause();
-      musicToggle.classList.remove("active");
-      musicToggle.innerHTML = getText("musicOn");
       isPlaying = false;
+      updateMusicButton();
     }
   });
 }
