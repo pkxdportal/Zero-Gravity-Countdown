@@ -919,6 +919,7 @@ function chooseTeam(team) {
   localStorage.setItem("selectedTeam", selectedTeam);
 
   applySelectedTeamTheme();
+  applyPreviewTheme();
   updateTeamEnergy();
   updateChooseButton();
   closeTeamPopup();
@@ -955,6 +956,9 @@ function applySelectedTeamTheme() {
 
 function applyPreviewTheme() {
   document.body.classList.remove(
+    "team-volts",
+    "team-flame",
+    "team-leaf",
     "selected-volts",
     "selected-flame",
     "selected-leaf"
@@ -1568,6 +1572,7 @@ const savedLang = localStorage.getItem("selectedLang") || "en";
 
 setLanguage(savedLang);
 applySelectedTeamTheme();
+applyPreviewTheme();
 updateTeamEnergy();
 renderVideoHub();
 renderComments();
