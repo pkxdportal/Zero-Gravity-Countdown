@@ -7,6 +7,7 @@ let isPlaying = false;
 let countdownInterval = null;
 let currentPopupTeam = null;
 let selectedTeam = localStorage.getItem("selectedTeam") || null;
+let totalVotes = 0;
 
 const GOOGLE_SHEET_CSV_URL =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vQSWxR6NP3qLfM_-Fi_qoRjpgEA0qiUCUTze8P3XHmNea9ROrpIGMp2kKxd_5FaqZvNi3j28G1-nmlQ/pub?gid=747099020&single=true&output=csv";
@@ -21,6 +22,12 @@ const GOOGLE_FORM_PREFILLED_URLS = {
 };
 
 let teamEnergyData = {
+  volts: 0,
+  flame: 0,
+  leaf: 0
+};
+
+let teamVoteCounts = {
   volts: 0,
   flame: 0,
   leaf: 0
@@ -55,6 +62,7 @@ const translations = {
     shareLabel: "Share",
     countdownMode: "Countdown",
     progressMode: "Progress",
+    theoriesMode: "Theories",
     progressPassed: "Passed",
     progressLeft: "Left",
     progressText: "Event progress",
@@ -63,15 +71,33 @@ const translations = {
     noTeamSelected: "Choose your team to activate its energy.",
     chooseTeamBtn: "Choose Team",
     selectedTeamPrefix: "Your team:",
-    selectedTeamSaved: "Team selected:",
     teamAlreadySelected: "Selected",
     voteStatus: "Votes update automatically from the community form.",
     changeVoteText: "Need to change your vote? Contact PK XD PORTAL.",
     currentLeader: "Current leader:",
+    totalVotes: "Total votes:",
     teamActivated: "activated",
     voteVolts: "⚡ Vote Volts",
     voteFlame: "🔥 Vote Flame",
     voteLeaf: "🍃 Vote Leaf",
+    theoriesTitle: "ZERO GRAVITY THEORIES",
+    theoriesSubtitle: "Fan theories by PK XD PORTAL. Nothing here is official.",
+    theoryGravityTitle: "New gravity mechanics",
+    theoryGravityText: "Players may float, jump higher or move differently during the event.",
+    theoryItemsTitle: "Space-style items",
+    theoryItemsText: "The update could bring space outfits, effects, pets or vehicles.",
+    theoryTeamsTitle: "Team energy",
+    theoryTeamsText: "Volts, Flame and Leaf may be connected to the event theme.",
+    theoryGamesTitle: "New mini-games",
+    theoryGamesText: "The event may include flying, floating or low-gravity challenges.",
+    theoryMapTitle: "Map changes",
+    theoryMapText: "The island may receive temporary Zero Gravity decorations.",
+    theoryRewardsTitle: "Special rewards",
+    theoryRewardsText: "There may be limited rewards connected to the event.",
+    watchMoreTitle: "Watch More",
+    watchMoreText: "Follow PK XD PORTAL updates and explore community videos about Zero Gravity.",
+    portalVideosBtn: "PK XD PORTAL Videos",
+    zeroGravityVideosBtn: "Zero Gravity Videos",
 
     teams: {
       volts: {
@@ -120,6 +146,7 @@ const translations = {
     shareLabel: "Поделиться",
     countdownMode: "Отсчёт",
     progressMode: "Прогресс",
+    theoriesMode: "Теории",
     progressPassed: "Прошло",
     progressLeft: "Осталось",
     progressText: "Прогресс до события",
@@ -128,15 +155,33 @@ const translations = {
     noTeamSelected: "Выбери команду, чтобы активировать её энергию.",
     chooseTeamBtn: "Выбрать команду",
     selectedTeamPrefix: "Твоя команда:",
-    selectedTeamSaved: "Команда выбрана:",
     teamAlreadySelected: "Выбрано",
     voteStatus: "Голоса автоматически обновляются из формы сообщества.",
     changeVoteText: "Нужно изменить голос? Свяжись с PK XD PORTAL.",
     currentLeader: "Лидер сейчас:",
+    totalVotes: "Всего голосов:",
     teamActivated: "активирована",
     voteVolts: "⚡ Голосовать за Молнию",
     voteFlame: "🔥 Голосовать за Пламя",
     voteLeaf: "🍃 Голосовать за Листья",
+    theoriesTitle: "ТЕОРИИ О НЕВЕСОМОСТИ",
+    theoriesSubtitle: "Фанатские теории PK XD PORTAL. Это не официальная информация.",
+    theoryGravityTitle: "Новая механика гравитации",
+    theoryGravityText: "Игроки могут парить, прыгать выше или двигаться иначе во время события.",
+    theoryItemsTitle: "Космические предметы",
+    theoryItemsText: "Обновление может принести костюмы, эффекты, питомцев или транспорт в космическом стиле.",
+    theoryTeamsTitle: "Энергия команд",
+    theoryTeamsText: "Молния, Пламя и Листья могут быть связаны с темой события.",
+    theoryGamesTitle: "Новые мини-игры",
+    theoryGamesText: "В событии могут появиться полёты, парение или испытания с низкой гравитацией.",
+    theoryMapTitle: "Изменения карты",
+    theoryMapText: "Остров может получить временное оформление в стиле Невесомости.",
+    theoryRewardsTitle: "Особые награды",
+    theoryRewardsText: "Могут появиться ограниченные награды, связанные с событием.",
+    watchMoreTitle: "Смотреть ещё",
+    watchMoreText: "Следи за обновлениями PK XD PORTAL и смотри видео сообщества о Невесомости.",
+    portalVideosBtn: "Видео PK XD PORTAL",
+    zeroGravityVideosBtn: "Видео о Невесомости",
 
     teams: {
       volts: {
@@ -185,6 +230,7 @@ const translations = {
     shareLabel: "Teilen",
     countdownMode: "Countdown",
     progressMode: "Fortschritt",
+    theoriesMode: "Theorien",
     progressPassed: "Vergangen",
     progressLeft: "Übrig",
     progressText: "Fortschritt bis zum Event",
@@ -193,15 +239,33 @@ const translations = {
     noTeamSelected: "Wähle dein Team, um seine Energie zu aktivieren.",
     chooseTeamBtn: "Team wählen",
     selectedTeamPrefix: "Dein Team:",
-    selectedTeamSaved: "Team gewählt:",
     teamAlreadySelected: "Gewählt",
     voteStatus: "Die Stimmen werden automatisch aus dem Community-Formular aktualisiert.",
     changeVoteText: "Du musst deine Stimme ändern? Kontaktiere PK XD PORTAL.",
     currentLeader: "Aktueller Favorit:",
+    totalVotes: "Stimmen insgesamt:",
     teamActivated: "aktiviert",
     voteVolts: "⚡ Stimme für Volts",
     voteFlame: "🔥 Stimme für Flame",
     voteLeaf: "🍃 Stimme für Leaf",
+    theoriesTitle: "ZERO GRAVITY THEORIEN",
+    theoriesSubtitle: "Fan-Theorien von PK XD PORTAL. Nichts davon ist offiziell.",
+    theoryGravityTitle: "Neue Schwerkraft-Mechaniken",
+    theoryGravityText: "Spieler könnten während des Events schweben, höher springen oder sich anders bewegen.",
+    theoryItemsTitle: "Items im Weltraum-Stil",
+    theoryItemsText: "Das Update könnte Weltraum-Outfits, Effekte, Pets oder Fahrzeuge bringen.",
+    theoryTeamsTitle: "Team-Energie",
+    theoryTeamsText: "Volts, Flame und Leaf könnten mit dem Thema des Events verbunden sein.",
+    theoryGamesTitle: "Neue Minispiele",
+    theoryGamesText: "Das Event könnte Flug-, Schwebe- oder Low-Gravity-Challenges enthalten.",
+    theoryMapTitle: "Veränderungen auf der Map",
+    theoryMapText: "Die Insel könnte vorübergehend im Zero-Gravity-Stil dekoriert werden.",
+    theoryRewardsTitle: "Besondere Belohnungen",
+    theoryRewardsText: "Es könnte limitierte Belohnungen geben, die mit dem Event verbunden sind.",
+    watchMoreTitle: "Mehr ansehen",
+    watchMoreText: "Verfolge Updates von PK XD PORTAL und entdecke Community-Videos zu Zero Gravity.",
+    portalVideosBtn: "PK XD PORTAL Videos",
+    zeroGravityVideosBtn: "Zero Gravity Videos",
 
     teams: {
       volts: {
@@ -250,6 +314,7 @@ const translations = {
     shareLabel: "Partager",
     countdownMode: "Compte à rebours",
     progressMode: "Progression",
+    theoriesMode: "Théories",
     progressPassed: "Passé",
     progressLeft: "Restant",
     progressText: "Progression jusqu’à l’événement",
@@ -258,15 +323,33 @@ const translations = {
     noTeamSelected: "Choisis ton équipe pour activer son énergie.",
     chooseTeamBtn: "Choisir l’équipe",
     selectedTeamPrefix: "Ton équipe :",
-    selectedTeamSaved: "Équipe choisie :",
     teamAlreadySelected: "Choisie",
     voteStatus: "Les votes sont automatiquement mis à jour depuis le formulaire de la communauté.",
     changeVoteText: "Besoin de changer ton vote ? Contacte PK XD PORTAL.",
     currentLeader: "Équipe en tête :",
+    totalVotes: "Total des votes :",
     teamActivated: "activée",
     voteVolts: "⚡ Voter pour Volts",
     voteFlame: "🔥 Voter pour Flame",
     voteLeaf: "🍃 Voter pour Leaf",
+    theoriesTitle: "THÉORIES ZÉRO GRAVITÉ",
+    theoriesSubtitle: "Théories de fans par PK XD PORTAL. Rien ici n’est officiel.",
+    theoryGravityTitle: "Nouvelles mécaniques de gravité",
+    theoryGravityText: "Les joueurs pourraient flotter, sauter plus haut ou se déplacer autrement pendant l’événement.",
+    theoryItemsTitle: "Objets style espace",
+    theoryItemsText: "La mise à jour pourrait apporter des tenues, effets, pets ou véhicules sur le thème de l’espace.",
+    theoryTeamsTitle: "Énergie des équipes",
+    theoryTeamsText: "Volts, Flame et Leaf pourraient être liés au thème de l’événement.",
+    theoryGamesTitle: "Nouveaux mini-jeux",
+    theoryGamesText: "L’événement pourrait inclure des défis de vol, de flottement ou de faible gravité.",
+    theoryMapTitle: "Changements de carte",
+    theoryMapText: "L’île pourrait recevoir des décorations temporaires sur le thème Zéro Gravité.",
+    theoryRewardsTitle: "Récompenses spéciales",
+    theoryRewardsText: "Des récompenses limitées liées à l’événement pourraient apparaître.",
+    watchMoreTitle: "Voir plus",
+    watchMoreText: "Suis les mises à jour de PK XD PORTAL et découvre les vidéos de la communauté sur Zéro Gravité.",
+    portalVideosBtn: "Vidéos PK XD PORTAL",
+    zeroGravityVideosBtn: "Vidéos Zéro Gravité",
 
     teams: {
       volts: {
@@ -315,6 +398,7 @@ const translations = {
     shareLabel: "Udostępnij",
     countdownMode: "Odliczanie",
     progressMode: "Postęp",
+    theoriesMode: "Teorie",
     progressPassed: "Minęło",
     progressLeft: "Zostało",
     progressText: "Postęp do wydarzenia",
@@ -323,15 +407,33 @@ const translations = {
     noTeamSelected: "Wybierz drużynę, aby aktywować jej energię.",
     chooseTeamBtn: "Wybierz drużynę",
     selectedTeamPrefix: "Twoja drużyna:",
-    selectedTeamSaved: "Wybrana drużyna:",
     teamAlreadySelected: "Wybrano",
     voteStatus: "Głosy aktualizują się automatycznie z formularza społeczności.",
     changeVoteText: "Chcesz zmienić głos? Skontaktuj się z PK XD PORTAL.",
     currentLeader: "Aktualny lider:",
+    totalVotes: "Łącznie głosów:",
     teamActivated: "aktywowana",
     voteVolts: "⚡ Głosuj na Volts",
     voteFlame: "🔥 Głosuj na Flame",
     voteLeaf: "🍃 Głosuj na Leaf",
+    theoriesTitle: "TEORIE O NIEWAŻKOŚCI",
+    theoriesSubtitle: "Fanowskie teorie PK XD PORTAL. Nic tutaj nie jest oficjalne.",
+    theoryGravityTitle: "Nowe mechaniki grawitacji",
+    theoryGravityText: "Gracze mogą unosić się, skakać wyżej albo poruszać się inaczej podczas wydarzenia.",
+    theoryItemsTitle: "Kosmiczne przedmioty",
+    theoryItemsText: "Aktualizacja może dodać stroje, efekty, pety lub pojazdy w stylu kosmicznym.",
+    theoryTeamsTitle: "Energia drużyn",
+    theoryTeamsText: "Volts, Flame i Leaf mogą być powiązane z motywem wydarzenia.",
+    theoryGamesTitle: "Nowe minigry",
+    theoryGamesText: "Wydarzenie może zawierać latanie, unoszenie się lub wyzwania z niską grawitacją.",
+    theoryMapTitle: "Zmiany na mapie",
+    theoryMapText: "Wyspa może otrzymać tymczasowe dekoracje w stylu Nieważkości.",
+    theoryRewardsTitle: "Specjalne nagrody",
+    theoryRewardsText: "Mogą pojawić się limitowane nagrody związane z wydarzeniem.",
+    watchMoreTitle: "Zobacz więcej",
+    watchMoreText: "Śledź aktualizacje PK XD PORTAL i oglądaj filmy społeczności o Nieważkości.",
+    portalVideosBtn: "Filmy PK XD PORTAL",
+    zeroGravityVideosBtn: "Filmy o Nieważkości",
 
     teams: {
       volts: {
@@ -380,6 +482,7 @@ const translations = {
     shareLabel: "Compartilhar",
     countdownMode: "Contagem",
     progressMode: "Progresso",
+    theoriesMode: "Teorias",
     progressPassed: "Passou",
     progressLeft: "Falta",
     progressText: "Progresso até o evento",
@@ -388,15 +491,33 @@ const translations = {
     noTeamSelected: "Escolha seu time para ativar sua energia.",
     chooseTeamBtn: "Escolher time",
     selectedTeamPrefix: "Seu time:",
-    selectedTeamSaved: "Time escolhido:",
     teamAlreadySelected: "Escolhido",
     voteStatus: "Os votos são atualizados automaticamente pelo formulário da comunidade.",
     changeVoteText: "Precisa mudar seu voto? Entre em contato com PK XD PORTAL.",
     currentLeader: "Líder atual:",
+    totalVotes: "Total de votos:",
     teamActivated: "ativado",
     voteVolts: "⚡ Votar no Volts",
     voteFlame: "🔥 Votar no Flame",
     voteLeaf: "🍃 Votar no Leaf",
+    theoriesTitle: "TEORIAS SOBRE GRAVIDADE ZERO",
+    theoriesSubtitle: "Teorias de fãs da PK XD PORTAL. Nada aqui é oficial.",
+    theoryGravityTitle: "Novas mecânicas de gravidade",
+    theoryGravityText: "Os jogadores podem flutuar, pular mais alto ou se mover de forma diferente durante o evento.",
+    theoryItemsTitle: "Itens estilo espacial",
+    theoryItemsText: "A atualização pode trazer roupas, efeitos, pets ou veículos com tema espacial.",
+    theoryTeamsTitle: "Energia dos times",
+    theoryTeamsText: "Volts, Flame e Leaf podem estar conectados ao tema do evento.",
+    theoryGamesTitle: "Novos minijogos",
+    theoryGamesText: "O evento pode incluir desafios de voo, flutuação ou baixa gravidade.",
+    theoryMapTitle: "Mudanças no mapa",
+    theoryMapText: "A ilha pode receber decorações temporárias no estilo Gravidade Zero.",
+    theoryRewardsTitle: "Recompensas especiais",
+    theoryRewardsText: "Podem aparecer recompensas limitadas ligadas ao evento.",
+    watchMoreTitle: "Ver mais",
+    watchMoreText: "Acompanhe as atualizações da PK XD PORTAL e veja vídeos da comunidade sobre Gravidade Zero.",
+    portalVideosBtn: "Vídeos da PK XD PORTAL",
+    zeroGravityVideosBtn: "Vídeos sobre Gravidade Zero",
 
     teams: {
       volts: {
@@ -445,6 +566,7 @@ const translations = {
     shareLabel: "Paylaş",
     countdownMode: "Geri Sayım",
     progressMode: "İlerleme",
+    theoriesMode: "Teoriler",
     progressPassed: "Geçti",
     progressLeft: "Kaldı",
     progressText: "Etkinliğe kalan ilerleme",
@@ -453,15 +575,33 @@ const translations = {
     noTeamSelected: "Enerjisini etkinleştirmek için takımını seç.",
     chooseTeamBtn: "Takımı seç",
     selectedTeamPrefix: "Takımın:",
-    selectedTeamSaved: "Takım seçildi:",
     teamAlreadySelected: "Seçildi",
     voteStatus: "Oylar topluluk formundan otomatik olarak güncellenir.",
     changeVoteText: "Oyunu değiştirmek mi istiyorsun? PK XD PORTAL ile iletişime geç.",
     currentLeader: "Şu an lider:",
+    totalVotes: "Toplam oy:",
     teamActivated: "etkinleştirildi",
     voteVolts: "⚡ Volts için oy ver",
     voteFlame: "🔥 Flame için oy ver",
     voteLeaf: "🍃 Leaf için oy ver",
+    theoriesTitle: "SIFIR YERÇEKİMİ TEORİLERİ",
+    theoriesSubtitle: "PK XD PORTAL tarafından hazırlanan hayran teorileri. Buradaki hiçbir şey resmi değildir.",
+    theoryGravityTitle: "Yeni yerçekimi mekanikleri",
+    theoryGravityText: "Oyuncular etkinlik sırasında süzülebilir, daha yükseğe zıplayabilir veya farklı hareket edebilir.",
+    theoryItemsTitle: "Uzay tarzı eşyalar",
+    theoryItemsText: "Güncelleme uzay temalı kıyafetler, efektler, petler veya araçlar getirebilir.",
+    theoryTeamsTitle: "Takım enerjisi",
+    theoryTeamsText: "Volts, Flame ve Leaf etkinliğin temasıyla bağlantılı olabilir.",
+    theoryGamesTitle: "Yeni mini oyunlar",
+    theoryGamesText: "Etkinlik uçma, süzülme veya düşük yerçekimi mücadeleleri içerebilir.",
+    theoryMapTitle: "Harita değişiklikleri",
+    theoryMapText: "Ada geçici olarak Sıfır Yerçekimi temalı süslemeler alabilir.",
+    theoryRewardsTitle: "Özel ödüller",
+    theoryRewardsText: "Etkinlikle bağlantılı sınırlı ödüller gelebilir.",
+    watchMoreTitle: "Daha fazlasını izle",
+    watchMoreText: "PK XD PORTAL güncellemelerini takip et ve Sıfır Yerçekimi hakkında topluluk videolarını keşfet.",
+    portalVideosBtn: "PK XD PORTAL Videoları",
+    zeroGravityVideosBtn: "Sıfır Yerçekimi Videoları",
 
     teams: {
       volts: {
@@ -510,6 +650,7 @@ const translations = {
     shareLabel: "Bagikan",
     countdownMode: "Hitung Mundur",
     progressMode: "Progres",
+    theoriesMode: "Teori",
     progressPassed: "Berlalu",
     progressLeft: "Tersisa",
     progressText: "Progres menuju event",
@@ -518,15 +659,33 @@ const translations = {
     noTeamSelected: "Pilih tim untuk mengaktifkan energinya.",
     chooseTeamBtn: "Pilih Tim",
     selectedTeamPrefix: "Tim kamu:",
-    selectedTeamSaved: "Tim dipilih:",
     teamAlreadySelected: "Dipilih",
     voteStatus: "Vote diperbarui otomatis dari formulir komunitas.",
     changeVoteText: "Perlu mengubah vote? Hubungi PK XD PORTAL.",
     currentLeader: "Pemimpin saat ini:",
+    totalVotes: "Total vote:",
     teamActivated: "diaktifkan",
     voteVolts: "⚡ Pilih Volts",
     voteFlame: "🔥 Pilih Flame",
     voteLeaf: "🍃 Pilih Leaf",
+    theoriesTitle: "TEORI GRAVITASI NOL",
+    theoriesSubtitle: "Teori penggemar dari PK XD PORTAL. Tidak ada yang resmi di sini.",
+    theoryGravityTitle: "Mekanik gravitasi baru",
+    theoryGravityText: "Pemain mungkin bisa melayang, melompat lebih tinggi, atau bergerak berbeda selama event.",
+    theoryItemsTitle: "Item bergaya luar angkasa",
+    theoryItemsText: "Update ini mungkin membawa outfit, efek, pet, atau kendaraan bertema luar angkasa.",
+    theoryTeamsTitle: "Energi tim",
+    theoryTeamsText: "Volts, Flame, dan Leaf mungkin terhubung dengan tema event.",
+    theoryGamesTitle: "Minigame baru",
+    theoryGamesText: "Event ini mungkin berisi tantangan terbang, melayang, atau gravitasi rendah.",
+    theoryMapTitle: "Perubahan map",
+    theoryMapText: "Pulau mungkin mendapat dekorasi sementara bertema Gravitasi Nol.",
+    theoryRewardsTitle: "Hadiah spesial",
+    theoryRewardsText: "Mungkin ada hadiah terbatas yang terhubung dengan event.",
+    watchMoreTitle: "Tonton lainnya",
+    watchMoreText: "Ikuti update PK XD PORTAL dan jelajahi video komunitas tentang Gravitasi Nol.",
+    portalVideosBtn: "Video PK XD PORTAL",
+    zeroGravityVideosBtn: "Video Gravitasi Nol",
 
     teams: {
       volts: {
@@ -575,6 +734,7 @@ const translations = {
     shareLabel: "Compartir",
     countdownMode: "Cuenta regresiva",
     progressMode: "Progreso",
+    theoriesMode: "Teorías",
     progressPassed: "Pasó",
     progressLeft: "Falta",
     progressText: "Progreso hasta el evento",
@@ -583,15 +743,33 @@ const translations = {
     noTeamSelected: "Elige tu equipo para activar su energía.",
     chooseTeamBtn: "Elegir equipo",
     selectedTeamPrefix: "Tu equipo:",
-    selectedTeamSaved: "Equipo elegido:",
     teamAlreadySelected: "Elegido",
     voteStatus: "Los votos se actualizan automáticamente desde el formulario de la comunidad.",
     changeVoteText: "¿Necesitas cambiar tu voto? Contacta con PK XD PORTAL.",
     currentLeader: "Líder actual:",
+    totalVotes: "Votos totales:",
     teamActivated: "activado",
     voteVolts: "⚡ Votar por Volts",
     voteFlame: "🔥 Votar por Flame",
     voteLeaf: "🍃 Votar por Leaf",
+    theoriesTitle: "TEORÍAS DE GRAVEDAD CERO",
+    theoriesSubtitle: "Teorías de fans de PK XD PORTAL. Nada de esto es oficial.",
+    theoryGravityTitle: "Nuevas mecánicas de gravedad",
+    theoryGravityText: "Los jugadores podrían flotar, saltar más alto o moverse de forma diferente durante el evento.",
+    theoryItemsTitle: "Objetos estilo espacial",
+    theoryItemsText: "La actualización podría traer trajes, efectos, pets o vehículos con temática espacial.",
+    theoryTeamsTitle: "Energía de equipos",
+    theoryTeamsText: "Volts, Flame y Leaf podrían estar conectados con el tema del evento.",
+    theoryGamesTitle: "Nuevos minijuegos",
+    theoryGamesText: "El evento podría incluir desafíos de vuelo, flotación o baja gravedad.",
+    theoryMapTitle: "Cambios en el mapa",
+    theoryMapText: "La isla podría recibir decoraciones temporales de Gravedad Cero.",
+    theoryRewardsTitle: "Recompensas especiales",
+    theoryRewardsText: "Podrían aparecer recompensas limitadas relacionadas con el evento.",
+    watchMoreTitle: "Ver más",
+    watchMoreText: "Sigue las actualizaciones de PK XD PORTAL y explora videos de la comunidad sobre Gravedad Cero.",
+    portalVideosBtn: "Videos de PK XD PORTAL",
+    zeroGravityVideosBtn: "Videos de Gravedad Cero",
 
     teams: {
       volts: {
@@ -640,6 +818,7 @@ const translations = {
     shareLabel: "शेयर",
     countdownMode: "काउंटडाउन",
     progressMode: "प्रगति",
+    theoriesMode: "थ्योरी",
     progressPassed: "बीता",
     progressLeft: "बाकी",
     progressText: "इवेंट तक प्रगति",
@@ -648,15 +827,33 @@ const translations = {
     noTeamSelected: "अपनी टीम चुनें ताकि उसकी ऊर्जा सक्रिय हो सके।",
     chooseTeamBtn: "टीम चुनें",
     selectedTeamPrefix: "आपकी टीम:",
-    selectedTeamSaved: "टीम चुनी गई:",
     teamAlreadySelected: "चुनी गई",
     voteStatus: "वोट कम्युनिटी फॉर्म से अपने आप अपडेट होते हैं।",
     changeVoteText: "अपना वोट बदलना है? PK XD PORTAL से संपर्क करें।",
     currentLeader: "मौजूदा लीडर:",
+    totalVotes: "कुल वोट:",
     teamActivated: "सक्रिय",
     voteVolts: "⚡ Volts को वोट दें",
     voteFlame: "🔥 Flame को वोट दें",
     voteLeaf: "🍃 Leaf को वोट दें",
+    theoriesTitle: "शून्य गुरुत्वाकर्षण थ्योरी",
+    theoriesSubtitle: "PK XD PORTAL की फैन थ्योरी। यहाँ दी गई कोई भी बात आधिकारिक नहीं है।",
+    theoryGravityTitle: "नई गुरुत्वाकर्षण मैकेनिक्स",
+    theoryGravityText: "इवेंट के दौरान खिलाड़ी तैर सकते हैं, ऊँचा कूद सकते हैं या अलग तरह से चल सकते हैं।",
+    theoryItemsTitle: "स्पेस-स्टाइल आइटम",
+    theoryItemsText: "अपडेट में स्पेस आउटफिट, इफेक्ट, पेट्स या वाहन आ सकते हैं।",
+    theoryTeamsTitle: "टीम एनर्जी",
+    theoryTeamsText: "Volts, Flame और Leaf इवेंट की थीम से जुड़े हो सकते हैं।",
+    theoryGamesTitle: "नए मिनी-गेम",
+    theoryGamesText: "इवेंट में उड़ने, तैरने या कम गुरुत्वाकर्षण वाली चुनौतियाँ हो सकती हैं।",
+    theoryMapTitle: "मैप में बदलाव",
+    theoryMapText: "आइलैंड को अस्थायी शून्य गुरुत्वाकर्षण सजावट मिल सकती है।",
+    theoryRewardsTitle: "खास रिवार्ड्स",
+    theoryRewardsText: "इवेंट से जुड़े लिमिटेड रिवार्ड्स आ सकते हैं।",
+    watchMoreTitle: "और देखें",
+    watchMoreText: "PK XD PORTAL अपडेट्स फॉलो करें और शून्य गुरुत्वाकर्षण पर कम्युनिटी वीडियो देखें।",
+    portalVideosBtn: "PK XD PORTAL वीडियो",
+    zeroGravityVideosBtn: "शून्य गुरुत्वाकर्षण वीडियो",
 
     teams: {
       volts: {
@@ -677,6 +874,13 @@ const translations = {
     }
   }
 };
+
+["de", "fr", "pl", "pt", "tr", "id", "es", "hi"].forEach((lang) => {
+  translations[lang] = {
+    ...translations.en,
+    ...translations[lang]
+  };
+});
 
 const timer = document.getElementById("timer");
 const daysEl = document.getElementById("days");
@@ -704,15 +908,21 @@ const shareBtn = document.getElementById("shareBtn");
 
 const countdownModeBtn = document.getElementById("countdownModeBtn");
 const progressModeBtn = document.getElementById("progressModeBtn");
+const theoriesModeBtn = document.getElementById("theoriesModeBtn");
+
 const progressPanel = document.getElementById("progressPanel");
+const theoriesPanel = document.getElementById("theoriesPanel");
 const progressFill = document.getElementById("progressFill");
 const progressPercent = document.getElementById("progressPercent");
 const progressText = document.getElementById("progressText");
 
 const selectedTeamText = document.getElementById("selectedTeamText");
+const totalVotesText = document.getElementById("totalVotesText");
+
 const voltsPercent = document.getElementById("voltsPercent");
 const flamePercent = document.getElementById("flamePercent");
 const leafPercent = document.getElementById("leafPercent");
+
 const voteLeader = document.getElementById("voteLeader");
 const teamActivatedToast = document.getElementById("teamActivatedToast");
 
@@ -824,6 +1034,18 @@ function setLanguage(lang) {
   if (downloadMenu) downloadMenu.classList.remove("open");
 }
 
+function setMode(mode) {
+  if (!timer || !progressPanel || !theoriesPanel) return;
+
+  timer.classList.toggle("hidden", mode !== "countdown");
+  progressPanel.classList.toggle("active", mode === "progress");
+  theoriesPanel.classList.toggle("active", mode === "theories");
+
+  countdownModeBtn?.classList.toggle("active", mode === "countdown");
+  progressModeBtn?.classList.toggle("active", mode === "progress");
+  theoriesModeBtn?.classList.toggle("active", mode === "theories");
+}
+
 function openPopup(team) {
   const data = translations[currentLang].teams[team];
 
@@ -894,6 +1116,7 @@ function applySelectedTeamTheme() {
   document.body.classList.add("selected-" + selectedTeam);
 
   const selectedButton = document.querySelector(`.team-btn[data-team="${selectedTeam}"]`);
+
   if (selectedButton) {
     selectedButton.classList.add("selected");
   }
@@ -919,6 +1142,10 @@ function updateTeamEnergy() {
   if (voltsPercent) voltsPercent.textContent = teamEnergyData.volts + "%";
   if (flamePercent) flamePercent.textContent = teamEnergyData.flame + "%";
   if (leafPercent) leafPercent.textContent = teamEnergyData.leaf + "%";
+
+  if (totalVotesText) {
+    totalVotesText.textContent = `${dict.totalVotes} ${totalVotes}`;
+  }
 
   const voltsFill = document.querySelector(".energy-row.volts .energy-fill");
   const flameFill = document.querySelector(".energy-row.flame .energy-fill");
@@ -948,6 +1175,7 @@ function updateTeamEnergy() {
   }
 
   const selectedEnergyRow = document.querySelector(`.energy-row.${selectedTeam}`);
+
   if (selectedEnergyRow) {
     selectedEnergyRow.classList.add("selected");
   }
@@ -972,7 +1200,7 @@ function updateVoteLeader() {
 
   const leaderData = translations[currentLang].teams[leader.key];
 
-  if (!leaderData || leader.value <= 0) {
+  if (!leaderData || leader.value <= 0 || totalVotes <= 0) {
     voteLeader.textContent = `${dict.currentLeader} —`;
     return;
   }
@@ -1008,23 +1236,41 @@ async function loadTeamEnergyFromSheet() {
 
     const csvText = await response.text();
 
+    if (!csvText.trim()) {
+      teamEnergyData = { volts: 0, flame: 0, leaf: 0 };
+      teamVoteCounts = { volts: 0, flame: 0, leaf: 0 };
+      totalVotes = 0;
+      updateTeamEnergy();
+      return;
+    }
+
     const rows = csvText
       .trim()
       .split("\n")
       .map((row) => row.split(","));
 
+    teamEnergyData = { volts: 0, flame: 0, leaf: 0 };
+    teamVoteCounts = { volts: 0, flame: 0, leaf: 0 };
+    totalVotes = 0;
+
     rows.slice(1).forEach((row) => {
       const team = row[0]?.trim();
+      const count = Number(row[1]?.trim());
       const percent = Number(row[2]?.trim());
 
       if (
         team &&
-        !Number.isNaN(percent) &&
         Object.prototype.hasOwnProperty.call(teamEnergyData, team)
       ) {
-        teamEnergyData[team] = percent;
+        teamVoteCounts[team] = Number.isNaN(count) ? 0 : count;
+        teamEnergyData[team] = Number.isNaN(percent) ? 0 : percent;
       }
     });
+
+    totalVotes =
+      teamVoteCounts.volts +
+      teamVoteCounts.flame +
+      teamVoteCounts.leaf;
 
     updateTeamEnergy();
   } catch (error) {
@@ -1058,16 +1304,16 @@ if (chooseTeamBtn) {
 if (langToggle) {
   langToggle.addEventListener("click", (event) => {
     event.stopPropagation();
-    languageMenu.classList.toggle("open");
-    downloadMenu.classList.remove("open");
+    languageMenu?.classList.toggle("open");
+    downloadMenu?.classList.remove("open");
   });
 }
 
 if (downloadToggle) {
   downloadToggle.addEventListener("click", (event) => {
     event.stopPropagation();
-    downloadMenu.classList.toggle("open");
-    languageMenu.classList.remove("open");
+    downloadMenu?.classList.toggle("open");
+    languageMenu?.classList.remove("open");
   });
 }
 
@@ -1120,21 +1366,21 @@ if (musicToggle && music) {
   });
 }
 
-if (countdownModeBtn && progressModeBtn && timer && progressPanel) {
+if (countdownModeBtn) {
   countdownModeBtn.addEventListener("click", () => {
-    timer.classList.remove("hidden");
-    progressPanel.classList.remove("active");
-
-    countdownModeBtn.classList.add("active");
-    progressModeBtn.classList.remove("active");
+    setMode("countdown");
   });
+}
 
+if (progressModeBtn) {
   progressModeBtn.addEventListener("click", () => {
-    timer.classList.add("hidden");
-    progressPanel.classList.add("active");
+    setMode("progress");
+  });
+}
 
-    progressModeBtn.classList.add("active");
-    countdownModeBtn.classList.remove("active");
+if (theoriesModeBtn) {
+  theoriesModeBtn.addEventListener("click", () => {
+    setMode("theories");
   });
 }
 
@@ -1166,6 +1412,7 @@ applySelectedTeamTheme();
 updateTeamEnergy();
 loadTeamEnergyFromSheet();
 updateCountdown();
+setMode("countdown");
 
 countdownInterval = setInterval(updateCountdown, 1000);
 setInterval(loadTeamEnergyFromSheet, 60000);
