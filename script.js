@@ -9,7 +9,8 @@ let currentPopupTeam = null;
 let selectedTeam = localStorage.getItem("selectedTeam") || null;
 let totalVotes = 0;
 
-const COMMENTS_STORAGE_KEY = "zeroGravityCommunityComments";
+const COMMENTS_API_URL =
+  "https://script.google.com/macros/s/AKfycbx88ju0wpZc4XtaHvdbydhk2dT8_AKShtdqG-w6k04p2-mfvqsbvbsDiaya2imCQaJL/exec";
 
 const GOOGLE_SHEET_CSV_URL =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vQSWxR6NP3qLfM_-Fi_qoRjpgEA0qiUCUTze8P3XHmNea9ROrpIGMp2kKxd_5FaqZvNi3j28G1-nmlQ/pub?gid=747099020&single=true&output=csv";
@@ -160,7 +161,7 @@ const translations = {
     communityCommsText: "Write a message for the Zero Gravity community.",
     commentNamePlaceholder: "Your name",
     commPlaceholder: "Transmit your message to the community...",
-    commentsLocalNote: "Messages are saved only on this device for now.",
+    commentsLocalNote: "Messages are visible to everyone after sending.",
     noCommentsYet: "No messages yet. Be the first.",
     teams: {
       volts: {
@@ -256,7 +257,7 @@ const translations = {
     communityCommsText: "Напиши сообщение для сообщества Невесомости.",
     commentNamePlaceholder: "Твоё имя",
     commPlaceholder: "Передай сообщение сообществу...",
-    commentsLocalNote: "Пока сообщения сохраняются только на этом устройстве.",
+    commentsLocalNote: "Сообщения после отправки видны всем.",
     noCommentsYet: "Сообщений пока нет. Будь первым.",
     teams: {
       volts: {
@@ -319,7 +320,7 @@ const languageOverrides = {
     communityCommsText: "Schreibe eine Nachricht für die Zero-Gravity-Community.",
     commentNamePlaceholder: "Dein Name",
     commPlaceholder: "Sende deine Nachricht an die Community...",
-    commentsLocalNote: "Nachrichten werden vorerst nur auf diesem Gerät gespeichert.",
+    commentsLocalNote: "Nachrichten sind nach dem Senden für alle sichtbar.",
     noCommentsYet: "Noch keine Nachrichten. Sei der Erste.",
     teams: {
       volts: { icon: "⚡", title: "TEAM VOLTS", text: "REINE BLITZENERGIE! Ich bin voller Freude und Energie!" },
@@ -368,7 +369,7 @@ const languageOverrides = {
     communityCommsText: "Écris un message pour la communauté Zéro Gravité.",
     commentNamePlaceholder: "Ton nom",
     commPlaceholder: "Transmets ton message à la communauté...",
-    commentsLocalNote: "Les messages sont enregistrés seulement sur cet appareil pour l’instant.",
+    commentsLocalNote: "Les messages sont visibles par tous après l’envoi.",
     noCommentsYet: "Aucun message pour l’instant. Sois le premier.",
     teams: {
       volts: { icon: "⚡", title: "ÉQUIPE VOLTS", text: "ÉNERGIE PURE DE LA FOUDRE ! Je suis plein de joie et d’énergie !" },
@@ -417,7 +418,7 @@ const languageOverrides = {
     communityCommsText: "Napisz wiadomość dla społeczności Nieważkości.",
     commentNamePlaceholder: "Twoje imię",
     commPlaceholder: "Wyślij wiadomość do społeczności...",
-    commentsLocalNote: "Wiadomości są na razie zapisywane tylko na tym urządzeniu.",
+    commentsLocalNote: "Wiadomości po wysłaniu są widoczne dla wszystkich.",
     noCommentsYet: "Brak wiadomości. Bądź pierwszy.",
     teams: {
       volts: { icon: "⚡", title: "DRUŻYNA VOLTS", text: "CZYSTA ENERGIA BŁYSKAWICY! Jestem pełen radości i energii!" },
@@ -466,7 +467,7 @@ const languageOverrides = {
     communityCommsText: "Escreva uma mensagem para a comunidade Gravidade Zero.",
     commentNamePlaceholder: "Seu nome",
     commPlaceholder: "Transmita sua mensagem para a comunidade...",
-    commentsLocalNote: "As mensagens são salvas apenas neste dispositivo por enquanto.",
+    commentsLocalNote: "As mensagens ficam visíveis para todos após o envio.",
     noCommentsYet: "Ainda não há mensagens. Seja o primeiro.",
     teams: {
       volts: { icon: "⚡", title: "TIME VOLTS", text: "ENERGIA PURA DE RAIO!" },
@@ -515,7 +516,7 @@ const languageOverrides = {
     communityCommsText: "Sıfır Yerçekimi topluluğu için mesaj yaz.",
     commentNamePlaceholder: "Adın",
     commPlaceholder: "Mesajını topluluğa gönder...",
-    commentsLocalNote: "Mesajlar şimdilik sadece bu cihazda saklanır.",
+    commentsLocalNote: "Mesajlar gönderildikten sonra herkes tarafından görülebilir.",
     noCommentsYet: "Henüz mesaj yok. İlk sen ol.",
     teams: {
       volts: { icon: "⚡", title: "VOLTS TAKIMI", text: "SAF YILDIRIM ENERJİSİ!" },
@@ -564,7 +565,7 @@ const languageOverrides = {
     communityCommsText: "Tulis pesan untuk komunitas Gravitasi Nol.",
     commentNamePlaceholder: "Nama kamu",
     commPlaceholder: "Kirim pesanmu ke komunitas...",
-    commentsLocalNote: "Pesan hanya disimpan di perangkat ini untuk saat ini.",
+    commentsLocalNote: "Pesan akan terlihat oleh semua orang setelah dikirim.",
     noCommentsYet: "Belum ada pesan. Jadilah yang pertama.",
     teams: {
       volts: { icon: "⚡", title: "TIM VOLTS", text: "ENERGI PETIR MURNI!" },
@@ -613,7 +614,7 @@ const languageOverrides = {
     communityCommsText: "Escribe un mensaje para la comunidad de Gravedad Cero.",
     commentNamePlaceholder: "Tu nombre",
     commPlaceholder: "Transmite tu mensaje a la comunidad...",
-    commentsLocalNote: "Los mensajes se guardan solo en este dispositivo por ahora.",
+    commentsLocalNote: "Los mensajes serán visibles para todos después de enviarlos.",
     noCommentsYet: "Aún no hay mensajes. Sé el primero.",
     teams: {
       volts: { icon: "⚡", title: "EQUIPO VOLTS", text: "¡ENERGÍA PURA DEL RAYO!" },
@@ -662,7 +663,7 @@ const languageOverrides = {
     communityCommsText: "शून्य गुरुत्वाकर्षण कम्युनिटी के लिए संदेश लिखें।",
     commentNamePlaceholder: "आपका नाम",
     commPlaceholder: "अपना संदेश कम्युनिटी को भेजें...",
-    commentsLocalNote: "संदेश अभी केवल इस डिवाइस पर सेव होते हैं।",
+    commentsLocalNote: "भेजने के बाद संदेश सभी को दिखाई देंगे।",
     noCommentsYet: "अभी कोई संदेश नहीं। पहले बनें।",
     teams: {
       volts: { icon: "⚡", title: "टीम VOLTS", text: "शुद्ध बिजली ऊर्जा!" },
@@ -1213,24 +1214,33 @@ function updateMusicButton() {
   musicToggle.setAttribute("aria-label", isPlaying ? "Turn music off" : "Turn music on");
 }
 
-function getStoredComments() {
+async function getStoredComments() {
   try {
-    const saved = localStorage.getItem(COMMENTS_STORAGE_KEY);
-    const comments = saved ? JSON.parse(saved) : [];
+    const response = await fetch(COMMENTS_API_URL + "?cache=" + Date.now());
 
-    return Array.isArray(comments) ? comments : [];
+    if (!response.ok) {
+      throw new Error("Could not load comments");
+    }
+
+    const data = await response.json();
+
+    if (!Array.isArray(data)) {
+      return [];
+    }
+
+    return data;
   } catch (error) {
-    console.warn("Comments could not be read:", error);
+    console.warn("Comments could not be loaded:", error);
     return [];
   }
 }
 
-function saveStoredComments(comments) {
-  localStorage.setItem(COMMENTS_STORAGE_KEY, JSON.stringify(comments));
-}
-
 function formatCommentTime(timestamp) {
-  const diffMs = Date.now() - Number(timestamp || Date.now());
+  const time = new Date(timestamp).getTime();
+
+  if (!time) return "";
+
+  const diffMs = Date.now() - time;
   const diffMinutes = Math.max(0, Math.floor(diffMs / 60000));
 
   if (diffMinutes < 1) return "now";
@@ -1244,10 +1254,10 @@ function formatCommentTime(timestamp) {
   return `${diffDays}d ago`;
 }
 
-function renderComments() {
+async function renderComments() {
   if (!commentsList) return;
 
-  const comments = getStoredComments();
+  const comments = await getStoredComments();
 
   if (!comments.length) {
     commentsList.innerHTML = `
@@ -1261,38 +1271,48 @@ function renderComments() {
   commentsList.innerHTML = comments
     .slice()
     .reverse()
+    .slice(0, 30)
     .map((comment) => {
+      const name = comment.name || "Player";
+      const message = comment.message || comment.text || "";
+      const createdAt = comment.createdAt || comment.timestamp || comment.date || "";
+
       return `
         <div class="comm-message">
           <div class="comm-top">
-            <strong>${escapeHtml(comment.name)}</strong>
-            <span>${formatCommentTime(comment.createdAt)}</span>
+            <strong>${escapeHtml(name)}</strong>
+            <span>${formatCommentTime(createdAt)}</span>
           </div>
-          <p>${escapeHtml(comment.text)}</p>
+          <p>${escapeHtml(message)}</p>
         </div>
       `;
     })
     .join("");
 }
 
-function addComment(name, text) {
+async function addComment(name, text) {
   const cleanName = String(name || "").trim().slice(0, 18);
   const cleanText = String(text || "").trim().slice(0, 120);
 
   if (!cleanName || !cleanText) return;
 
-  const comments = getStoredComments();
+  try {
+    await fetch(COMMENTS_API_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: cleanName,
+        message: cleanText
+      })
+    });
 
-  comments.push({
-    name: cleanName,
-    text: cleanText,
-    createdAt: Date.now()
-  });
-
-  const limitedComments = comments.slice(-30);
-
-  saveStoredComments(limitedComments);
-  renderComments();
+    window.setTimeout(renderComments, 1200);
+  } catch (error) {
+    console.warn("Comment could not be sent:", error);
+  }
 }
 
 document.querySelectorAll(".theories-grid").forEach((element) => {
@@ -1427,10 +1447,10 @@ if (shareBtn) {
 }
 
 if (commentForm && commentName && commentText) {
-  commentForm.addEventListener("submit", (event) => {
+  commentForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    addComment(commentName.value, commentText.value);
+    await addComment(commentName.value, commentText.value);
 
     commentText.value = "";
     commentText.focus();
