@@ -2545,7 +2545,33 @@ body.near-1 .hero {
   }
 
   .video-grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    grid-template-columns: none;
+    gap: 14px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px 4px 14px;
+  }
+
+  .video-grid::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .video-grid::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.08);
+    border-radius: 999px;
+  }
+
+  .video-grid::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #8be3ff, #ee6bf3, #72ff87);
+    border-radius: 999px;
+  }
+
+  .video-card {
+    flex: 0 0 82%;
+    scroll-snap-align: start;
   }
 
   .video-card-title,
