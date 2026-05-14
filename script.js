@@ -907,9 +907,7 @@ function closeTeamPopup() {
 
   document.body.classList.remove("team-volts", "team-flame", "team-leaf");
 
-  if (selectedTeam) {
-    document.body.classList.add("selected-" + selectedTeam);
-  }
+  applyPreviewTheme();
 
   currentPopupTeam = null;
 }
@@ -964,8 +962,6 @@ function applyPreviewTheme() {
 
   if (previewTheme !== "default") {
     document.body.classList.add("selected-" + previewTheme);
-  } else if (selectedTeam) {
-    document.body.classList.add("selected-" + selectedTeam);
   }
 
   if (themeToggle) {
