@@ -237,17 +237,23 @@ body.selected-leaf .hero {
 .lang-toggle,
 .download-toggle,
 .share-toggle,
+.theme-toggle,
 .music-top-toggle {
+  appearance: none;
+  -webkit-appearance: none;
   width: 48px;
   height: 48px;
   display: grid;
   place-items: center;
   border-radius: 50%;
   border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(5, 8, 22, 0.76);
+  background:
+    radial-gradient(circle at 50% 25%, rgba(139,227,255,0.18), transparent 58%),
+    rgba(5, 8, 22, 0.76);
   backdrop-filter: blur(14px);
   color: white;
   font-size: 22px;
+  line-height: 1;
   cursor: pointer;
   box-shadow:
     0 0 22px rgba(139,227,255,0.22),
@@ -257,6 +263,22 @@ body.selected-leaf .hero {
     box-shadow 0.22s ease,
     background 0.22s ease,
     border-color 0.22s ease;
+}
+
+.theme-toggle {
+  font-size: 24px;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(238,107,243,0.28), transparent 58%),
+    rgba(5, 8, 22, 0.82);
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px) scale(1.06);
+  border-color: rgba(238,107,243,0.42);
+  box-shadow:
+    0 0 28px rgba(238,107,243,0.34),
+    0 0 42px rgba(139,227,255,0.18),
+    inset 0 0 18px rgba(255,255,255,0.07);
 }
 
 .lang-toggle {
@@ -2324,10 +2346,10 @@ body.near-1 .hero {
   .share-toggle,
   .theme-toggle,
   .music-top-toggle {
-    width: 42px;
-    height: 42px;
-    font-size: 20px;
-  }
+  width: 42px;
+  height: 42px;
+  font-size: 20px;
+}
 
   .lang-toggle {
     font-size: 21px;
