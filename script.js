@@ -9,6 +9,8 @@ let currentPopupTeam = null;
 let selectedTeam = localStorage.getItem("selectedTeam") || null;
 let totalVotes = 0;
 
+const COMMENTS_STORAGE_KEY = "zeroGravityCommunityComments";
+
 const GOOGLE_SHEET_CSV_URL =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vQSWxR6NP3qLfM_-Fi_qoRjpgEA0qiUCUTze8P3XHmNea9ROrpIGMp2kKxd_5FaqZvNi3j28G1-nmlQ/pub?gid=747099020&single=true&output=csv";
 
@@ -155,7 +157,11 @@ const translations = {
     portalVideoSectionTitle: "PK XD PORTAL Videos",
     communityVideoSectionTitle: "Community Zero Gravity Videos",
     communityCommsTitle: "Community Comms",
+    communityCommsText: "Write a message for the Zero Gravity community.",
+    commentNamePlaceholder: "Your name",
     commPlaceholder: "Transmit your message to the community...",
+    commentsLocalNote: "Messages are saved only on this device for now.",
+    noCommentsYet: "No messages yet. Be the first.",
     teams: {
       volts: {
         icon: "⚡",
@@ -247,7 +253,11 @@ const translations = {
     portalVideoSectionTitle: "Видео PK XD PORTAL",
     communityVideoSectionTitle: "Видео сообщества о Невесомости",
     communityCommsTitle: "Сообщения сообщества",
+    communityCommsText: "Напиши сообщение для сообщества Невесомости.",
+    commentNamePlaceholder: "Твоё имя",
     commPlaceholder: "Передай сообщение сообществу...",
+    commentsLocalNote: "Пока сообщения сохраняются только на этом устройстве.",
+    noCommentsYet: "Сообщений пока нет. Будь первым.",
     teams: {
       volts: {
         icon: "⚡",
@@ -299,8 +309,6 @@ const languageOverrides = {
     teamActivated: "aktiviert",
     videoHubTitle: "ZERO GRAVITY VIDEO HUB",
     videoHubText: "Verfolge PK XD PORTAL Updates und ausgewählte Community-Videos zu Zero Gravity.",
-    watchMoreTitle: "ZERO GRAVITY VIDEO HUB",
-    watchMoreText: "Verfolge PK XD PORTAL Updates und ausgewählte Community-Videos zu Zero Gravity.",
     portalVideosBtn: "Alle ansehen",
     zeroGravityVideosBtn: "Alle ansehen",
     portalVideosTitle: "PK XD PORTAL Videos",
@@ -308,7 +316,11 @@ const languageOverrides = {
     portalVideoSectionTitle: "PK XD PORTAL Videos",
     communityVideoSectionTitle: "Community-Videos",
     communityCommsTitle: "Community Comms",
+    communityCommsText: "Schreibe eine Nachricht für die Zero-Gravity-Community.",
+    commentNamePlaceholder: "Dein Name",
     commPlaceholder: "Sende deine Nachricht an die Community...",
+    commentsLocalNote: "Nachrichten werden vorerst nur auf diesem Gerät gespeichert.",
+    noCommentsYet: "Noch keine Nachrichten. Sei der Erste.",
     teams: {
       volts: { icon: "⚡", title: "TEAM VOLTS", text: "REINE BLITZENERGIE! Ich bin voller Freude und Energie!" },
       flame: { icon: "🔥", title: "TEAM FLAME", text: "DIE INTENSITÄT DER FLAMME! Ich bin warm und wild!" },
@@ -346,8 +358,6 @@ const languageOverrides = {
     teamActivated: "activée",
     videoHubTitle: "HUB VIDÉO ZÉRO GRAVITÉ",
     videoHubText: "Suis les mises à jour de PK XD PORTAL et des vidéos sélectionnées de la communauté.",
-    watchMoreTitle: "HUB VIDÉO ZÉRO GRAVITÉ",
-    watchMoreText: "Suis les mises à jour de PK XD PORTAL et des vidéos sélectionnées de la communauté.",
     portalVideosBtn: "Voir tout",
     zeroGravityVideosBtn: "Voir tout",
     portalVideosTitle: "Vidéos PK XD PORTAL",
@@ -355,7 +365,11 @@ const languageOverrides = {
     portalVideoSectionTitle: "Vidéos PK XD PORTAL",
     communityVideoSectionTitle: "Vidéos de la communauté",
     communityCommsTitle: "Messages de la communauté",
+    communityCommsText: "Écris un message pour la communauté Zéro Gravité.",
+    commentNamePlaceholder: "Ton nom",
     commPlaceholder: "Transmets ton message à la communauté...",
+    commentsLocalNote: "Les messages sont enregistrés seulement sur cet appareil pour l’instant.",
+    noCommentsYet: "Aucun message pour l’instant. Sois le premier.",
     teams: {
       volts: { icon: "⚡", title: "ÉQUIPE VOLTS", text: "ÉNERGIE PURE DE LA FOUDRE ! Je suis plein de joie et d’énergie !" },
       flame: { icon: "🔥", title: "ÉQUIPE FLAME", text: "L’INTENSITÉ DE LA FLAMME ! Je suis chaleureux et féroce !" },
@@ -393,8 +407,6 @@ const languageOverrides = {
     teamActivated: "aktywowana",
     videoHubTitle: "CENTRUM WIDEO NIEWAŻKOŚCI",
     videoHubText: "Śledź aktualizacje PK XD PORTAL i oglądaj wybrane filmy społeczności.",
-    watchMoreTitle: "CENTRUM WIDEO NIEWAŻKOŚCI",
-    watchMoreText: "Śledź aktualizacje PK XD PORTAL i oglądaj wybrane filmy społeczności.",
     portalVideosBtn: "Zobacz wszystko",
     zeroGravityVideosBtn: "Zobacz wszystko",
     portalVideosTitle: "Filmy PK XD PORTAL",
@@ -402,7 +414,11 @@ const languageOverrides = {
     portalVideoSectionTitle: "Filmy PK XD PORTAL",
     communityVideoSectionTitle: "Filmy społeczności",
     communityCommsTitle: "Wiadomości społeczności",
+    communityCommsText: "Napisz wiadomość dla społeczności Nieważkości.",
+    commentNamePlaceholder: "Twoje imię",
     commPlaceholder: "Wyślij wiadomość do społeczności...",
+    commentsLocalNote: "Wiadomości są na razie zapisywane tylko na tym urządzeniu.",
+    noCommentsYet: "Brak wiadomości. Bądź pierwszy.",
     teams: {
       volts: { icon: "⚡", title: "DRUŻYNA VOLTS", text: "CZYSTA ENERGIA BŁYSKAWICY! Jestem pełen radości i energii!" },
       flame: { icon: "🔥", title: "DRUŻYNA FLAME", text: "INTENSYWNOŚĆ PŁOMIENIA! Jestem ciepły i zaciekły!" },
@@ -440,8 +456,6 @@ const languageOverrides = {
     teamActivated: "ativado",
     videoHubTitle: "CENTRAL DE VÍDEOS GRAVIDADE ZERO",
     videoHubText: "Acompanhe as atualizações da PK XD PORTAL e vídeos selecionados da comunidade.",
-    watchMoreTitle: "CENTRAL DE VÍDEOS GRAVIDADE ZERO",
-    watchMoreText: "Acompanhe as atualizações da PK XD PORTAL e vídeos selecionados da comunidade.",
     portalVideosBtn: "Ver todos",
     zeroGravityVideosBtn: "Ver todos",
     portalVideosTitle: "Vídeos da PK XD PORTAL",
@@ -449,7 +463,11 @@ const languageOverrides = {
     portalVideoSectionTitle: "Vídeos da PK XD PORTAL",
     communityVideoSectionTitle: "Vídeos da comunidade",
     communityCommsTitle: "Mensagens da comunidade",
+    communityCommsText: "Escreva uma mensagem para a comunidade Gravidade Zero.",
+    commentNamePlaceholder: "Seu nome",
     commPlaceholder: "Transmita sua mensagem para a comunidade...",
+    commentsLocalNote: "As mensagens são salvas apenas neste dispositivo por enquanto.",
+    noCommentsYet: "Ainda não há mensagens. Seja o primeiro.",
     teams: {
       volts: { icon: "⚡", title: "TIME VOLTS", text: "ENERGIA PURA DE RAIO!" },
       flame: { icon: "🔥", title: "TIME FLAME", text: "INTENSIDADE DO FOGO!" },
@@ -487,8 +505,6 @@ const languageOverrides = {
     teamActivated: "etkinleştirildi",
     videoHubTitle: "SIFIR YERÇEKİMİ VİDEO MERKEZİ",
     videoHubText: "PK XD PORTAL güncellemelerini ve seçilmiş topluluk videolarını izle.",
-    watchMoreTitle: "SIFIR YERÇEKİMİ VİDEO MERKEZİ",
-    watchMoreText: "PK XD PORTAL güncellemelerini ve seçilmiş topluluk videolarını izle.",
     portalVideosBtn: "Tümünü gör",
     zeroGravityVideosBtn: "Tümünü gör",
     portalVideosTitle: "PK XD PORTAL Videoları",
@@ -496,7 +512,11 @@ const languageOverrides = {
     portalVideoSectionTitle: "PK XD PORTAL Videoları",
     communityVideoSectionTitle: "Topluluk Videoları",
     communityCommsTitle: "Topluluk Mesajları",
+    communityCommsText: "Sıfır Yerçekimi topluluğu için mesaj yaz.",
+    commentNamePlaceholder: "Adın",
     commPlaceholder: "Mesajını topluluğa gönder...",
+    commentsLocalNote: "Mesajlar şimdilik sadece bu cihazda saklanır.",
+    noCommentsYet: "Henüz mesaj yok. İlk sen ol.",
     teams: {
       volts: { icon: "⚡", title: "VOLTS TAKIMI", text: "SAF YILDIRIM ENERJİSİ!" },
       flame: { icon: "🔥", title: "FLAME TAKIMI", text: "ATEŞİN YOĞUNLUĞU!" },
@@ -534,8 +554,6 @@ const languageOverrides = {
     teamActivated: "diaktifkan",
     videoHubTitle: "PUSAT VIDEO GRAVITASI NOL",
     videoHubText: "Ikuti update PK XD PORTAL dan video komunitas pilihan.",
-    watchMoreTitle: "PUSAT VIDEO GRAVITASI NOL",
-    watchMoreText: "Ikuti update PK XD PORTAL dan video komunitas pilihan.",
     portalVideosBtn: "Lihat semua",
     zeroGravityVideosBtn: "Lihat semua",
     portalVideosTitle: "Video PK XD PORTAL",
@@ -543,7 +561,11 @@ const languageOverrides = {
     portalVideoSectionTitle: "Video PK XD PORTAL",
     communityVideoSectionTitle: "Video komunitas",
     communityCommsTitle: "Pesan komunitas",
+    communityCommsText: "Tulis pesan untuk komunitas Gravitasi Nol.",
+    commentNamePlaceholder: "Nama kamu",
     commPlaceholder: "Kirim pesanmu ke komunitas...",
+    commentsLocalNote: "Pesan hanya disimpan di perangkat ini untuk saat ini.",
+    noCommentsYet: "Belum ada pesan. Jadilah yang pertama.",
     teams: {
       volts: { icon: "⚡", title: "TIM VOLTS", text: "ENERGI PETIR MURNI!" },
       flame: { icon: "🔥", title: "TIM FLAME", text: "INTENSITAS API!" },
@@ -581,8 +603,6 @@ const languageOverrides = {
     teamActivated: "activado",
     videoHubTitle: "CENTRO DE VIDEOS GRAVEDAD CERO",
     videoHubText: "Mira actualizaciones de PK XD PORTAL y videos seleccionados de la comunidad.",
-    watchMoreTitle: "CENTRO DE VIDEOS GRAVEDAD CERO",
-    watchMoreText: "Mira actualizaciones de PK XD PORTAL y videos seleccionados de la comunidad.",
     portalVideosBtn: "Ver todos",
     zeroGravityVideosBtn: "Ver todos",
     portalVideosTitle: "Videos de PK XD PORTAL",
@@ -590,7 +610,11 @@ const languageOverrides = {
     portalVideoSectionTitle: "Videos de PK XD PORTAL",
     communityVideoSectionTitle: "Videos de la comunidad",
     communityCommsTitle: "Mensajes de la comunidad",
+    communityCommsText: "Escribe un mensaje para la comunidad de Gravedad Cero.",
+    commentNamePlaceholder: "Tu nombre",
     commPlaceholder: "Transmite tu mensaje a la comunidad...",
+    commentsLocalNote: "Los mensajes se guardan solo en este dispositivo por ahora.",
+    noCommentsYet: "Aún no hay mensajes. Sé el primero.",
     teams: {
       volts: { icon: "⚡", title: "EQUIPO VOLTS", text: "¡ENERGÍA PURA DEL RAYO!" },
       flame: { icon: "🔥", title: "EQUIPO FLAME", text: "¡INTENSIDAD DEL FUEGO!" },
@@ -628,8 +652,6 @@ const languageOverrides = {
     teamActivated: "सक्रिय",
     videoHubTitle: "शून्य गुरुत्वाकर्षण वीडियो हब",
     videoHubText: "PK XD PORTAL अपडेट्स और चुने हुए कम्युनिटी वीडियो देखें।",
-    watchMoreTitle: "शून्य गुरुत्वाकर्षण वीडियो हब",
-    watchMoreText: "PK XD PORTAL अपडेट्स और चुने हुए कम्युनिटी वीडियो देखें।",
     portalVideosBtn: "सभी देखें",
     zeroGravityVideosBtn: "सभी देखें",
     portalVideosTitle: "PK XD PORTAL वीडियो",
@@ -637,7 +659,11 @@ const languageOverrides = {
     portalVideoSectionTitle: "PK XD PORTAL वीडियो",
     communityVideoSectionTitle: "कम्युनिटी वीडियो",
     communityCommsTitle: "कम्युनिटी संदेश",
+    communityCommsText: "शून्य गुरुत्वाकर्षण कम्युनिटी के लिए संदेश लिखें।",
+    commentNamePlaceholder: "आपका नाम",
     commPlaceholder: "अपना संदेश कम्युनिटी को भेजें...",
+    commentsLocalNote: "संदेश अभी केवल इस डिवाइस पर सेव होते हैं।",
+    noCommentsYet: "अभी कोई संदेश नहीं। पहले बनें।",
     teams: {
       volts: { icon: "⚡", title: "टीम VOLTS", text: "शुद्ध बिजली ऊर्जा!" },
       flame: { icon: "🔥", title: "टीम FLAME", text: "आग की तीव्रता!" },
@@ -698,12 +724,26 @@ const leafPercent = document.getElementById("leafPercent");
 const voteLeader = document.getElementById("voteLeader");
 const teamActivatedToast = document.getElementById("teamActivatedToast");
 
+const commentsList = document.getElementById("commentsList");
+const commentForm = document.getElementById("commentForm");
+const commentName = document.getElementById("commentName");
+const commentText = document.getElementById("commentText");
+
 function getText(key) {
   return translations[currentLang]?.[key] || translations.en[key] || key;
 }
 
 function getTeamData(team) {
   return translations[currentLang]?.teams?.[team] || translations.en.teams[team];
+}
+
+function escapeHtml(value) {
+  return String(value || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
 
 function updateCountdown() {
@@ -793,6 +833,14 @@ function setLanguage(lang) {
     element.innerHTML = getText(key);
   });
 
+  if (commentName) {
+    commentName.placeholder = getText("commentNamePlaceholder");
+  }
+
+  if (commentText) {
+    commentText.placeholder = getText("commPlaceholder");
+  }
+
   document.querySelectorAll("#languageMenu .lang-btn").forEach((button) => {
     button.classList.toggle("active", button.dataset.lang === currentLang);
   });
@@ -802,6 +850,7 @@ function setLanguage(lang) {
   updateTeamEnergy();
   updateChooseButton();
   renderVideoHub();
+  renderComments();
 
   if (languageMenu) languageMenu.classList.remove("open");
   if (downloadMenu) downloadMenu.classList.remove("open");
@@ -1095,11 +1144,11 @@ function createVideoCard(video) {
     <a class="video-card" href="${safeUrl}" target="_blank" rel="noopener noreferrer">
       <img
         src="${thumb}"
-        alt="${video.title}"
+        alt="${escapeHtml(video.title)}"
         loading="lazy"
         onerror="this.onerror=null; this.src='https://img.youtube.com/vi/${video.videoId}/mqdefault.jpg';"
       />
-      <span class="video-card-title">${video.title}</span>
+      <span class="video-card-title">${escapeHtml(video.title)}</span>
     </a>
   `;
 }
@@ -1162,6 +1211,88 @@ function updateMusicButton() {
   musicToggle.innerHTML = isPlaying ? getText("musicOff") : getText("musicOn");
   musicToggle.classList.toggle("active", isPlaying);
   musicToggle.setAttribute("aria-label", isPlaying ? "Turn music off" : "Turn music on");
+}
+
+function getStoredComments() {
+  try {
+    const saved = localStorage.getItem(COMMENTS_STORAGE_KEY);
+    const comments = saved ? JSON.parse(saved) : [];
+
+    return Array.isArray(comments) ? comments : [];
+  } catch (error) {
+    console.warn("Comments could not be read:", error);
+    return [];
+  }
+}
+
+function saveStoredComments(comments) {
+  localStorage.setItem(COMMENTS_STORAGE_KEY, JSON.stringify(comments));
+}
+
+function formatCommentTime(timestamp) {
+  const diffMs = Date.now() - Number(timestamp || Date.now());
+  const diffMinutes = Math.max(0, Math.floor(diffMs / 60000));
+
+  if (diffMinutes < 1) return "now";
+  if (diffMinutes < 60) return `${diffMinutes}m ago`;
+
+  const diffHours = Math.floor(diffMinutes / 60);
+
+  if (diffHours < 24) return `${diffHours}h ago`;
+
+  const diffDays = Math.floor(diffHours / 24);
+  return `${diffDays}d ago`;
+}
+
+function renderComments() {
+  if (!commentsList) return;
+
+  const comments = getStoredComments();
+
+  if (!comments.length) {
+    commentsList.innerHTML = `
+      <div class="comment-empty">
+        ${escapeHtml(getText("noCommentsYet"))}
+      </div>
+    `;
+    return;
+  }
+
+  commentsList.innerHTML = comments
+    .slice()
+    .reverse()
+    .map((comment) => {
+      return `
+        <div class="comm-message">
+          <div class="comm-top">
+            <strong>${escapeHtml(comment.name)}</strong>
+            <span>${formatCommentTime(comment.createdAt)}</span>
+          </div>
+          <p>${escapeHtml(comment.text)}</p>
+        </div>
+      `;
+    })
+    .join("");
+}
+
+function addComment(name, text) {
+  const cleanName = String(name || "").trim().slice(0, 18);
+  const cleanText = String(text || "").trim().slice(0, 120);
+
+  if (!cleanName || !cleanText) return;
+
+  const comments = getStoredComments();
+
+  comments.push({
+    name: cleanName,
+    text: cleanText,
+    createdAt: Date.now()
+  });
+
+  const limitedComments = comments.slice(-30);
+
+  saveStoredComments(limitedComments);
+  renderComments();
 }
 
 document.querySelectorAll(".theories-grid").forEach((element) => {
@@ -1295,15 +1426,28 @@ if (shareBtn) {
   });
 }
 
+if (commentForm && commentName && commentText) {
+  commentForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    addComment(commentName.value, commentText.value);
+
+    commentText.value = "";
+    commentText.focus();
+  });
+}
+
 const savedLang = localStorage.getItem("selectedLang") || "en";
 
 setLanguage(savedLang);
 applySelectedTeamTheme();
 updateTeamEnergy();
 renderVideoHub();
+renderComments();
 loadTeamEnergyFromSheet();
 updateCountdown();
 setMode("countdown");
 
 countdownInterval = setInterval(updateCountdown, 1000);
 setInterval(loadTeamEnergyFromSheet, 60000);
+setInterval(renderComments, 60000);
