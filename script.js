@@ -21,6 +21,52 @@ const GOOGLE_FORM_PREFILLED_URLS = {
   leaf: ""
 };
 
+/*
+  ВИДЕО МЕНЯТЬ ЗДЕСЬ.
+
+  videoId берёшь из ссылки:
+  https://www.youtube.com/watch?v=ABC123
+  videoId = "ABC123"
+
+  Всё бесплатно. YouTube API не нужен.
+*/
+
+const PORTAL_VIDEOS = [
+  {
+    title: "PK XD PORTAL: Zero Gravity Countdown",
+    videoId: "PASTE_PORTAL_VIDEO_ID_1",
+    url: "https://www.youtube.com/@pkxdportal"
+  },
+  {
+    title: "PK XD PORTAL: Zero Gravity Theory",
+    videoId: "PASTE_PORTAL_VIDEO_ID_2",
+    url: "https://www.youtube.com/@pkxdportal"
+  },
+  {
+    title: "PK XD PORTAL: Zero Gravity Update",
+    videoId: "PASTE_PORTAL_VIDEO_ID_3",
+    url: "https://www.youtube.com/@pkxdportal"
+  }
+];
+
+const COMMUNITY_VIDEOS = [
+  {
+    title: "Community Video: PK XD Zero Gravity",
+    videoId: "PASTE_COMMUNITY_VIDEO_ID_1",
+    url: "https://www.youtube.com/results?search_query=PK+XD+Zero+Gravity"
+  },
+  {
+    title: "Community Video: Zero Gravity Update",
+    videoId: "PASTE_COMMUNITY_VIDEO_ID_2",
+    url: "https://www.youtube.com/results?search_query=PK+XD+Zero+Gravity"
+  },
+  {
+    title: "Community Video: PK XD New Update",
+    videoId: "PASTE_COMMUNITY_VIDEO_ID_3",
+    url: "https://www.youtube.com/results?search_query=PK+XD+Zero+Gravity"
+  }
+];
+
 let teamEnergyData = {
   volts: 0,
   flame: 0,
@@ -94,10 +140,12 @@ const translations = {
     theoryMapText: "The island may receive temporary Zero Gravity decorations.",
     theoryRewardsTitle: "Special rewards",
     theoryRewardsText: "There may be limited rewards connected to the event.",
-    watchMoreTitle: "Watch More",
-    watchMoreText: "Follow PK XD PORTAL updates and explore community videos about Zero Gravity.",
+    watchMoreTitle: "Zero Gravity Video Hub",
+    watchMoreText: "Watch PK XD PORTAL updates and selected community videos about Zero Gravity.",
     portalVideosBtn: "PK XD PORTAL Videos",
     zeroGravityVideosBtn: "Zero Gravity Videos",
+    portalVideoSectionTitle: "PK XD PORTAL Videos",
+    communityVideoSectionTitle: "Community Videos",
 
     teams: {
       volts: {
@@ -178,10 +226,12 @@ const translations = {
     theoryMapText: "Остров может получить временное оформление в стиле Невесомости.",
     theoryRewardsTitle: "Особые награды",
     theoryRewardsText: "Могут появиться ограниченные награды, связанные с событием.",
-    watchMoreTitle: "Смотреть ещё",
-    watchMoreText: "Следи за обновлениями PK XD PORTAL и смотри видео сообщества о Невесомости.",
+    watchMoreTitle: "Видеоцентр Невесомости",
+    watchMoreText: "Смотри обновления PK XD PORTAL и выбранные видео сообщества о Невесомости.",
     portalVideosBtn: "Видео PK XD PORTAL",
     zeroGravityVideosBtn: "Видео о Невесомости",
+    portalVideoSectionTitle: "Видео PK XD PORTAL",
+    communityVideoSectionTitle: "Видео сообщества",
 
     teams: {
       volts: {
@@ -218,10 +268,10 @@ const translations = {
     musicOff: "🔇 Musik ausschalten",
     started: "🚀 Zero Gravity hat begonnen",
     fanCountdown: "Fan-Countdown für PK XD",
-    disclaimer: "Dies ist ein von Fans erstellter Countdown, erstellt von PK XD PORTAL für die Community. PK XD, das PK XD-Logo, das Hintergrundbild und die Musik gehören Afterverse. Diese Website ist nicht offiziell und steht nicht in Verbindung mit Afterverse.",
-    dateNote: "Das Countdown-Datum basiert auf Spekulationen der Community und logischer Beobachtung, da Zero-Gravity-Events normalerweise im Juni erscheinen. Das Datum kann sich ändern, wenn offizielle Informationen veröffentlicht werden.",
+    disclaimer: "Dies ist ein von Fans erstellter Countdown von PK XD PORTAL für die Community. PK XD, das PK XD-Logo, das Hintergrundbild und die Musik gehören Afterverse. Diese Website ist nicht offiziell und steht nicht in Verbindung mit Afterverse.",
+    dateNote: "Das Countdown-Datum basiert auf Community-Spekulationen und logischer Beobachtung, da Zero-Gravity-Events normalerweise im Juni erscheinen. Das Datum kann sich ändern, wenn offizielle Informationen veröffentlicht werden.",
     feedbackText: "Für Website-Verbesserungen, neue Sprachen, Fragen oder Kontaktanfragen schreibe uns über einen unserer Social-Links oben.",
-    afterverseContact: "Wenn jemand von Afterverse diese Website sieht und möchte, dass wir etwas ändern, nennen, entfernen oder anpassen, kontaktiert uns bitte über unsere Social-Links. Wir arbeiten gerne mit euch zusammen, damit das Projekt respektvoll bleibt und den Regeln entspricht.",
+    afterverseContact: "Wenn jemand von Afterverse diese Website sieht und möchte, dass wir etwas ändern, nennen, entfernen oder anpassen, kontaktiert uns bitte über unsere Social-Links. Wir arbeiten gerne zusammen, damit das Projekt respektvoll und regelkonform bleibt.",
     downloadTitle: "PK XD herunterladen / aktualisieren",
     googlePlayBtn: "Google Play",
     appStoreBtn: "App Store",
@@ -235,7 +285,7 @@ const translations = {
     progressLeft: "Übrig",
     progressText: "Fortschritt bis zum Event",
     shareCopied: "Link kopiert!",
-    teamEnergyTitle: "Zero Gravity TEAM-ABSTIMMUNG 2026",
+    teamEnergyTitle: "ZERO GRAVITY TEAM-ABSTIMMUNG 2026",
     noTeamSelected: "Wähle dein Team, um seine Energie zu aktivieren.",
     chooseTeamBtn: "Team wählen",
     selectedTeamPrefix: "Dein Team:",
@@ -262,10 +312,12 @@ const translations = {
     theoryMapText: "Die Insel könnte vorübergehend im Zero-Gravity-Stil dekoriert werden.",
     theoryRewardsTitle: "Besondere Belohnungen",
     theoryRewardsText: "Es könnte limitierte Belohnungen geben, die mit dem Event verbunden sind.",
-    watchMoreTitle: "Mehr ansehen",
-    watchMoreText: "Verfolge Updates von PK XD PORTAL und entdecke Community-Videos zu Zero Gravity.",
+    watchMoreTitle: "Zero Gravity Video Hub",
+    watchMoreText: "Verfolge PK XD PORTAL Updates und ausgewählte Community-Videos zu Zero Gravity.",
     portalVideosBtn: "PK XD PORTAL Videos",
     zeroGravityVideosBtn: "Zero Gravity Videos",
+    portalVideoSectionTitle: "PK XD PORTAL Videos",
+    communityVideoSectionTitle: "Community-Videos",
 
     teams: {
       volts: {
@@ -346,10 +398,12 @@ const translations = {
     theoryMapText: "L’île pourrait recevoir des décorations temporaires sur le thème Zéro Gravité.",
     theoryRewardsTitle: "Récompenses spéciales",
     theoryRewardsText: "Des récompenses limitées liées à l’événement pourraient apparaître.",
-    watchMoreTitle: "Voir plus",
-    watchMoreText: "Suis les mises à jour de PK XD PORTAL et découvre les vidéos de la communauté sur Zéro Gravité.",
+    watchMoreTitle: "Hub Vidéo Zéro Gravité",
+    watchMoreText: "Suis les mises à jour de PK XD PORTAL et des vidéos sélectionnées de la communauté sur Zéro Gravité.",
     portalVideosBtn: "Vidéos PK XD PORTAL",
     zeroGravityVideosBtn: "Vidéos Zéro Gravité",
+    portalVideoSectionTitle: "Vidéos PK XD PORTAL",
+    communityVideoSectionTitle: "Vidéos de la communauté",
 
     teams: {
       volts: {
@@ -430,10 +484,12 @@ const translations = {
     theoryMapText: "Wyspa może otrzymać tymczasowe dekoracje w stylu Nieważkości.",
     theoryRewardsTitle: "Specjalne nagrody",
     theoryRewardsText: "Mogą pojawić się limitowane nagrody związane z wydarzeniem.",
-    watchMoreTitle: "Zobacz więcej",
-    watchMoreText: "Śledź aktualizacje PK XD PORTAL i oglądaj filmy społeczności o Nieważkości.",
+    watchMoreTitle: "Centrum Wideo Nieważkości",
+    watchMoreText: "Śledź aktualizacje PK XD PORTAL i oglądaj wybrane filmy społeczności o Nieważkości.",
     portalVideosBtn: "Filmy PK XD PORTAL",
     zeroGravityVideosBtn: "Filmy o Nieważkości",
+    portalVideoSectionTitle: "Filmy PK XD PORTAL",
+    communityVideoSectionTitle: "Filmy społeczności",
 
     teams: {
       volts: {
@@ -514,10 +570,12 @@ const translations = {
     theoryMapText: "A ilha pode receber decorações temporárias no estilo Gravidade Zero.",
     theoryRewardsTitle: "Recompensas especiais",
     theoryRewardsText: "Podem aparecer recompensas limitadas ligadas ao evento.",
-    watchMoreTitle: "Ver mais",
-    watchMoreText: "Acompanhe as atualizações da PK XD PORTAL e veja vídeos da comunidade sobre Gravidade Zero.",
+    watchMoreTitle: "Central de Vídeos Gravidade Zero",
+    watchMoreText: "Acompanhe as atualizações da PK XD PORTAL e veja vídeos selecionados da comunidade sobre Gravidade Zero.",
     portalVideosBtn: "Vídeos da PK XD PORTAL",
     zeroGravityVideosBtn: "Vídeos sobre Gravidade Zero",
+    portalVideoSectionTitle: "Vídeos da PK XD PORTAL",
+    communityVideoSectionTitle: "Vídeos da comunidade",
 
     teams: {
       volts: {
@@ -598,10 +656,12 @@ const translations = {
     theoryMapText: "Ada geçici olarak Sıfır Yerçekimi temalı süslemeler alabilir.",
     theoryRewardsTitle: "Özel ödüller",
     theoryRewardsText: "Etkinlikle bağlantılı sınırlı ödüller gelebilir.",
-    watchMoreTitle: "Daha fazlasını izle",
-    watchMoreText: "PK XD PORTAL güncellemelerini takip et ve Sıfır Yerçekimi hakkında topluluk videolarını keşfet.",
+    watchMoreTitle: "Sıfır Yerçekimi Video Merkezi",
+    watchMoreText: "PK XD PORTAL güncellemelerini ve seçilmiş topluluk videolarını izle.",
     portalVideosBtn: "PK XD PORTAL Videoları",
     zeroGravityVideosBtn: "Sıfır Yerçekimi Videoları",
+    portalVideoSectionTitle: "PK XD PORTAL Videoları",
+    communityVideoSectionTitle: "Topluluk Videoları",
 
     teams: {
       volts: {
@@ -682,10 +742,12 @@ const translations = {
     theoryMapText: "Pulau mungkin mendapat dekorasi sementara bertema Gravitasi Nol.",
     theoryRewardsTitle: "Hadiah spesial",
     theoryRewardsText: "Mungkin ada hadiah terbatas yang terhubung dengan event.",
-    watchMoreTitle: "Tonton lainnya",
-    watchMoreText: "Ikuti update PK XD PORTAL dan jelajahi video komunitas tentang Gravitasi Nol.",
+    watchMoreTitle: "Pusat Video Gravitasi Nol",
+    watchMoreText: "Ikuti update PK XD PORTAL dan jelajahi video komunitas pilihan tentang Gravitasi Nol.",
     portalVideosBtn: "Video PK XD PORTAL",
     zeroGravityVideosBtn: "Video Gravitasi Nol",
+    portalVideoSectionTitle: "Video PK XD PORTAL",
+    communityVideoSectionTitle: "Video komunitas",
 
     teams: {
       volts: {
@@ -766,10 +828,12 @@ const translations = {
     theoryMapText: "La isla podría recibir decoraciones temporales de Gravedad Cero.",
     theoryRewardsTitle: "Recompensas especiales",
     theoryRewardsText: "Podrían aparecer recompensas limitadas relacionadas con el evento.",
-    watchMoreTitle: "Ver más",
-    watchMoreText: "Sigue las actualizaciones de PK XD PORTAL y explora videos de la comunidad sobre Gravedad Cero.",
+    watchMoreTitle: "Centro de Videos Gravedad Cero",
+    watchMoreText: "Mira actualizaciones de PK XD PORTAL y videos seleccionados de la comunidad sobre Gravedad Cero.",
     portalVideosBtn: "Videos de PK XD PORTAL",
     zeroGravityVideosBtn: "Videos de Gravedad Cero",
+    portalVideoSectionTitle: "Videos de PK XD PORTAL",
+    communityVideoSectionTitle: "Videos de la comunidad",
 
     teams: {
       volts: {
@@ -850,10 +914,12 @@ const translations = {
     theoryMapText: "आइलैंड को अस्थायी शून्य गुरुत्वाकर्षण सजावट मिल सकती है।",
     theoryRewardsTitle: "खास रिवार्ड्स",
     theoryRewardsText: "इवेंट से जुड़े लिमिटेड रिवार्ड्स आ सकते हैं।",
-    watchMoreTitle: "और देखें",
-    watchMoreText: "PK XD PORTAL अपडेट्स फॉलो करें और शून्य गुरुत्वाकर्षण पर कम्युनिटी वीडियो देखें।",
+    watchMoreTitle: "शून्य गुरुत्वाकर्षण वीडियो हब",
+    watchMoreText: "PK XD PORTAL अपडेट्स और चुने हुए कम्युनिटी वीडियो देखें।",
     portalVideosBtn: "PK XD PORTAL वीडियो",
     zeroGravityVideosBtn: "शून्य गुरुत्वाकर्षण वीडियो",
+    portalVideoSectionTitle: "PK XD PORTAL वीडियो",
+    communityVideoSectionTitle: "कम्युनिटी वीडियो",
 
     teams: {
       volts: {
@@ -874,13 +940,6 @@ const translations = {
     }
   }
 };
-
-["de", "fr", "pl", "pt", "tr", "id", "es", "hi"].forEach((lang) => {
-  translations[lang] = {
-    ...translations.en,
-    ...translations[lang]
-  };
-});
 
 const timer = document.getElementById("timer");
 const daysEl = document.getElementById("days");
@@ -926,6 +985,14 @@ const leafPercent = document.getElementById("leafPercent");
 const voteLeader = document.getElementById("voteLeader");
 const teamActivatedToast = document.getElementById("teamActivatedToast");
 
+function getText(key) {
+  return translations[currentLang]?.[key] || translations.en[key] || key;
+}
+
+function getTeamData(team) {
+  return translations[currentLang]?.teams?.[team] || translations.en.teams[team];
+}
+
 function updateCountdown() {
   const now = new Date();
   const distance = targetDate.getTime() - now.getTime();
@@ -936,7 +1003,7 @@ function updateCountdown() {
     if (timer) {
       timer.innerHTML = `
         <div class="started">
-          ${translations[currentLang].started}
+          ${getText("started")}
         </div>
       `;
     }
@@ -981,7 +1048,7 @@ function updateProgress() {
 
   progressFill.style.width = percent + "%";
   progressPercent.textContent = percent + "%";
-  progressText.textContent = translations[currentLang].progressText;
+  progressText.textContent = getText("progressText");
 }
 
 function updateAtmosphere(daysLeft) {
@@ -1013,8 +1080,8 @@ function setLanguage(lang) {
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     const key = element.dataset.i18n;
 
-    if (dict[key]) {
-      element.innerHTML = dict[key];
+    if (dict[key] || translations.en[key]) {
+      element.innerHTML = dict[key] || translations.en[key];
     }
   });
 
@@ -1023,12 +1090,13 @@ function setLanguage(lang) {
   });
 
   if (musicToggle) {
-    musicToggle.innerHTML = isPlaying ? dict.musicOff : dict.musicOn;
+    musicToggle.innerHTML = isPlaying ? getText("musicOff") : getText("musicOn");
   }
 
   updateProgress();
   updateTeamEnergy();
   updateChooseButton();
+  renderVideoHub();
 
   if (languageMenu) languageMenu.classList.remove("open");
   if (downloadMenu) downloadMenu.classList.remove("open");
@@ -1047,7 +1115,7 @@ function setMode(mode) {
 }
 
 function openPopup(team) {
-  const data = translations[currentLang].teams[team];
+  const data = getTeamData(team);
 
   if (!data || !popup) return;
 
@@ -1082,7 +1150,7 @@ function closeTeamPopup() {
 }
 
 function chooseTeam(team) {
-  if (!team || !translations[currentLang].teams[team]) return;
+  if (!team || !translations.en.teams[team]) return;
 
   selectedTeam = team;
   localStorage.setItem("selectedTeam", selectedTeam);
@@ -1125,26 +1193,22 @@ function applySelectedTeamTheme() {
 function updateChooseButton() {
   if (!chooseTeamBtn || !currentPopupTeam) return;
 
-  const dict = translations[currentLang];
-
   if (selectedTeam === currentPopupTeam) {
-    chooseTeamBtn.textContent = dict.teamAlreadySelected;
+    chooseTeamBtn.textContent = getText("teamAlreadySelected");
     chooseTeamBtn.disabled = true;
   } else {
-    chooseTeamBtn.textContent = dict.chooseTeamBtn;
+    chooseTeamBtn.textContent = getText("chooseTeamBtn");
     chooseTeamBtn.disabled = false;
   }
 }
 
 function updateTeamEnergy() {
-  const dict = translations[currentLang];
-
   if (voltsPercent) voltsPercent.textContent = teamEnergyData.volts + "%";
   if (flamePercent) flamePercent.textContent = teamEnergyData.flame + "%";
   if (leafPercent) leafPercent.textContent = teamEnergyData.leaf + "%";
 
   if (totalVotesText) {
-    totalVotesText.textContent = `${dict.totalVotes} ${totalVotes}`;
+    totalVotesText.textContent = `${getText("totalVotes")} ${totalVotes}`;
   }
 
   const voltsFill = document.querySelector(".energy-row.volts .energy-fill");
@@ -1161,17 +1225,17 @@ function updateTeamEnergy() {
 
   if (!selectedTeam) {
     if (selectedTeamText) {
-      selectedTeamText.textContent = dict.noTeamSelected;
+      selectedTeamText.textContent = getText("noTeamSelected");
     }
 
     updateVoteLeader();
     return;
   }
 
-  const team = translations[currentLang].teams[selectedTeam];
+  const team = getTeamData(selectedTeam);
 
   if (selectedTeamText && team) {
-    selectedTeamText.textContent = `${dict.selectedTeamPrefix} ${team.icon} ${team.title}`;
+    selectedTeamText.textContent = `${getText("selectedTeamPrefix")} ${team.icon} ${team.title}`;
   }
 
   const selectedEnergyRow = document.querySelector(`.energy-row.${selectedTeam}`);
@@ -1186,8 +1250,6 @@ function updateTeamEnergy() {
 function updateVoteLeader() {
   if (!voteLeader) return;
 
-  const dict = translations[currentLang];
-
   const teams = [
     { key: "volts", value: teamEnergyData.volts },
     { key: "flame", value: teamEnergyData.flame },
@@ -1198,25 +1260,24 @@ function updateVoteLeader() {
     return team.value > max.value ? team : max;
   }, teams[0]);
 
-  const leaderData = translations[currentLang].teams[leader.key];
+  const leaderData = getTeamData(leader.key);
 
   if (!leaderData || leader.value <= 0 || totalVotes <= 0) {
-    voteLeader.textContent = `${dict.currentLeader} —`;
+    voteLeader.textContent = `${getText("currentLeader")} —`;
     return;
   }
 
-  voteLeader.textContent = `${dict.currentLeader} ${leaderData.icon} ${leaderData.title} — ${leader.value}%`;
+  voteLeader.textContent = `${getText("currentLeader")} ${leaderData.icon} ${leaderData.title} — ${leader.value}%`;
 }
 
 function showTeamActivated(team) {
   if (!teamActivatedToast) return;
 
-  const dict = translations[currentLang];
-  const teamData = translations[currentLang].teams[team];
+  const teamData = getTeamData(team);
 
   if (!teamData) return;
 
-  teamActivatedToast.textContent = `${teamData.icon} ${teamData.title} ${dict.teamActivated}`;
+  teamActivatedToast.textContent = `${teamData.icon} ${teamData.title} ${getText("teamActivated")}`;
   teamActivatedToast.className = "team-activated-toast show " + team;
   teamActivatedToast.setAttribute("aria-hidden", "false");
 
@@ -1224,6 +1285,49 @@ function showTeamActivated(team) {
     teamActivatedToast.className = "team-activated-toast";
     teamActivatedToast.setAttribute("aria-hidden", "true");
   }, 1800);
+}
+
+function normalizeTeamName(value) {
+  const team = String(value || "").trim().toLowerCase();
+
+  if (team.includes("volt") || team.includes("молн")) return "volts";
+  if (team.includes("flame") || team.includes("fire") || team.includes("плам")) return "flame";
+  if (team.includes("leaf") || team.includes("лист")) return "leaf";
+
+  return team;
+}
+
+function parseCsvLine(line) {
+  const result = [];
+  let current = "";
+  let insideQuotes = false;
+
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    const nextChar = line[i + 1];
+
+    if (char === '"' && nextChar === '"') {
+      current += '"';
+      i++;
+      continue;
+    }
+
+    if (char === '"') {
+      insideQuotes = !insideQuotes;
+      continue;
+    }
+
+    if (char === "," && !insideQuotes) {
+      result.push(current);
+      current = "";
+      continue;
+    }
+
+    current += char;
+  }
+
+  result.push(current);
+  return result;
 }
 
 async function loadTeamEnergyFromSheet() {
@@ -1236,32 +1340,26 @@ async function loadTeamEnergyFromSheet() {
 
     const csvText = await response.text();
 
+    teamEnergyData = { volts: 0, flame: 0, leaf: 0 };
+    teamVoteCounts = { volts: 0, flame: 0, leaf: 0 };
+    totalVotes = 0;
+
     if (!csvText.trim()) {
-      teamEnergyData = { volts: 0, flame: 0, leaf: 0 };
-      teamVoteCounts = { volts: 0, flame: 0, leaf: 0 };
-      totalVotes = 0;
       updateTeamEnergy();
       return;
     }
 
     const rows = csvText
       .trim()
-      .split("\n")
-      .map((row) => row.split(","));
-
-    teamEnergyData = { volts: 0, flame: 0, leaf: 0 };
-    teamVoteCounts = { volts: 0, flame: 0, leaf: 0 };
-    totalVotes = 0;
+      .split(/\r?\n/)
+      .map(parseCsvLine);
 
     rows.slice(1).forEach((row) => {
-      const team = row[0]?.trim();
-      const count = Number(row[1]?.trim());
-      const percent = Number(row[2]?.trim());
+      const team = normalizeTeamName(row[0]);
+      const count = Number(String(row[1] || "0").replace("%", "").trim());
+      const percent = Number(String(row[2] || "0").replace("%", "").trim());
 
-      if (
-        team &&
-        Object.prototype.hasOwnProperty.call(teamEnergyData, team)
-      ) {
+      if (Object.prototype.hasOwnProperty.call(teamEnergyData, team)) {
         teamVoteCounts[team] = Number.isNaN(count) ? 0 : count;
         teamEnergyData[team] = Number.isNaN(percent) ? 0 : percent;
       }
@@ -1278,6 +1376,67 @@ async function loadTeamEnergyFromSheet() {
     updateTeamEnergy();
   }
 }
+
+function getYoutubeThumbnail(videoId) {
+  if (!videoId || videoId.startsWith("PASTE_")) {
+    return "";
+  }
+
+  return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+}
+
+function createVideoCard(video) {
+  const safeUrl = video.url || `https://www.youtube.com/watch?v=${video.videoId}`;
+  const thumb = getYoutubeThumbnail(video.videoId);
+
+  if (!thumb) {
+    return `
+      <a class="video-card empty-video" href="${safeUrl}" target="_blank" rel="noopener noreferrer">
+        <span class="video-card-title">${video.title}</span>
+      </a>
+    `;
+  }
+
+  return `
+    <a class="video-card" href="${safeUrl}" target="_blank" rel="noopener noreferrer">
+      <img src="${thumb}" alt="${video.title}" loading="lazy" />
+      <span class="video-card-title">${video.title}</span>
+    </a>
+  `;
+}
+
+function renderVideoHub() {
+  const watchMore = document.querySelector(".watch-more");
+  if (!watchMore) return;
+
+  const oldVideoSections = watchMore.querySelector(".video-sections");
+  if (oldVideoSections) oldVideoSections.remove();
+
+  const videoSections = document.createElement("div");
+  videoSections.className = "video-sections";
+
+  videoSections.innerHTML = `
+    <div class="video-group">
+      <h4>${getText("portalVideoSectionTitle")}</h4>
+      <div class="video-grid">
+        ${PORTAL_VIDEOS.map(createVideoCard).join("")}
+      </div>
+    </div>
+
+    <div class="video-group">
+      <h4>${getText("communityVideoSectionTitle")}</h4>
+      <div class="video-grid">
+        ${COMMUNITY_VIDEOS.map(createVideoCard).join("")}
+      </div>
+    </div>
+  `;
+
+  watchMore.appendChild(videoSections);
+}
+
+document.querySelectorAll(".theories-grid").forEach((element) => {
+  element.classList.add("theory-grid");
+});
 
 document.querySelectorAll(".team-btn").forEach((button) => {
   button.addEventListener("click", () => {
@@ -1355,12 +1514,12 @@ if (musicToggle && music) {
     if (!isPlaying) {
       music.play();
       musicToggle.classList.add("active");
-      musicToggle.innerHTML = translations[currentLang].musicOff;
+      musicToggle.innerHTML = getText("musicOff");
       isPlaying = true;
     } else {
       music.pause();
       musicToggle.classList.remove("active");
-      musicToggle.innerHTML = translations[currentLang].musicOn;
+      musicToggle.innerHTML = getText("musicOn");
       isPlaying = false;
     }
   });
@@ -1396,11 +1555,11 @@ if (shareBtn) {
         });
       } else {
         await navigator.clipboard.writeText(url);
-        alert(translations[currentLang].shareCopied);
+        alert(getText("shareCopied"));
       }
     } catch (error) {
       await navigator.clipboard.writeText(url);
-      alert(translations[currentLang].shareCopied);
+      alert(getText("shareCopied"));
     }
   });
 }
@@ -1410,6 +1569,7 @@ const savedLang = localStorage.getItem("selectedLang") || "en";
 setLanguage(savedLang);
 applySelectedTeamTheme();
 updateTeamEnergy();
+renderVideoHub();
 loadTeamEnergyFromSheet();
 updateCountdown();
 setMode("countdown");
