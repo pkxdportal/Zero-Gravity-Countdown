@@ -1009,6 +1009,8 @@ if (commentForm && commentName && commentText) {
     updateRatingStars();
     updateCommentCounter();
     commentText.focus();
+  });
+}
 
 const savedLang = localStorage.getItem("selectedLang") || "en";
 
