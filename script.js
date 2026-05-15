@@ -141,7 +141,7 @@ const commentText = document.getElementById("commentText");
 const commentCounter = document.getElementById("commentCounter");
 const commentSubmitBtn = document.getElementById("commentSubmitBtn");
 const ratingStars = document.querySelectorAll(".rating-star");
-let selectedRating = 5;
+let selectedRating = 0;
 
 const averageStars = document.getElementById("averageStars");
 const averageRating = document.getElementById("averageRating");
@@ -826,13 +826,20 @@ async function addComment(name, text) {
 function updateRatingStars() {
   ratingStars.forEach((star) => {
     const value = Number(star.dataset.rating);
-    star.classList.toggle("active", value <= selectedRating);
+    star.classList.toggle("active", selectedRating > 0 && value <= selectedRating);
   });
 }
 
 ratingStars.forEach((star) => {
   star.addEventListener("click", () => {
-    selectedRating = Number(star.dataset.rating) || 5;
+    const clickedRating = Number(star.dataset.rating) || 0;
+
+    if (selectedRating === clickedRating) {
+      selectedRating = 0;
+    } else {
+      selectedRating = clickedRating;
+    }
+
     updateRatingStars();
   });
 });
@@ -998,10 +1005,10 @@ if (commentForm && commentName && commentText) {
     await addComment(commentName.value, commentText.value);
 
     commentText.value = "";
+    selectedRating = 0;
+    updateRatingStars();
     updateCommentCounter();
     commentText.focus();
-  });
-}
 
 const savedLang = localStorage.getItem("selectedLang") || "en";
 
