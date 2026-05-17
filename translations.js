@@ -301,9 +301,21 @@ const languageOverrides = {
     noCommentsYet: "Noch keine Nachrichten. Sei der Erste.",
 
     teams: {
-      volts: { icon: "⚡", title: "TEAM VOLTS", text: "REINE BLITZENERGIE! Ich bin voller Freude und Energie!" },
-      flame: { icon: "🔥", title: "TEAM FLAME", text: "DIE INTENSITÄT DER FLAMME! Ich bin warm und wild!" },
-      leaf: { icon: "🍃", title: "TEAM LEAF", text: "DIE KRAFT IN JEDEM BLATT! Ich bin gerecht und stark wie die Natur!" }
+      volts: {
+        icon: "⚡",
+        title: "TEAM VOLTS",
+        text: "REINE BLITZENERGIE! Ich bin voller Freude und Energie!"
+      },
+      flame: {
+        icon: "🔥",
+        title: "TEAM FLAME",
+        text: "DIE INTENSITÄT DER FLAMME! Ich bin warm und wild!"
+      },
+      leaf: {
+        icon: "🍃",
+        title: "TEAM LEAF",
+        text: "DIE KRAFT IN JEDEM BLATT! Ich bin gerecht und stark wie die Natur!"
+      }
     }
   },
 
@@ -391,9 +403,21 @@ const languageOverrides = {
     noCommentsYet: "Aucun message pour l’instant. Sois le premier.",
 
     teams: {
-      volts: { icon: "⚡", title: "ÉQUIPE VOLTS", text: "ÉNERGIE PURE DE LA FOUDRE ! Je suis plein de joie et d’énergie !" },
-      flame: { icon: "🔥", title: "ÉQUIPE FLAME", text: "L’INTENSITÉ DE LA FLAMME ! Je suis chaleureux et féroce !" },
-      leaf: { icon: "🍃", title: "ÉQUIPE LEAF", text: "LA FORCE DANS CHAQUE FEUILLE ! Je suis juste et fort comme la nature !" }
+      volts: {
+        icon: "⚡",
+        title: "ÉQUIPE VOLTS",
+        text: "ÉNERGIE PURE DE LA FOUDRE ! Je suis plein de joie et d’énergie !"
+      },
+      flame: {
+        icon: "🔥",
+        title: "ÉQUIPE FLAME",
+        text: "L’INTENSITÉ DE LA FLAMME ! Je suis chaleureux et féroce !"
+      },
+      leaf: {
+        icon: "🍃",
+        title: "ÉQUIPE LEAF",
+        text: "LA FORCE DANS CHAQUE FEUILLE ! Je suis juste et fort comme la nature !"
+      }
     }
   },
 
@@ -481,9 +505,21 @@ const languageOverrides = {
     noCommentsYet: "Brak wiadomości. Bądź pierwszy.",
 
     teams: {
-      volts: { icon: "⚡", title: "DRUŻYNA VOLTS", text: "CZYSTA ENERGIA BŁYSKAWICY! Jestem pełen radości i energii!" },
-      flame: { icon: "🔥", title: "DRUŻYNA FLAME", text: "INTENSYWNOŚĆ PŁOMIENIA! Jestem ciepły i zaciekły!" },
-      leaf: { icon: "🍃", title: "DRUŻYNA LEAF", text: "SIŁA W KAŻDYM LIŚCIU! Jestem prawy i silny jak natura!" }
+      volts: {
+        icon: "⚡",
+        title: "DRUŻYNA VOLTS",
+        text: "CZYSTA ENERGIA BŁYSKAWICY! Jestem pełen radości i energii!"
+      },
+      flame: {
+        icon: "🔥",
+        title: "DRUŻYNA FLAME",
+        text: "INTENSYWNOŚĆ PŁOMIENIA! Jestem ciepły i zaciekły!"
+      },
+      leaf: {
+        icon: "🍃",
+        title: "DRUŻYNA LEAF",
+        text: "SIŁA W KAŻDYM LIŚCIU! Jestem prawy i silny jak natura!"
+      }
     }
   },
 
@@ -571,9 +607,21 @@ const languageOverrides = {
     noCommentsYet: "Ainda não há mensagens. Seja o primeiro.",
 
     teams: {
-      volts: { icon: "⚡", title: "TIME VOLTS", text: "ENERGIA PURA DE RAIO! Estou cheio de alegria e energia!" },
-      flame: { icon: "🔥", title: "TIME FLAME", text: "A INTENSIDADE DO FOGO! Sou quente e feroz!" },
-      leaf: { icon: "🍃", title: "TIME LEAF", text: "A FORÇA DENTRO DE CADA FOLHA! Sou justo e forte como a natureza!" }
+      volts: {
+        icon: "⚡",
+        title: "TIME VOLTS",
+        text: "ENERGIA PURA DE RAIO! Estou cheio de alegria e energia!"
+      },
+      flame: {
+        icon: "🔥",
+        title: "TIME FLAME",
+        text: "A INTENSIDADE DO FOGO! Sou quente e feroz!"
+      },
+      leaf: {
+        icon: "🍃",
+        title: "TIME LEAF",
+        text: "A FORÇA DENTRO DE CADA FOLHA! Sou justo e forte como a natureza!"
+      }
     }
   },
 
@@ -661,9 +709,21 @@ const languageOverrides = {
     noCommentsYet: "Henüz mesaj yok. İlk sen ol.",
 
     teams: {
-      volts: { icon: "⚡", title: "VOLTS TAKIMI", text: "SAF YILDIRIM ENERJİSİ! Neşe ve enerjiyle doluyum!" },
-      flame: { icon: "🔥", title: "FLAME TAKIMI", text: "ATEŞİN YOĞUNLUĞU! Sıcak ve güçlüyüm!" },
-      leaf: { icon: "🍃", title: "LEAF TAKIMI", text: "HER YAPRAĞIN İÇİNDEKİ GÜÇ! Doğa gibi doğru ve güçlüyüm!" }
+      volts: {
+        icon: "⚡",
+        title: "VOLTS TAKIMI",
+        text: "SAF YILDIRIM ENERJİSİ! Neşe ve enerjiyle doluyum!"
+      },
+      flame: {
+        icon: "🔥",
+        title: "FLAME TAKIMI",
+        text: "ATEŞİN YOĞUNLUĞU! Sıcak ve güçlüyüm!"
+      },
+      leaf: {
+        icon: "🍃",
+        title: "LEAF TAKIMI",
+        text: "HER YAPRAĞIN İÇİNDEKİ GÜÇ! Doğa gibi doğru ve güçlüyüm!"
+      }
     }
   },
 
@@ -751,9 +811,21 @@ const languageOverrides = {
     noCommentsYet: "Belum ada pesan. Jadilah yang pertama.",
 
     teams: {
-      volts: { icon: "⚡", title: "TIM VOLTS", text: "ENERGI PETIR MURNI! Aku penuh kegembiraan dan energi!" },
-      flame: { icon: "🔥", title: "TIM FLAME", text: "INTENSITAS API! Aku hangat dan kuat!" },
-      leaf: { icon: "🍃", title: "TIM LEAF", text: "KEKUATAN DI SETIAP DAUN! Aku benar dan kuat seperti alam!" }
+      volts: {
+        icon: "⚡",
+        title: "TIM VOLTS",
+        text: "ENERGI PETIR MURNI! Aku penuh kegembiraan dan energi!"
+      },
+      flame: {
+        icon: "🔥",
+        title: "TIM FLAME",
+        text: "INTENSITAS API! Aku hangat dan kuat!"
+      },
+      leaf: {
+        icon: "🍃",
+        title: "TIM LEAF",
+        text: "KEKUATAN DI SETIAP DAUN! Aku benar dan kuat seperti alam!"
+      }
     }
   },
 
@@ -841,9 +913,21 @@ const languageOverrides = {
     noCommentsYet: "Aún no hay mensajes. Sé el primero.",
 
     teams: {
-      volts: { icon: "⚡", title: "EQUIPO VOLTS", text: "¡ENERGÍA PURA DEL RAYO! ¡Estoy lleno de alegría y energía!" },
-      flame: { icon: "🔥", title: "EQUIPO FLAME", text: "¡LA INTENSIDAD DEL FUEGO! ¡Soy cálido y feroz!" },
-      leaf: { icon: "🍃", title: "EQUIPO LEAF", text: "¡LA FUERZA EN CADA HOJA! ¡Soy justo y fuerte como la naturaleza!" }
+      volts: {
+        icon: "⚡",
+        title: "EQUIPO VOLTS",
+        text: "¡ENERGÍA PURA DEL RAYO! ¡Estoy lleno de alegría y energía!"
+      },
+      flame: {
+        icon: "🔥",
+        title: "EQUIPO FLAME",
+        text: "¡LA INTENSIDAD DEL FUEGO! ¡Soy cálido y feroz!"
+      },
+      leaf: {
+        icon: "🍃",
+        title: "EQUIPO LEAF",
+        text: "¡LA FUERZA EN CADA HOJA! ¡Soy justo y fuerte como la naturaleza!"
+      }
     }
   },
 
@@ -931,9 +1015,21 @@ const languageOverrides = {
     noCommentsYet: "अभी कोई संदेश नहीं। पहले बनें।",
 
     teams: {
-      volts: { icon: "⚡", title: "टीम VOLTS", text: "शुद्ध बिजली ऊर्जा! मैं खुशी और ऊर्जा से भरा हूँ!" },
-      flame: { icon: "🔥", title: "टीम FLAME", text: "आग की तीव्रता! मैं गर्म और शक्तिशाली हूँ!" },
-      leaf: { icon: "🍃", title: "टीम LEAF", text: "हर पत्ते के अंदर की शक्ति! मैं प्रकृति की तरह सही और मजबूत हूँ!" }
+      volts: {
+        icon: "⚡",
+        title: "टीम VOLTS",
+        text: "शुद्ध बिजली ऊर्जा! मैं खुशी और ऊर्जा से भरा हूँ!"
+      },
+      flame: {
+        icon: "🔥",
+        title: "टीम FLAME",
+        text: "आग की तीव्रता! मैं गर्म और शक्तिशाली हूँ!"
+      },
+      leaf: {
+        icon: "🍃",
+        title: "टीम LEAF",
+        text: "हर पत्ते के अंदर की शक्ति! मैं प्रकृति की तरह सही और मजबूत हूँ!"
+      }
     }
   }
 };
