@@ -1350,12 +1350,10 @@ body.selected-leaf .progress-fill {
 
 .community-comms {
   margin: 34px auto 0;
-  width: 100%;
   max-width: 920px;
   padding: 28px;
   border-radius: 30px;
   text-align: left;
-  overflow: hidden;
   background:
     radial-gradient(circle at 50% 0%, rgba(139,227,255,0.13), transparent 45%),
     rgba(255,255,255,0.065);
@@ -1563,10 +1561,8 @@ body.selected-leaf .progress-fill {
 .comment-form,
 #commentForm {
   margin-top: 18px;
-  width: 100%;
-  max-width: 100%;
   display: grid;
-  grid-template-columns: minmax(105px, 0.75fr) minmax(160px, 1.45fr) minmax(138px, 0.85fr) 52px;
+  grid-template-columns: 130px minmax(300px, 1fr) 190px 54px;
   gap: 12px;
   align-items: center;
   padding: 14px;
@@ -1578,7 +1574,6 @@ body.selected-leaf .progress-fill {
   box-shadow:
     inset 0 0 22px rgba(0,0,0,0.22),
     0 0 24px rgba(139,227,255,0.08);
-  overflow: hidden;
 }
 
 #commentName,
@@ -1637,8 +1632,6 @@ body.selected-leaf .progress-fill {
 #commentSubmitBtn {
   width: 48px;
   height: 48px;
-  min-width: 48px;
-  justify-self: center;
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -1668,14 +1661,12 @@ body.selected-leaf .progress-fill {
 }
 
 .rating-box {
-  width: 100%;
-  min-width: 0;
   height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 3px;
-  padding: 0 10px;
+  padding: 0 12px;
   border-radius: 999px;
   background:
     radial-gradient(circle at 50% 0%, rgba(255, 179, 107, 0.14), transparent 60%),
@@ -2396,40 +2387,6 @@ body.near-1 .hero {
    MOBILE
 ========================= */
 
-
-@media (max-width: 1250px) {
-  .comment-form,
-  #commentForm {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) 52px;
-  }
-
-  #commentName {
-    grid-column: 1 / 2;
-  }
-
-  #commentText {
-    grid-column: 2 / 4;
-  }
-
-  .rating-box {
-    grid-column: 1 / 3;
-    grid-row: 2;
-    justify-self: stretch;
-  }
-
-  #commentSubmitBtn {
-    grid-column: 3 / 4;
-    grid-row: 2;
-  }
-
-  .comment-counter {
-    grid-column: 2 / 4;
-    grid-row: 3;
-    text-align: right;
-    margin-top: -4px;
-  }
-}
-
 @media (max-width: 760px) {
   .scene {
     min-height: auto;
@@ -2725,16 +2682,6 @@ body.near-1 .hero {
   .comment-form,
   #commentForm {
     grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  #commentName,
-  #commentText,
-  .rating-box,
-  #commentSubmitBtn,
-  .comment-counter {
-    grid-column: auto;
-    grid-row: auto;
   }
 
   .community-rating {
@@ -2930,5 +2877,720 @@ body.near-1 .hero {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.001ms !important;
+  }
+}
+
+/* =========================================================
+   FINAL FIX: COMMUNITY FORM DESKTOP + MOBILE
+   Fixes rating stars / send button escaping outside the card.
+   Keep this block at the VERY END of style.css.
+========================================================= */
+
+.hero {
+  width: min(1440px, 96vw);
+}
+
+.community-comms {
+  width: 100%;
+  max-width: 1080px;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.comments-list,
+#commentsList {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.comment-form,
+#commentForm {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(120px, 0.75fr) minmax(0, 2fr) minmax(150px, 0.85fr) 54px;
+  gap: 12px;
+  align-items: center;
+  overflow: hidden;
+}
+
+#commentForm > *,
+.comment-form > * {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+#commentName,
+#commentText,
+.rating-box,
+#commentSubmitBtn {
+  max-width: 100%;
+}
+
+#commentName,
+#commentText {
+  width: 100%;
+}
+
+#commentText {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.rating-box {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  justify-self: stretch;
+}
+
+.rating-star {
+  flex: 0 0 auto;
+}
+
+#commentSubmitBtn {
+  width: 54px;
+  height: 54px;
+  min-width: 54px;
+  justify-self: end;
+  border-radius: 50%;
+}
+
+.comment-counter {
+  grid-column: 2 / 3;
+  width: 100%;
+  max-width: 100%;
+  text-align: right;
+}
+
+.portal-credit {
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  max-width: 100%;
+  text-align: center;
+}
+
+.portal-links {
+  justify-content: center;
+}
+
+@media (max-width: 980px) {
+  .hero {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .community-comms {
+    max-width: 100%;
+  }
+
+  .comment-form,
+  #commentForm {
+    grid-template-columns: minmax(120px, 0.8fr) minmax(0, 1.6fr) 54px;
+  }
+
+  .rating-box {
+    grid-column: 1 / 3;
+    grid-row: 2;
+    width: 100%;
+  }
+
+  #commentSubmitBtn {
+    grid-column: 3 / 4;
+    grid-row: 1 / 3;
+    align-self: stretch;
+    width: 54px;
+    height: auto;
+    min-height: 54px;
+    border-radius: 999px;
+  }
+
+  .comment-counter {
+    grid-column: 2 / 3;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    width: 100%;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .community-comms {
+    width: 100%;
+    max-width: 100%;
+    padding: 20px 14px;
+    overflow: hidden;
+  }
+
+  .comment-form,
+  #commentForm {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 14px;
+    overflow: hidden;
+  }
+
+  #commentName,
+  #commentText,
+  .rating-box,
+  #commentSubmitBtn,
+  .comment-counter {
+    grid-column: auto;
+    grid-row: auto;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #commentSubmitBtn {
+    height: 48px;
+    min-height: 48px;
+    border-radius: 999px;
+    justify-self: stretch;
+  }
+
+  .comment-counter {
+    text-align: right;
+    padding-right: 4px;
+  }
+}
+
+@media (max-width: 420px) {
+  .community-comms {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+/* =========================================================
+   FINAL RESPONSIVE FIX — COMMUNITY COMMS / FORM / RATING
+   This block intentionally overrides earlier community styles.
+========================================================= */
+
+.community-comms {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  overflow: hidden;
+}
+
+.community-rating {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.comments-list,
+#commentsList {
+  width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+.comm-message {
+  width: 100%;
+  min-width: 0;
+  text-align: left;
+}
+
+.comm-message p {
+  text-align: center;
+}
+
+#commentForm,
+.comment-form {
+  width: 100%;
+  min-width: 0;
+}
+
+#commentName,
+#commentText,
+.rating-box,
+#commentSubmitBtn {
+  min-width: 0;
+}
+
+#commentText {
+  overflow: hidden;
+  white-space: normal;
+}
+
+.rating-box {
+  box-sizing: border-box;
+}
+
+/* Desktop: wider community block, normal horizontal form */
+@media (min-width: 901px) {
+  .community-comms {
+    width: min(1120px, 92vw);
+    max-width: 1120px;
+    padding: 30px 32px;
+  }
+
+  .community-rating {
+    max-width: 620px;
+    padding: 20px 26px;
+  }
+
+  .community-rating-main {
+    gap: 20px;
+  }
+
+  #averageStars {
+    letter-spacing: 4px;
+  }
+
+  #commentsList,
+  .comments-list {
+    max-height: 520px;
+    padding-right: 10px;
+  }
+
+  #commentForm,
+  .comment-form {
+    display: grid;
+    grid-template-columns: 190px minmax(380px, 1fr) 270px 68px;
+    gap: 16px;
+    align-items: center;
+    padding: 18px;
+    border-radius: 28px;
+  }
+
+  #commentName {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    height: 58px;
+  }
+
+  #commentText {
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    height: 58px;
+    max-height: 58px;
+    padding: 17px 18px;
+    line-height: 1.25;
+  }
+
+  .rating-box {
+    grid-column: 3;
+    grid-row: 1;
+    width: 270px;
+    height: 58px;
+    min-width: 270px;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 24px;
+  }
+
+  .rating-star {
+    width: 34px;
+    height: 34px;
+    font-size: 26px;
+  }
+
+  #commentSubmitBtn {
+    grid-column: 4;
+    grid-row: 1;
+    width: 62px;
+    height: 62px;
+    min-height: 62px;
+    border-radius: 50%;
+    justify-self: center;
+    align-self: center;
+    font-size: 24px;
+  }
+
+  .comment-counter {
+    grid-column: 2 / 3;
+    grid-row: 2;
+    width: 100%;
+    text-align: right;
+    margin-top: -6px;
+    padding-right: 8px;
+  }
+}
+
+/* Medium screens: keep everything inside the card */
+@media (min-width: 761px) and (max-width: 1100px) {
+  .community-comms {
+    width: min(940px, 94vw);
+    max-width: 940px;
+  }
+
+  #commentForm,
+  .comment-form {
+    grid-template-columns: 170px minmax(260px, 1fr) 230px 62px;
+    gap: 12px;
+  }
+
+  .rating-box {
+    width: 230px;
+    min-width: 230px;
+    padding: 0 18px;
+    gap: 8px;
+  }
+
+  .rating-star {
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+  }
+
+  #commentSubmitBtn {
+    width: 58px;
+    height: 58px;
+    min-height: 58px;
+  }
+}
+
+/* Tablet: rating moves to second line, button stays right */
+@media (min-width: 761px) and (max-width: 900px) {
+  .community-comms {
+    width: 100%;
+    max-width: 100%;
+    padding: 22px 16px;
+  }
+
+  #commentForm,
+  .comment-form {
+    display: grid;
+    grid-template-columns: minmax(130px, 0.8fr) minmax(0, 1.6fr) 60px;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  #commentName {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+  }
+
+  #commentText {
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+  }
+
+  .rating-box {
+    grid-column: 1 / 3;
+    grid-row: 2;
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+    gap: 18px;
+  }
+
+  #commentSubmitBtn {
+    grid-column: 3;
+    grid-row: 1 / 3;
+    width: 60px;
+    height: auto;
+    min-height: 60px;
+    border-radius: 999px;
+    align-self: stretch;
+  }
+
+  .comment-counter {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: end;
+    text-align: right;
+    padding-right: 4px;
+  }
+}
+
+/* Phone: vertical clean layout */
+@media (max-width: 760px) {
+  .community-comms {
+    width: 100%;
+    max-width: 100%;
+    padding: 20px 14px;
+    overflow: hidden;
+  }
+
+  .community-rating {
+    max-width: 100%;
+    padding: 16px 14px;
+  }
+
+  #averageStars {
+    font-size: 25px;
+    letter-spacing: 2px;
+  }
+
+  #commentsList,
+  .comments-list {
+    max-height: 360px;
+  }
+
+  #commentForm,
+  .comment-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 14px;
+    overflow: hidden;
+  }
+
+  #commentName,
+  #commentText,
+  .rating-box,
+  #commentSubmitBtn,
+  .comment-counter {
+    grid-column: auto;
+    grid-row: auto;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #commentName,
+  #commentText {
+    height: 48px;
+    max-height: 48px;
+  }
+
+  .rating-box {
+    height: 52px;
+    min-width: 0;
+    justify-content: center;
+    gap: 16px;
+    padding: 0 16px;
+  }
+
+  .rating-star {
+    width: 32px;
+    height: 32px;
+    font-size: 25px;
+  }
+
+  #commentSubmitBtn {
+    height: 50px;
+    min-height: 50px;
+    border-radius: 999px;
+    justify-self: stretch;
+  }
+
+  .comment-counter {
+    text-align: right;
+    padding-right: 4px;
+    margin-top: -4px;
+  }
+}
+
+@media (max-width: 420px) {
+  .community-comms {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .rating-box {
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  .rating-star {
+    width: 30px;
+    height: 30px;
+    font-size: 23px;
+  }
+}
+
+/* =========================================================
+   REAL FINAL FIX — COMMUNITY COMMS WIDTH + FORM
+   Put this block at the very end of style.css.
+   Goal: wider dark Community Comms panel on PC, stable layout on mobile.
+========================================================= */
+
+@media (min-width: 1101px) {
+  .hero {
+    width: min(1480px, 96vw) !important;
+  }
+
+  .community-comms {
+    width: min(1080px, 82vw) !important;
+    max-width: 1080px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 32px 34px !important;
+    overflow: hidden !important;
+  }
+
+  .community-rating {
+    max-width: 700px !important;
+    padding: 22px 30px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .comments-list,
+  #commentsList {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 470px !important;
+    padding-right: 12px !important;
+    overflow-x: hidden !important;
+  }
+
+  .comm-message {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #commentForm,
+  .comment-form {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: grid !important;
+    grid-template-columns: 170px minmax(360px, 1fr) 285px 68px !important;
+    gap: 16px !important;
+    align-items: center !important;
+    padding: 18px !important;
+    overflow: hidden !important;
+  }
+
+  #commentName {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    width: 100% !important;
+    height: 58px !important;
+  }
+
+  #commentText {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    width: 100% !important;
+    height: 58px !important;
+    max-height: 58px !important;
+    min-width: 0 !important;
+    padding: 17px 18px !important;
+    overflow: hidden !important;
+    resize: none !important;
+  }
+
+  .rating-box {
+    grid-column: 3 !important;
+    grid-row: 1 !important;
+    width: 285px !important;
+    min-width: 285px !important;
+    max-width: 285px !important;
+    height: 58px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 14px !important;
+    padding: 0 24px !important;
+  }
+
+  .rating-star {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 26px !important;
+  }
+
+  #commentSubmitBtn {
+    grid-column: 4 !important;
+    grid-row: 1 !important;
+    width: 62px !important;
+    height: 62px !important;
+    min-width: 62px !important;
+    min-height: 62px !important;
+    border-radius: 50% !important;
+    justify-self: center !important;
+    align-self: center !important;
+  }
+
+  .comment-counter {
+    grid-column: 2 / 3 !important;
+    grid-row: 2 !important;
+    width: 100% !important;
+    text-align: right !important;
+    margin-top: -6px !important;
+    padding-right: 8px !important;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1100px) {
+  .community-comms {
+    width: min(940px, 94vw) !important;
+    max-width: 940px !important;
+    padding: 24px 18px !important;
+    overflow: hidden !important;
+  }
+
+  #commentForm,
+  .comment-form {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: grid !important;
+    grid-template-columns: 150px minmax(240px, 1fr) 235px 60px !important;
+    gap: 12px !important;
+    padding: 14px !important;
+    overflow: hidden !important;
+  }
+
+  .rating-box {
+    width: 235px !important;
+    min-width: 235px !important;
+    max-width: 235px !important;
+    gap: 8px !important;
+    padding: 0 18px !important;
+  }
+
+  #commentSubmitBtn {
+    width: 58px !important;
+    height: 58px !important;
+    min-width: 58px !important;
+    min-height: 58px !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .community-comms {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 20px 14px !important;
+    overflow: hidden !important;
+  }
+
+  #commentForm,
+  .comment-form {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    padding: 14px !important;
+    overflow: hidden !important;
+  }
+
+  #commentName,
+  #commentText,
+  .rating-box,
+  #commentSubmitBtn,
+  .comment-counter {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .rating-box {
+    height: 52px !important;
+    justify-content: center !important;
+    gap: 16px !important;
+    padding: 0 14px !important;
+  }
+
+  #commentSubmitBtn {
+    height: 50px !important;
+    min-height: 50px !important;
+    border-radius: 999px !important;
   }
 }
